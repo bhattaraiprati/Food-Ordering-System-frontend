@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import UserLandingPage from "./component/User/Pages/landing/UserLandingPage";
 import Customlanding from "./component/User/Pages/landing/Customlanding";
@@ -9,6 +7,7 @@ import RegisterPage from "./component/User/Pages/RegisterPage";
 import { BrowserRouter, Route, Routes } from "react-router";
 import HomePage from "./component/User/Pages/HomePage";
 import Explore from "./component/User/Pages/Explore";
+import RestaurantDetails from "./component/User/Pages/RestaurantDetails";
 
 function App() {
   const links = [
@@ -31,6 +30,7 @@ function App() {
           <Route path="/" element={<UserLandingPage />}>
             <Route path="" element={<HomePage/> } />
             <Route path="explore" element={<Explore/>} />
+            <Route path="restaurant/detail/" element={<RestaurantDetails/>} />
           </Route>
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />

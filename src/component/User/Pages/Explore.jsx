@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Search, MapPin, Filter, ChevronDown } from "lucide-react";
 import FeaturedRestaurants from "./landing/FeaturedRestaurant";
+import { Checkbox } from "antd";
+import '../../../assets/css/CustomStyle.css'
 // import FeaturedRestaurants from "@/components/FeaturedRestaurants";
 
 
@@ -84,9 +86,9 @@ const Explore = () => {
               </button>
 
               {isPopoverOpen && (
-                <div className="absolute z-50 top-full right-0 mt-2 w-80 rounded-md border border-border bg-background shadow-md">
+                <div className="absolute z-30 top-full right-0 mt-2 w-80 bg-[#fff]  rounded-md border border-border bg-background shadow-md">
                   <div className="p-4 space-y-4">
-                    <h4 className="font-medium">Cuisine Types</h4>
+                    <h4 className="font-medium text-gray-900">Cuisine Types</h4>
                     <div className="grid grid-cols-2 gap-2">
                       {cuisineTypes.map((cuisine) => (
                         <div
@@ -95,34 +97,21 @@ const Explore = () => {
                         >
                           {/* Custom Checkbox */}
                           <div className="relative flex items-center">
-                            <input
+                            {/* <input
                               type="checkbox"
                               id={cuisine}
-                              className="w-4 h-4 opacity-0 absolute"
-                            />
-                            <div className="w-4 h-4 border border-gray-300 rounded flex items-center justify-center bg-background">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-3 w-3 text-primary hidden peer-checked:block"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
+                              className="w-4 h-4 outline-solid opacity-0 absolute"
+                            /> */}
+                            <Checkbox className="custom-checkbox">
+                              <label
+                                htmlFor={cuisine}
+                                className="text-sm text-gray-900 ml-2 cursor-pointer"
                               >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M5 13l4 4L19 7"
-                                />
-                              </svg>
-                            </div>
+                                {cuisine}
+                              </label>
+                            </Checkbox>
+
                             {/* Custom Label */}
-                            <label
-                              htmlFor={cuisine}
-                              className="text-sm ml-2 cursor-pointer"
-                            >
-                              {cuisine}
-                            </label>
                           </div>
                         </div>
                       ))}
@@ -131,7 +120,7 @@ const Explore = () => {
                     {/* Custom Separator */}
                     <div className="h-px w-full bg-border my-2"></div>
 
-                    <h4 className="font-medium">Price Range</h4>
+                    <h4 className="font-medium text-gray-900">Price Range</h4>
                     <div className="flex items-center gap-2">
                       {/* Custom Buttons */}
                       <button className="px-3 py-1 text-sm rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">
@@ -150,10 +139,10 @@ const Explore = () => {
 
                     <div className="flex justify-end gap-2">
                       {/* Custom Buttons */}
-                      <button className="px-3 py-1 text-sm rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                      <button className="px-3 py-1 text-sm rounded-md border border-input bg-[#ffb700] hover:bg-accent hover:text-accent-foreground">
                         Reset
                       </button>
-                      <button className="px-3 py-1 text-sm rounded-md bg-primary text-primary-foreground hover:bg-primary/90">
+                      <button className="px-3 py-1 text-sm rounded-md bg-[#ffb700] text-primary-foreground hover:bg-primary/90">
                         Apply Filters
                       </button>
                     </div>
@@ -167,7 +156,7 @@ const Explore = () => {
               Search
             </button>
           </div>
-          <FeaturedRestaurants/>
+          <FeaturedRestaurants />
         </div>
       </main>
     </div>

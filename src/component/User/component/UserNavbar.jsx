@@ -1,5 +1,6 @@
   import React, { useState } from "react";
 import { NavLink } from "react-router";
+import Logo from '../../../assets/Images/FoodOrderingLogo.png'
   
 
   const ListItem = ({ children, to, isActive, onClick }) => {
@@ -34,11 +35,12 @@ import { NavLink } from "react-router";
           <div className="container">
             <div className="relative mx-10 flex items-center justify-between">
               <div className="w-60 max-w-full px-4">
-                <NavLink to="/" className="block w-3xs py-5">
+                <NavLink to="/" className="block w-3xs py-1">
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPfZniVo34CymSZNiiGI6j9CZEU5v28ctENg&s"
+                    
+                    src={Logo}
                     alt="logo"
-                    className="w-14"
+                    className="w-20 "
                   />
                 </NavLink>
               </div>

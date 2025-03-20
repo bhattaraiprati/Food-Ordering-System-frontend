@@ -1,6 +1,7 @@
 import React from 'react'
 import { ArrowRight } from "lucide-react";
 import { Button } from 'antd';
+import { NavLink } from 'react-router';
 
 const RestaurantCard = ({ image, name, location, delay }) => {
   return (
@@ -8,10 +9,11 @@ const RestaurantCard = ({ image, name, location, delay }) => {
       className="group overflow-hidden"
       style={{ animationDelay: `${delay * 100}ms` }}
     >
-      <a
-        href={`/restaurant/${name.toLowerCase().replace(/\s+/g, "-")}`}
-        className="block"
-      >
+      <NavLink className="block" to={"/restaurant/detail/"}>
+        {/* <a
+          href={`/restaurant/${name.toLowerCase().replace(/\s+/g, "-")}`}
+          className="block"
+        > */}
         <div className="relative overflow-hidden rounded-2xl">
           <div className="aspect-w-4 aspect-h-3 bg-gray-100">
             <img
@@ -28,7 +30,8 @@ const RestaurantCard = ({ image, name, location, delay }) => {
             {typeof location === "string" ? location : location.city}
           </p>
         </div>
-      </a>
+        {/* </a> */}
+      </NavLink>
     </div>
   );
 };
@@ -113,6 +116,7 @@ const FeaturedRestaurants = () => {
             name={restaurant.name}
             location={restaurant.location}
             delay={index}
+            
           />
         
         ))}
