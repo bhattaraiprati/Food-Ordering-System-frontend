@@ -1,9 +1,10 @@
-import { Button, Card, Col, Divider, Rate, Row, Segmented, Tabs, theme, Typography } from "antd";
+import { Button, Card, Col, Divider, Rate, Row, Tabs, theme, Typography } from "antd";
 import { Layout, Menu } from "antd";
 import Search from "antd/es/input/Search";
 const {  Sider } = Layout;
-import { Bike, Clock, LocateIcon, Map, MapPin, MenuIcon, MenuSquareIcon, Star } from "lucide-react";
+import { Bike, Clock,  MapPin, MenuSquareIcon, Star } from "lucide-react";
 import React from 'react'
+import "../../../assets/css/CustomStyle.css"
 
 const { Title, Text } = Typography;
 
@@ -117,11 +118,26 @@ const items = [
   {
     key: 1,
     label: "Nav 1",
-
   },
   {
     key: 2,
     label: "Nav 2",
+  },
+  {
+    key: 3,
+    label: "Nav 3",
+  },
+  {
+    key: 4,
+    label: "Nav 4",
+  },
+  {
+    key: 5,
+    label: "Nav 5",
+  },
+  {
+    key: 6,
+    label: "Nav 6",
   },
 ];
 
@@ -132,77 +148,6 @@ const RestaurantDetails = () => {
       token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
   return (
-    // <div class="relative isolate px-0 pt-14 ">
-    //   <section>
-    //     <div class="mx-auto w-full py-32 sm:py-2  lg:py-10">
-    //       <img
-    //         src="https://images.unsplash.com/photo-1595418917831-ef942bd9f9ec?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    //         className="w-full h-80 background-image"
-    //       />
-    //     </div>
-    //     <div className="px-16 restaurent-details">
-    //       <Row>
-    //         <Col span={6}>
-    //           <img
-    //             className="w-70 rounded-lg"
-    //             src="https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?ga=GA1.1.1715020565.1724677247&semt=ais_hybrid"
-    //           />
-    //         </Col>
-
-    //         <Col offset={1} span={17} className="text-gray-900">
-    //           <Row>
-    //             <Col span={15}>
-    //               <Title level={2} style={{ marginBottom: "0px" }}>
-    //                 Peros Pizza Late Night (Thamel)
-    //               </Title>
-    //               <Title level={4} style={{ marginTop: "4px" }}>
-    //                 Thamel, Kathmandu
-    //               </Title>
-    //             </Col>
-    //             <Col span={9}>
-    //               <div>
-    //                 <Title level={5} style={{ display: "flex" }}>
-    //                   <Clock />
-    //                   <span className="ml-2">Open Time : </span>
-    //                   9:30 AM To 8:30 PM
-    //                 </Title>
-    //                 <div>
-    //                   <Title level={5} style={{ display: "flex" }}>
-    //                     <Bike />
-    //                     <span className="ml-2">30 - 40 mins</span>
-    //                   </Title>
-    //                 </div>
-    //               </div>
-    //             </Col>
-    //           </Row>
-    //           <Row className="mt-10">
-    //             <Col>
-    //               <div>
-    //                 <Rate disabled value={3} count={5} />
-    //                 <Divider
-    //                   type="vertical"
-    //                   style={{ border: "0.5px solid black" }}
-    //                 />
-    //                 <Text strong> Momo</Text>
-    //                 <Divider
-    //                   type="vertical"
-    //                   style={{ border: "0.5px solid black" }}
-    //                 />
-    //                 <Text strong> Pizza</Text>
-    //                 <Divider
-    //                   type="vertical"
-    //                   style={{ border: "0.5px solid black" }}
-    //                 />
-    //                 <Text strong> Burger</Text>
-    //               </div>
-    //               <p className="mt-5 text-[16px] font-medium">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, atque expedita temporibus inventore omnis architecto.</p>
-    //             </Col>
-    //           </Row>
-    //         </Col>
-    //       </Row>
-    //     </div>
-    //   </section>
-    // </div>
     <div className="relative isolate px-0 pt-14">
       <section>
         <div className="mx-auto w-full h-full pt-32 sm:pt-2 lg:py-10 relative">
@@ -305,7 +250,7 @@ const RestaurantDetails = () => {
 
       <div className="">
         <Row>
-          <Col span={4} offset={1}>
+          <Col span={4} offset={1} className="z-50">
             <Sider
               breakpoint="lg"
               collapsedWidth="0"
@@ -316,7 +261,7 @@ const RestaurantDetails = () => {
               <div className="demo-logo-vertical text-gray-900 flex justify-center">
                 <Title level={4}>Categories</Title>
               </div>
-              <Menu mode="inline" defaultSelectedKeys={["4"]} items={items} />
+              <Menu mode="inline" defaultSelectedKeys={["1"]} items={items} />
             </Sider>
           </Col>
           <Col span={10}>
@@ -355,6 +300,8 @@ const RestaurantDetails = () => {
                     fontSize: "20px",
                     height: "20rem",
                     overflowY: "auto",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "white transparent",
                   }}
                   tabBarStyle={{ marginBottom: 0 }}
                   tabBarGutter={16}
@@ -370,6 +317,15 @@ const RestaurantDetails = () => {
                 />
               </div>
             </Card>
+          </Col>
+          <Col span={7} offset={1}>
+            <div className="w-full m-2">
+              <div className="w-full min-h-80 bg-[#fff] text-center rounded-lg p-5">
+                <div>
+                  <Title level={3}>Cart Empty</Title>
+                </div>
+              </div>
+            </div>
           </Col>
         </Row>
       </div>

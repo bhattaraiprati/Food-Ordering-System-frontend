@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { use, useState } from 'react'
 import { Facebook, Linkedin, Mail } from "lucide-react";
 import { NavLink } from 'react-router';
 
 const RegisterPage = () => {
+  
+
     const handleSubmit = (e) => {
       e.preventDefault();
       // Handle registration logic here
     };
+    const handleErrorInput = ()=>{
+
+    }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full mb-10 mt-5 bg-white rounded-xl shadow-xl p-8 space-y-6">
@@ -25,6 +30,7 @@ const RegisterPage = () => {
             <input
               id="name"
               type="text"
+              name='name'
               placeholder="Enter your full name"
               className="w-full px-3 py-2 border border-gray-300 text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
               required
@@ -41,6 +47,7 @@ const RegisterPage = () => {
             <input
               id="email"
               type="email"
+              name='email'
               placeholder="Enter your email"
               className="w-full px-3 py-2 border border-gray-300 text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
               required
@@ -57,6 +64,7 @@ const RegisterPage = () => {
             <input
               id="password"
               type="password"
+              name='password'
               placeholder="Create a password"
               className="w-full px-3 py-2 border border-gray-300 text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
               required
@@ -73,6 +81,7 @@ const RegisterPage = () => {
             <input
               id="confirmPassword"
               type="password"
+              name='confirm-password'
               placeholder="Confirm your password"
               className="w-full px-3 py-2 border border-gray-300 text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
               required
