@@ -1,7 +1,12 @@
-  import React, { useState } from "react";
+  import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import Logo from '../../../assets/Images/FoodOrderingLogo.png'
-  
+import ProfileDropdowns from "./ProfileDropdowns";
+import { UserContext } from "../../../Context/User.context";
+import { Avatar, Badge } from "antd";
+import { BellOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import NotificationDropdown from "../../components/NotificationDropdown"
+import AddCart from "./AddCart";
 
   const ListItem = ({ children, to, isActive, onClick }) => {
     return (
@@ -19,12 +24,31 @@ import Logo from '../../../assets/Images/FoodOrderingLogo.png'
     );
   };
 
+ 
+  const NavlinkBtn = ({ btn }) => {
+    return (
+      <NavLink
+        to="/login"
+        className="rounded-md bg-[#ffb700] text-white px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:text-white hover:bg-[#faca50]"
+      >
+        {btn}
+      </NavLink>
+    );
+  };
+
   const UserNavbar = () => {
+  const { _user } = useContext(UserContext);
     const [open, setOpen] = useState(false);
     const [activeItem, setActiveItem] = useState("");
+    const [dropdownOpen , setdropdownOpen] = useState(false);
 
     const handleNavbarActive = (item) => {
       setActiveItem(item);
+    };
+
+    const handleModal = () => {
+      console.log("button is clicked ????");
+      setdropdownOpen(true);
     };
 
     return (
@@ -36,12 +60,7 @@ import Logo from '../../../assets/Images/FoodOrderingLogo.png'
             <div className="relative mx-10 flex items-center justify-between">
               <div className="w-60 max-w-full px-4">
                 <NavLink to="/" className="block w-3xs py-1">
-                  <img
-                    
-                    src={Logo}
-                    alt="logo"
-                    className="w-20 "
-                  />
+                  <img src={Logo} alt="logo" className="w-20 " />
                 </NavLink>
               </div>
               <div className="flex w-full items-center justify-between px-4">
@@ -85,23 +104,40 @@ import Logo from '../../../assets/Images/FoodOrderingLogo.png'
                       >
                         About
                       </ListItem>
-                      <ListItem
-                        to="/blog"
-                        isActive={activeItem === "blog"}
-                        onClick={() => handleNavbarActive("blog")}
-                      >
-                        Blog
-                      </ListItem>
                     </ul>
                   </nav>
                 </div>
-                <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-                  <NavLink
-                    to="/login"
-                    className="rounded-md bg-[#ffb700] text-white px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:text-white hover:bg-[#faca50]"
-                  >
-                    Sign Up
-                  </NavLink>
+                <div className="hidden justify-end pr-16 sm:flex text-gray-900 lg:pr-0">
+                  <div className="mr-5">
+                    <NotificationDropdown>
+                      <Badge count={5} onClick={handleModal}>
+                        <Avatar shape="circle">
+                          <BellOutlined style={{ fontSize: 20, color: "" }} />
+                        </Avatar>
+                      </Badge>
+                    </NotificationDropdown>
+                  </div>
+
+                  <div className="mr-5">
+                    <AddCart>
+                      <Badge count={5} onClick={handleModal}>
+                        <Avatar shape="circle">
+                          <ShoppingCartOutlined
+                            style={{ fontSize: 20, color: "" }}
+                          />
+                        </Avatar>
+                      </Badge>
+                    </AddCart>
+                  </div>
+
+                  {localStorage.getItem("is_Login") == 0 ? (
+                    <NavlinkBtn btn="SignUp" />
+                  ) : (
+                    <div className="flex items-center space-x-2">
+                      <ProfileDropdowns />
+                      <p className="font-medium">{_user.name}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -29,58 +29,42 @@ import AdminProfile from "./AdminProfile";
 import Sider from 'antd/es/layout/Sider';
 
 const AdminLayout = () => {
-    const [darkTheme, setDarkTheme] = useState(true);
     const [Collaped, setCollaped] = useState(false);
     const [dropdownOpen, setdropdownOpen] = useState(false);
-
-    const toggleTheme = () => {
-      setDarkTheme(!darkTheme);
-    };
-
-    const {
-      token: { colorBgContainer },
-    } = theme.useToken();
 
     const handleModal = () => {
       console.log("button is clicked ????");
       setdropdownOpen(true);
     };
-    const notiDropdownOkBtn = () => {
-      setdropdownOpen(false);
-    };
-    const notiDropdownCancelBtn = () => {
-      setdropdownOpen(false);
-    };
+    
 
   return (
     <div>
-      <BrowserRouter>
+      
         <Layout>
           <Affix offsetTop={0}>
             <Sider
               collapsed={Collaped}
               collapsible
               trigger={null}
-              theme={darkTheme ? "dark" : "light"}
+              theme={"light"}
               className="sidebar"
+              style={{height: "100vh"}}
             >
               <Logos />
-              <MenuList darkTheme={darkTheme} />
-              <ToggleThemeButton
-                darkTheme={darkTheme}
-                toggleTheme={toggleTheme}
-              />
+              <MenuList  />
+              
             </Sider>
           </Affix>
 
           <Layout>
-            <Header className="main-header" style={{ zIndex: 999 }}>
+            <Header  className="main-header border-b-2" style={{ zIndex: 999, backgroundColor: '#fff', position: 'sticky', top: 0 }}>
               <Row>
                 <Col span={20}>
                   <Button
                     className="toggle"
                     onClick={() => setCollaped(!Collaped)}
-                    type="text"
+                    
                     icon={
                       Collaped ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
                     }
@@ -113,8 +97,7 @@ const AdminLayout = () => {
                   <Route path="/" element={<AdminHome />} />
                   <Route path="/Order" element={<AdminOrder />} />
                   <Route path="/AllMenu" element={<AllMenu />} />
-                  <Route path="/AllMenu" element={<AllMenu />} />
-                  <Route path="/admin/setting" element={<AdminProfile />} />
+                  <Route path="/admin/setting" element={<AdminProfile />} />  
 
                   {/* <Route path="/services" element={<Services />} />
                   <Route path="/blog" element={<Blog />} /> */}
@@ -123,7 +106,7 @@ const AdminLayout = () => {
             </Layout>
           </Layout>
         </Layout>
-      </BrowserRouter>
+
     </div>
   );
 }

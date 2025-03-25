@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Space, DatePicker, Typography, Input, Modal, Tag } from "antd";
 import { Select, Table } from "antd";
-import '/src/assets/css/Order.css';
+// import '/src/assets/css/Order.css';
 import OrderViewDetails from '../components/OrderViewDetails';
 
 

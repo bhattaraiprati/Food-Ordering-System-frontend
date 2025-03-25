@@ -5,7 +5,7 @@
 
 /* Target the inner checkbox element */
 .custom-checkbox .ant-checkbox {
-  border: 0.5px solid ; /* Add a 1px border */
+  border: 0.5px solid; /* Add a 1px border */
   /* border-radius: 2px; */
   outline: 0.5px solid #fff; /* Add outline */
 }
@@ -21,9 +21,20 @@
   outline-offset: 1px;
 }
 
-.white-color{
+.white-color {
   color: white;
 }
-.ant-menu-light{
+.ant-menu-light {
   background-color: transparent;
+}
+.button-primary{
+  background-color: #ffb700;
+  color: #fff;
+
+}
+.button-primary:hover{
+  background-color: #d19602 !important;
+  color: #fff !important;
+  border: none !important;
+
 }

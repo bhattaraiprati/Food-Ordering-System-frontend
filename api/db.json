@@ -1,16 +1,52 @@
 {
   "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
   ],
   "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
   ],
   "profile": {
     "name": "typicode"
   },
-  "Users":[
-    
+  "Users": [
+    {
+      "id": "b5729135-3415-4ee4-b3fe-62fc032241b4",
+      "name": "Hari",
+      "age": 22,
+      "email": "hari@gmail.com",
+      "role": "Admin",
+      "password": "12345"
+    },
+    {
+      "id": "cd07",
+      "name": "Stacy Terry",
+      "email": "taticeribi@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "confirmPassword": "Pa$$w0rd!"
+    },
+    {
+      "id": "2e1c",
+      "name": "Lane Gates",
+      "email": "zeny@mailinator.com",
+      "password": "Pa$$w0rd!"
+    }
   ]
 }

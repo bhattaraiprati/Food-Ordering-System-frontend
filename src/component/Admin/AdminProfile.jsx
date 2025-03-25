@@ -1,6 +1,6 @@
 import { Button, Divider, Dropdown, Form, Image, Input, Rate, Space, Switch, Table, Tabs, TimePicker } from "antd";
 import React, { useState } from "react";
-import '/src/assets/css/AdminProfile.css';
+// import '/src/assets/css/AdminProfile.css';
 import { Typography } from "antd";
 import { CheckOutlined, CloseOutlined, SettingOutlined, StarOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;

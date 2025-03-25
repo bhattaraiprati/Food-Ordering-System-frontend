@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const MenuList = ({ darkTheme }) => {
 
@@ -21,7 +21,7 @@ const MenuList = ({ darkTheme }) => {
 
   return (
     <Menu
-      theme={darkTheme ? "dark" : "light"}
+      theme={"light"}
       mode="inline"
       className="menu-bar"
     >

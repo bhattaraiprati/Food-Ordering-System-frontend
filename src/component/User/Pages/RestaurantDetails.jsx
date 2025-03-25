@@ -2,11 +2,12 @@ import { Button, Card, Col, Divider, Rate, Row, Tabs, theme, Typography } from "
 import { Layout, Menu } from "antd";
 import Search from "antd/es/input/Search";
 const {  Sider } = Layout;
-import { Bike, Clock,  MapPin, MenuSquareIcon, Star } from "lucide-react";
-import React from 'react'
+import { Bike, Clock,  MapPin, MenuSquareIcon, Star, X } from "lucide-react";
+import React, { useState } from 'react'
 import "../../../assets/css/CustomStyle.css"
 
 const { Title, Text } = Typography;
+
 
 
 const Menuitems = () =>{
@@ -24,7 +25,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -34,7 +35,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -44,7 +45,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -54,7 +55,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -64,7 +65,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -74,7 +75,7 @@ const Menuitems = () =>{
               Veg. Manchow Soup
             </Col>
             <Col span={4} offset={4}>
-              <Button type="primary">Add</Button>
+              <Button className="button-primary">Add</Button>
             </Col>
             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
           </Row>
@@ -83,6 +84,21 @@ const Menuitems = () =>{
     );
 }
 
+const Review = () => {
+  return (
+    <div >
+      <div className="border-b-2 pb-4">
+        <div/>
+        <Rate disabled defaultValue={4} className="text-[#ffb700]" />
+        <p className="text-gray-800 text-[16px]/6 font-medium">
+
+          Pratik Bhattarai
+        </p>
+        <p className="text-gray-500 text-[14px]">Nice Food</p>
+      </div>
+    </div>
+  );
+};
 
 const cardsItems = [
   {
@@ -94,15 +110,15 @@ const cardsItems = [
     ),
     children: <Menuitems/>,
   },
-  {
-    key: 2,
-    label: (
-      <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
-        <MapPin style={{ marginRight: 8 }} color="#ffb700" /> Map
-      </span>
-    ),
-    children: "This is 2",
-  },
+  // {
+  //   key: 2,
+  //   label: (
+  //     <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
+  //       <MapPin style={{ marginRight: 8 }} color="#ffb700" /> Map
+  //     </span>
+  //   ),
+  //   children: "This is 2",
+  // },
   {
     key: 3,
     label: (
@@ -110,26 +126,26 @@ const cardsItems = [
         <Star style={{ marginRight: 8 }} color="#ffb700" /> Review
       </span>
     ),
-    children: "This is review section",
+    children: <Review/>,
   },
 ];
 
 const items = [
   {
     key: 1,
-    label: "Nav 1",
+    label: "Soup",
   },
   {
     key: 2,
-    label: "Nav 2",
+    label: "Breakfast",
   },
   {
     key: 3,
-    label: "Nav 3",
+    label: "Dinner",
   },
   {
     key: 4,
-    label: "Nav 4",
+    label: "launch",
   },
   {
     key: 5,
@@ -141,12 +157,17 @@ const items = [
   },
 ];
 
+ 
+
 
 
 const RestaurantDetails = () => {
+  
     const {
       token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+
+
   return (
     <div className="relative isolate px-0 pt-14">
       <section>
@@ -158,16 +179,16 @@ const RestaurantDetails = () => {
               style={{ height: "50vh" }}
             />
             <div className="restaurant-details absolute inset-0 flex p-6 items-center justify-center">
-              <div className="bg-white/0  rounded-lg w-full max-w-full mx-auto">
-                <Row>
+              <div className="bg-white/0  rounded-lg w-full max-w-full mx-auto ">
+                <Row gutter={"horizontal"}>
                   <Col span={6}>
                     <img
-                      className="w-70 rounded-lg"
+                      className="w-full max-w-xs rounded-lg "
                       src="https://img.freepik.com/free-photo/big-sandwich-hamburger-burger-with-beef-red-onion-tomato-fried-bacon_2829-5398.jpg?ga=GA1.1.1715020565.1724677247&semt=ais_hybrid"
                     />
                   </Col>
 
-                  <Col offset={1} span={17} className="text-white">
+                  <Col offset={1} span={17} className="text-white ">
                     <Row className="text-white">
                       <Col span={15}>
                         <Title
@@ -250,7 +271,7 @@ const RestaurantDetails = () => {
 
       <div className="">
         <Row>
-          <Col span={4} offset={1} className="z-50">
+          <Col span={4} className="z-50 mt-16">
             <Sider
               breakpoint="lg"
               collapsedWidth="0"
@@ -258,23 +279,25 @@ const RestaurantDetails = () => {
                 background: "#F6F3F3",
               }}
             >
-              <div className="demo-logo-vertical text-gray-900 flex justify-center">
-                <Title level={4}>Categories</Title>
+              <div className="demo-logo-vertical  flex text-center justify-center border-b-2 border-gray-300">
+                <Text className="text-xl text-gray-700 mb-2">Categories</Text>
               </div>
-              <Menu mode="inline" defaultSelectedKeys={["1"]} items={items} />
+              <Menu
+                mode="inline"
+                defaultSelectedKeys={["1"]}
+                items={items}
+                className="text-base text-center font-medium text-gray-200"
+              />
             </Sider>
           </Col>
-          <Col span={10}>
-            <Card type="inner" style={{ padding: 0 }}>
-              {/* Tabs with centered labels and vertical divider */}
-              {/* Search Input */}
+          <Col span={11}>
+            <Card type="inner" className="h-110" style={{ padding: 0 }}>
               <div
                 style={{
                   padding: "16px",
                   position: "sticky",
-                  top: "56px", // Adjust based on the height of the tabs
+                  top: "56px",
                   backgroundColor: "white",
-                  zIndex: 1,
                 }}
               >
                 <Search placeholder="Search..." allowClear />
@@ -298,10 +321,10 @@ const RestaurantDetails = () => {
                   style={{
                     flex: 1,
                     fontSize: "20px",
-                    height: "20rem",
+                    height: "30rem",
                     overflowY: "auto",
                     scrollbarWidth: "thin",
-                    scrollbarColor: "white transparent",
+                    scrollbarColor: "gray transparent",
                   }}
                   tabBarStyle={{ marginBottom: 0 }}
                   tabBarGutter={16}
@@ -318,11 +341,52 @@ const RestaurantDetails = () => {
               </div>
             </Card>
           </Col>
-          <Col span={7} offset={1}>
+          <Col span={8}>
             <div className="w-full m-2">
-              <div className="w-full min-h-80 bg-[#fff] text-center rounded-lg p-5">
-                <div>
+              <div className="w-full min-h-80 bg-[#fff]  rounded-lg p-5">
+                <div className="border-b-2 text-center">
                   <Title level={3}>Cart Empty</Title>
+                </div>
+                <Row className="border-b-2 pb-4">
+                  <Col span={2} className="mt-4 mr-2">
+                    <X color="#ffb700" />
+                  </Col>
+                  <Col span={10}>
+                    <div className="text-gray-700 mt-2">
+                      <p className="text-base font-medium">Mutton Bryani</p>
+                    </div>
+                    <div className="text-gray-500 ">
+                      <p className="text-sm">i needed extra salad</p>
+                    </div>
+                  </Col>
+                  <Col span={11}>
+                    <div className="flex">
+                      <div className="text-gray-600 mt-2">Addbtn</div>
+                      <div className="mt-2 ml-20 text-[#ffb700] ">Rs 300</div>
+                    </div>
+                  </Col>
+                </Row>
+                <div className="p-4">
+                  <Row>
+                    <Col span={18}>
+                      <p className="text-gray-500 text-base">Subtotal</p>
+                      <p className="text-gray-500 text-base">VAT</p>
+                      <p className="text-gray-500 text-base">Delivery Charge</p>
+                      <p className="text-gray-500 text-base">Grand Total</p>
+                    </Col>
+                    <Col span={6} className="text-right">
+                      <p className="text-gray-600 text-base"> 700</p>
+                      <p className="text-gray-600 text-base"> 0.0</p>
+                      <p className="text-gray-600 text-base"> 80</p>
+                      <p className="text-gray-600 text-base"> Rs 700</p>
+                    </Col>
+                  </Row>
+                  <div className="text-center mt-8 w-full ">
+                    <Button className="button-primary" style={{width: "25vh"}}>
+                      
+                      Checkout
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

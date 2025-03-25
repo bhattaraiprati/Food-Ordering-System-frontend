@@ -16,10 +16,10 @@ const HeroSection = () => {
   return (
     <div className="relative bg-dark  pt-[120px] dark:bg-dark lg:pt-[110px]">
       <div className="container">
-        <div className="mx-4 flex flex-wrap">
+        <div className="mx-4 flex  flex-wrap-reverse">
           <div className="w-full px-4 lg:w-5/12">
             <div className="hero-content">
-              <h1 className="mb-5 ml-0 text-4xl font-bold  text-gray-950 !leading-[1.208]  sm:text-[42px] lg:text-[40px] xl:text-5xl ">
+              <h1 className="mb-5 mt-2 ml-0 text-4xl font-bold  text-gray-950 !leading-[1.208]   sm:text-[42px] lg:text-[40px] xl:text-5xl ">
                 Order Your Favorite Meals Online
               </h1>
               <p className="mb-8 max-w-[480px] text-gray-950 text-base text-body-color dark:text-dark-6">
@@ -59,15 +59,6 @@ const HeroSection = () => {
                     imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/ayroui.svg"
                   />
 
-                  {/* <SingleImage
-                      href="#"
-                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/graygrids.svg"
-                    />
-
-                    <SingleImage
-                      href="#"
-                      imgSrc="https://cdn.tailgrids.com/2.0/image/assets/images/brands/uideck.svg"
-                    /> */}
                 </div>
               </div>
             </div>
@@ -82,7 +73,7 @@ const HeroSection = () => {
                   className="max-w-full lg:ml-auto rounded-tl-[80px]"
                 />
                 <span className="absolute -bottom-8 -left-8 z-[-1]">
-                  <svg
+                  {/* <svg
                     width="93"
                     height="93"
                     viewBox="0 0 93 93"
@@ -114,7 +105,7 @@ const HeroSection = () => {
                     <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
                     <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
                     <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  </svg>
+                  </svg> */}
                 </span>
               </div>
             </div>

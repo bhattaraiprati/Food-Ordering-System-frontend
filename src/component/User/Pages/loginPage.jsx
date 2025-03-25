@@ -1,19 +1,51 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Facebook, Linkedin, Mail } from "lucide-react";
-import { Input } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { checkUser } from "../../../utils/User.util";
+import { ErrorMessageToast, SuccesfulMessageToast } from "../../../utils/Toastify.util";
+import { UserContext } from "../../../Context/User.context";
 
 const LoginPage = () => {
-     const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
+  const { _setUser } = useContext(UserContext);
 
-     const handleCheckboxChange = () => {
-       setIsChecked(!isChecked);
-     };
+     const [form, setForm] = useState({
+       email: "",
+       password: "",
+     });
+
+    const [errors, setErrors] = useState({});
+
+   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+   const handleChange = (e) => {
+     let errorMsg = "";
+
+     const { name, value } = e.target;
+     setForm({ ...form, [name]: value });
+     if (name === "email" && !validateEmail(value))
+       errorMsg = "Enter a valid email.";
+
+      setForm({ ...form, [name]: value });
+     setErrors({ ...errors, [name]: errorMsg });
+   };
+   
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
+    checkUser(form.email, form.password).then((data) =>{
+      if(data == null){
+        ErrorMessageToast("Invalid email and password!")
+      }
+      else{
+        _setUser(data);
+        SuccesfulMessageToast("Login Successfully");
+        localStorage.setItem("is_Login", 1);
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate("/");
+      }
+    })
   };
 
   return (
@@ -24,7 +56,7 @@ const LoginPage = () => {
             <h1 className="text-2xl font-bold text-gray-900">LOGIN</h1>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6">
             <div className="space-y-2">
               <label
                 htmlFor="email"
@@ -35,10 +67,18 @@ const LoginPage = () => {
               <input
                 id="email"
                 type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 border border-gray-300 text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
+                className={`w-full px-3 py-2 border ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                } text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]`}
                 required
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -51,15 +91,13 @@ const LoginPage = () => {
               <input
                 id="password"
                 type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
                 placeholder="Enter your password"
                 className="w-full px-3 py-2 border border-gray-300 text-black bg-white  rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
                 required
               />
-              {/* <Input
-                type="password"
-                placeholder="Enter your password"
-                className="w-full px-3 py-2 border border-gray-300 text-black bg-white  rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
-              /> */}
             </div>
 
             <div className="flex items-center space-x-2">
@@ -78,7 +116,8 @@ const LoginPage = () => {
             </div>
 
             <button
-              type="submit"
+              onClick={handleSubmit}
+              type="button"
               className="w-full bg-[#ffb700] hover:bg-[#ffa600] text-white py-2 px-4 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#ffb700]"
             >
               LOGIN
@@ -125,7 +164,10 @@ const LoginPage = () => {
 
             <div className="text-center text-sm text-gray-900">
               Need an account?{" "}
-              <NavLink to={'/register'} className="font-semibold text-[#ffb700] hover:text-[#ffa600]">
+              <NavLink
+                to={"/register"}
+                className="font-semibold text-[#ffb700] hover:text-[#ffa600]"
+              >
                 SIGN UP
               </NavLink>
               {/* <a
