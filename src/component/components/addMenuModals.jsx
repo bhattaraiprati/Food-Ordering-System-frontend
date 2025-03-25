@@ -11,13 +11,27 @@ import {
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import Item from "antd/es/list/Item";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { viewCategories } from "../../utils/Admin.util";
 
 const addMenuModals = ({ isOpen, onOk, onCancel }) => {
+  const [categoryNames , setCategoryNames] = useState([]);
 
   const onChecked = () => {
     console.log("check the button");
   };
+
+  useEffect(()=>{
+    viewCategories().then(function(response){
+      setCategoryNames(response);
+
+    })
+  })
+
+  const categoryOptions = categoryNames.map(category=>({
+    value: category.id,
+    label: category.name 
+  }));
 
   return (
     <Modal
@@ -37,70 +51,71 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
         xxl: "40%",
       }}
     >
-      <Form.Item label="Name" layout="vertical">
-        <Input />
-      </Form.Item>
+      <Form layout="vertical">
+        <Form.Item label="Name" >
+          <Input />
+        </Form.Item>
 
-      <Form.Item label="Category" layout="vertical">
-        <Select
-          showSearch
-          placeholder="Select Category"
-          filterOption={(input, option) =>
-            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          }
-          options={[
-            { value: "1", label: "Dinner" },
-            { value: "2", label: "Breakfast" },
-          ]}
-        />
-      </Form.Item>
+        <Form.Item label="Category" >
+          <Select
+            showSearch
+            placeholder="Select Category"
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={categoryOptions}
+          />
+        </Form.Item>
 
-      <Form.Item label="Description" layout="vertical">
-        <TextArea rows={3} placeholder="Enter a brief description" />
-      </Form.Item>
+        <Form.Item label="Description" >
+          <TextArea rows={3} placeholder="Enter a brief description" />
+        </Form.Item>
 
-      <Form.Item
-        layout="inline"
-        style={{
-          marginBottom: 0,
-        }}
-      >
-        <div style={{ display: "flex" }}>
-          <Form.Item
-            label="Price"
-            layout="vertical"
-            style={{
-              width: "calc(50% - 8px)",
-            }}
-          >
-            <Input placeholder="Input Price of Item" />
-          </Form.Item>
-          <Form.Item
-            label="Preparation Time(Minutes)"
-            layout="vertical"
-            style={{
-              width: "calc(50% - 8px)",
-              margin: "0 8px",
-            }}
-          >
-            <Input placeholder="Input Time in Minutes" />
-          </Form.Item>
-        </div>
-      </Form.Item>
-      <Form.Item label="Upload Images" layout="vertical">
-        <Upload
-          action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-          listType="picture"
+        <Form.Item
+          layout="inline"
+          style={{
+            marginBottom: 0,
+          }}
         >
-          <Button type="primary" icon={<UploadOutlined />}>
-            Click Here to Upload
-          </Button>
-        </Upload>
-      </Form.Item>
-      <Form.Item label="Ingredients" layout="vertical">
-        <TextArea rows={3} placeholder="Enter Ingredients Seperate by Commas" />
-      </Form.Item>
-      <Form.Item label="Size Options" layout="vertical">
+          <div style={{ display: "flex" }}>
+            <Form.Item
+              label="Price"
+              layout="vertical"
+              style={{
+                width: "calc(50% - 8px)",
+              }}
+            >
+              <Input placeholder="Input Price of Item" />
+            </Form.Item>
+            <Form.Item
+              label="Preparation Time(Minutes)"
+              layout="vertical"
+              style={{
+                width: "calc(50% - 8px)",
+                margin: "0 8px",
+              }}
+            >
+              <Input placeholder="Input Time in Minutes" />
+            </Form.Item>
+          </div>
+        </Form.Item>
+        <Form.Item label="Upload Images" layout="vertical">
+          <Upload
+            action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+            listType="picture"
+          >
+            <Button type="primary" icon={<UploadOutlined />}>
+              Click Here to Upload
+            </Button>
+          </Upload>
+        </Form.Item>
+        <Form.Item label="Ingredients" layout="vertical">
+          <TextArea
+            rows={3}
+            placeholder="Enter Ingredients Seperate by Commas"
+          />
+        </Form.Item>
+        {/* <Form.Item label="Size Options" layout="vertical">
         <Checkbox onChange={onChecked}>Small</Checkbox>
         <Input style={{ width: "80px" }} />
         <Item style={{ marginTop: "10px" }}>
@@ -126,7 +141,8 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
             { value: "3", label: "Tom" },
           ]}
         />
-      </Form.Item>
+      </Form.Item> */}
+      </Form>
     </Modal>
   );
 };

@@ -16,6 +16,11 @@ import OrderHistory from "./component/User/component/Account/OrderHistory";
 import FavouritePage from "./component/User/component/Account/FavouritePage";
 import AdminLayout from './component/Admin/AdminLayout'
 import AboutPage from "./component/User/Pages/AboutPage";
+import AdminHome from "./component/Admin/AdminHome";
+import AdminOrder from "./component/Admin/AdminOrder";
+import AllMenu from "./component/Admin/AllMenu";
+import AdminProfile from "./component/Admin/AdminProfile";
+import CategoriesPage from "./component/Admin/Pages/CategoriesPage";
 
 function App() {
   const [_user, _setUser] = useState(
@@ -35,7 +40,7 @@ function App() {
             <Route path="/" element={<UserLandingPage />}>
               <Route path="" element={<HomePage />} />
               <Route path="explore" element={<Explore />} />
-              <Route path="about" element={<AboutPage/>} />
+              <Route path="about" element={<AboutPage />} />
               <Route
                 path="restaurant/detail/"
                 element={<RestaurantDetails />}
@@ -47,7 +52,13 @@ function App() {
                 <Route path="favourite" element={<FavouritePage />} />
               </Route>
             </Route>
-            <Route path="/admin" element={<AdminLayout />}></Route>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="" element={<AdminHome />} />
+              <Route path="order" element={<AdminOrder />} />
+              <Route path="allMenu" element={<AllMenu />} />
+              <Route path="categories" element={<CategoriesPage />} />
+              <Route path="/admin/setting" element={<AdminProfile />} />
+            </Route>
 
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />

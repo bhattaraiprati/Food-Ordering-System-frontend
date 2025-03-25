@@ -5,9 +5,11 @@ import {
   HomeOutlined,
   MenuFoldOutlined,
   PayCircleOutlined,
+  ProductOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
+import { LayoutList } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router";
 
@@ -20,42 +22,43 @@ const MenuList = ({ darkTheme }) => {
   };
 
   return (
-    <Menu
-      theme={"light"}
-      mode="inline"
-      className="menu-bar"
-    >
+    <Menu theme={"light"} mode="inline" className="menu-bar">
       <Menu.Item
         key="home"
-        icon={<HomeOutlined />}
-        onClick={() => handleMenuClick("/")}
+        className="text-base font-medium"
+        icon={<HomeOutlined style={{ fontSize: "20px" }} />}
+        onClick={() => handleMenuClick("")}
       >
         Home
       </Menu.Item>
       <Menu.Item
-        key="activity"
-        icon={<MenuFoldOutlined />}
-        onClick={() => handleMenuClick("/Order")}
+        key="order"
+        className="text-base font-medium"
+        icon={<MenuFoldOutlined style={{ fontSize: "20px" }} />}
+        onClick={() => handleMenuClick("order")}
       >
         Order
       </Menu.Item>
-      <Menu.SubMenu key="Menu" icon={<BarsOutlined />} title="Menu">
-        <Menu.Item key="Active-menu"> Active Menu</Menu.Item>
-        <Menu.Item key="All-Menu" onClick={() => handleMenuClick("/AllMenu")} > All Menu</Menu.Item>
-        {/* <Menu.SubMenu key="subtasks" icon={<BarsOutlined />} title="Subtasks">
-          <Menu.Item key="subtask-1"> subtask 1</Menu.Item>
-          <Menu.Item key="subtask-2"> subtask 2</Menu.Item>
-        </Menu.SubMenu> */}
-      </Menu.SubMenu>
-      <Menu.Item key="progress" icon={<AreaChartOutlined />}>
-        Progress
+      <Menu.Item
+        key="progress"
+        className="text-base font-medium"
+        onClick={() => handleMenuClick("categories")}
+        icon={<ProductOutlined style={{ fontSize: "20px" }} color="#080808" />}
+      >
+        Category
       </Menu.Item>
-      {/* <Menu.Item key="payment" icon={<PayCircleOutlined />}>
-        Payment
-      </Menu.Item> */}
-      {/* <Menu.Item key="setting" icon={<SettingOutlined />}>
-        Setting
-      </Menu.Item> */}
+      <Menu.SubMenu
+        key="Menu"
+        className="text-base font-medium"
+        icon={<BarsOutlined style={{ fontSize: "22px" }} />}
+        title="Menu"
+      >
+        <Menu.Item key="Active-menu"> Active Menu</Menu.Item>
+        <Menu.Item key="All-Menu" onClick={() => handleMenuClick("allMenu")}>
+          {" "}
+          All Menu
+        </Menu.Item>
+      </Menu.SubMenu>
     </Menu>
   );
 };

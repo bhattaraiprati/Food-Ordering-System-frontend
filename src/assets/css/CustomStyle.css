@@ -36,5 +36,20 @@
   background-color: #d19602 !important;
   color: #fff !important;
   border: none !important;
-
+  outline: none;
+}
+.icon-button-admin{
+  color: #ffb700;
+  font-size: 20px;
+  height: 22px;
+}
+.ant-input{
+  /* border: 0; */
+}
+.ant-menu-item-selected{
+  background-color: #fff7e1 !important;
+  color: rgb(103, 102, 102) !important;
+}
+.ant-modal-close{
+  display: none;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import {
   Affix,
   Avatar,
@@ -40,73 +40,72 @@ const AdminLayout = () => {
 
   return (
     <div>
-      
+      <Layout>
+        <Affix offsetTop={0}>
+          <Sider
+            collapsed={Collaped}
+            collapsible
+            trigger={null}
+            theme={"light"}
+            className="sidebar"
+            style={{ height: "100vh" }}
+          >
+            <Logos />
+            <MenuList />
+          </Sider>
+        </Affix>
+
         <Layout>
-          <Affix offsetTop={0}>
-            <Sider
-              collapsed={Collaped}
-              collapsible
-              trigger={null}
-              theme={"light"}
-              className="sidebar"
-              style={{height: "100vh"}}
-            >
-              <Logos />
-              <MenuList  />
-              
-            </Sider>
-          </Affix>
+          <Header
+            className="main-header border-b-2"
+            style={{
+              zIndex: 999,
+              backgroundColor: "#fff",
+              position: "sticky",
+              top: 0,
+            }}
+          >
+            <Row>
+              <Col span={20}>
+                <Button
+                  className="toggle border-none"
+                  onClick={() => setCollaped(!Collaped)}
+                >
+                  {Collaped ? (
+                    <MenuUnfoldOutlined style={{ height: "20px" }} />
+                  ) : (
+                    <MenuFoldOutlined />
+                  )}
+                </Button>
+              </Col>
 
-          <Layout>
-            <Header  className="main-header border-b-2" style={{ zIndex: 999, backgroundColor: '#fff', position: 'sticky', top: 0 }}>
-              <Row>
-                <Col span={20}>
-                  <Button
-                    className="toggle"
-                    onClick={() => setCollaped(!Collaped)}
-                    
-                    icon={
-                      Collaped ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
-                    }
-                  />
-                </Col>
+              <Col span={2}>
+                <NotificationDropdown>
+                  <Badge count={5} onClick={handleModal}>
+                    <Avatar shape="circle">
+                      <BellOutlined style={{ fontSize: 20, color: "" }} />
+                    </Avatar>
+                  </Badge>
+                </NotificationDropdown>
+              </Col>
 
-                <Col span={2}>
-                  <NotificationDropdown>
-                    <Badge count={5} onClick={handleModal}>
-                      <Avatar shape="circle">
-                        <BellOutlined style={{ fontSize: 20, color: "" }} />
-                      </Avatar>
-                    </Badge>
-                  </NotificationDropdown>
-                </Col>
+              <Col span={2}>
+                <ProfileDropdowns />
+              </Col>
+            </Row>
+          </Header>
 
-                <Col span={2}>
-                  <ProfileDropdowns />
-                </Col>
-              </Row>
-            </Header>
-
-            <Layout
-              style={{
-                padding: "0 24px 24px",
-              }}
-            >
-              <Content className="main-content">
-                <Routes>
-                  <Route path="/" element={<AdminHome />} />
-                  <Route path="/Order" element={<AdminOrder />} />
-                  <Route path="/AllMenu" element={<AllMenu />} />
-                  <Route path="/admin/setting" element={<AdminProfile />} />  
-
-                  {/* <Route path="/services" element={<Services />} />
-                  <Route path="/blog" element={<Blog />} /> */}
-                </Routes>
-              </Content>
-            </Layout>
+          <Layout
+            style={{
+              padding: "0 24px 24px",
+            }}
+          >
+            <Content className="main-content">
+              <Outlet />
+            </Content>
           </Layout>
         </Layout>
-
+      </Layout>
     </div>
   );
 }
