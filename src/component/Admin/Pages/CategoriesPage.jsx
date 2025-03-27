@@ -197,7 +197,7 @@ useEffect(()=>{
       </Modal>
 
       <Modal
-        title="Are you sure wnat to delete"
+        title="Are you sure want to delete"
         open={deleteModal}
         onOk={handleCategoryDelete}
         onCancel={handleDeleteCancel}

@@ -8,28 +8,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import DetailsCards from "../components/DetailsCards";
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Filler,
-//   Legend,
-// } from "chart.js";
-// import { Line } from "react-chartjs-2";
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Filler,
-//   Legend
-// );
+import Title from "antd/es/typography/Title";
+
 export const options = {
   responsive: true,
   plugins: {
@@ -45,18 +25,6 @@ export const options = {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-// export const data = {
-//   labels,
-//   datasets: [
-//     {
-//       fill: true,
-//       label: "Dataset 2",
-//       data: labels.map(() => faker.number.int({ min: 0, max: 1000 })),
-//       borderColor: "rgb(53, 162, 235)",
-//       backgroundColor: "rgba(53, 162, 235, 0.5)",
-//     },
-//   ],
-// };
 
 const AdminHome = () => {
   const column = [
@@ -112,7 +80,7 @@ const AdminHome = () => {
   ];
   return (
     <>
-      <Row>
+      <Row className="mt-5">
         <div style={{ display: "flex", overflowX: "auto", width: "100%" }}>
           <Col offset={1}>
             <DetailsCards
@@ -185,8 +153,8 @@ const AdminHome = () => {
         </div>
       </Row>
 
-      <div style={{ display: "flex", margin: 40 }}>
-        <Row>
+      <div style={{  margin: 40 }}>
+        {/* <Row>
             <Col span={10}>
               <Typography.Text>Recent Orders</Typography.Text>
               <Table
@@ -196,10 +164,18 @@ const AdminHome = () => {
               ></Table>
             </Col>
             <Col span={13} offset={1}>
-              {/* <Line options={options} data={data} /> */}
+              
             </Col>
          
-        </Row>
+        </Row> */}
+
+        <div>
+          <div className="top-filter mt-10">
+            <Title level={3}>Order Request</Title>
+          </div>
+
+          <Table columns={column} dataSource={tableData} bordered />
+        </div>
       </div>
     </>
   );

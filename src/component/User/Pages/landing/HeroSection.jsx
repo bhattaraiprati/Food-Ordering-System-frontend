@@ -30,24 +30,13 @@ const HeroSection = () => {
               </p>
               <ul className="flex flex-wrap items-center">
                 <li>
-                  <Button className="inline-flex px-6 py-3" type="primary">
-                    Order Now
+                  <Button className="inline-flex px-6 py-3 button-primary " >
+                    Explore Now
                   </Button>
                 </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-dark hover:bg-blue-dark lg:px-7"
-                  >
-                    {/* <DownloadOutlined
-                        className="mr-2"
-                        style={{ fontSize: "20px" }}
-                      /> */}
-                    Explore Menu
-                  </a>
-                </li>
+                
               </ul>
-              <div className="clients pt-16">
+              {/* <div className="clients pt-16">
                 <h6 className="mb-6 flex items-center text-xs font-normal text-gray-950 dark:text-dark-6">
                   Some Of Our Clients
                   <span className="ml-3 inline-block h-px w-8 bg-gray-500"></span>
@@ -60,7 +49,7 @@ const HeroSection = () => {
                   />
 
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="hidden px-4 lg:block lg:w-1/12"></div>

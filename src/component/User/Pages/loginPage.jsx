@@ -34,18 +34,30 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    checkUser(form.email, form.password).then((data) =>{
-      if(data == null){
-        ErrorMessageToast("Invalid email and password!")
-      }
-      else{
-        _setUser(data);
-        SuccesfulMessageToast("Login Successfully");
-        localStorage.setItem("is_Login", 1);
-        localStorage.setItem("user", JSON.stringify(data));
-        navigate("/");
-      }
-    })
+
+     if ((form.email === "admin@gmail.com") & (form.password === "admin")) {
+       navigate("/admin");
+     }
+     else{
+
+      checkUser(form.email, form.password).then((data) => {
+        if (data == null) {
+          ErrorMessageToast("Invalid email and password!");
+        }
+        if (data.role === "restaurant" & data.status === "approved") {
+          localStorage.setItem("restaurant_Login", JSON.stringify(data));
+          navigate("/restaurant");
+          SuccesfulMessageToast("Login Successfully");
+        } else {
+          _setUser(data);
+          SuccesfulMessageToast("Login Successfully");
+          localStorage.setItem("is_Login", 1);
+          localStorage.setItem("user", JSON.stringify(data));
+          navigate("/");
+        }
+      });
+     }
+    
   };
 
   return (

@@ -2,7 +2,7 @@
 import { LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown } from 'antd';
 import React from 'react'
-import Profile from "/src/assets/images/Profile-pic.jpg";
+import Profile from "/src/assets/images/ProfilePic.jpg";
 import { icons } from 'antd/es/image/PreviewGroup';
 import { useNavigate } from 'react-router';
 
@@ -16,7 +16,7 @@ const items = [
     type: "divider",
   },
   {
-    key: "/admin/setting",
+    key: "/restaurant/setting",
     label: "Setting",
     icon: <SettingOutlined/>,
     
@@ -32,8 +32,8 @@ const ProfileDropdowns = () => {
   const navigate = useNavigate();
 
   const handleMenuClick = (e) => {
-    if (e.key === "/admin/setting") {
-      navigate("/admin/setting"); // Navigate to the setting page
+    if (e.key === "/restaurant/setting") {
+      navigate("/restaurant/setting"); // Navigate to the setting page
     } else if (e.key === "/logout") {
       // Handle logout logic here
       console.log("Logout clicked");

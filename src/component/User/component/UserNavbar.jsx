@@ -3,8 +3,8 @@ import { NavLink } from "react-router";
 import Logo from '../../../assets/Images/FoodOrderingLogo.png'
 import ProfileDropdowns from "./ProfileDropdowns";
 import { UserContext } from "../../../Context/User.context";
-import { Avatar, Badge } from "antd";
-import { BellOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Avatar, Badge, Button, Dropdown, Space } from "antd";
+import { BellOutlined, DownOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import NotificationDropdown from "../../components/NotificationDropdown"
 import AddCart from "./AddCart";
 
@@ -35,6 +35,22 @@ import AddCart from "./AddCart";
       </NavLink>
     );
   };
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <NavLink to={"/restaurant/apply"}>Join As Restaurant</NavLink>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <NavLink to={"/deliveryman/apply"}>Join As Deliveryman</NavLink>
+       
+      ),
+    },
+  ];
 
   const UserNavbar = () => {
   const { _user } = useContext(UserContext);
@@ -108,34 +124,46 @@ import AddCart from "./AddCart";
                   </nav>
                 </div>
                 <div className="hidden justify-end pr-16 sm:flex text-gray-900 lg:pr-0">
-                  <div className="mr-5">
-                    <NotificationDropdown>
-                      <Badge count={5} onClick={handleModal}>
-                        <Avatar shape="circle">
-                          <BellOutlined style={{ fontSize: 20, color: "" }} />
-                        </Avatar>
-                      </Badge>
-                    </NotificationDropdown>
-                  </div>
-
-                  <div className="mr-5">
-                    <AddCart>
-                      <Badge count={5} onClick={handleModal}>
-                        <Avatar shape="circle">
-                          <ShoppingCartOutlined
-                            style={{ fontSize: 20, color: "" }}
-                          />
-                        </Avatar>
-                      </Badge>
-                    </AddCart>
-                  </div>
-
                   {localStorage.getItem("is_Login") == 0 ? (
-                    <NavlinkBtn btn="SignUp" />
+                    <div className="flex">
+                      <Space>
+                        <NavlinkBtn btn="SignUp" />
+                        <Dropdown menu={{ items }} placement="bottom">
+                          <Button>
+                            Join Us <DownOutlined />
+                          </Button>
+                        </Dropdown>
+                      </Space>
+                    </div>
                   ) : (
-                    <div className="flex items-center space-x-2">
-                      <ProfileDropdowns />
-                      <p className="font-medium">{_user.name}</p>
+                    <div className="flex items-center space-x-5">
+                      <div className="mr-1">
+                        <NotificationDropdown>
+                          <Badge count={5} onClick={handleModal}>
+                            <Avatar shape="circle">
+                              <BellOutlined
+                                style={{ fontSize: 20, color: "" }}
+                              />
+                            </Avatar>
+                          </Badge>
+                        </NotificationDropdown>
+                      </div>
+
+                      <div className="mr-1">
+                        <AddCart>
+                          <Badge count={5} onClick={handleModal}>
+                            <Avatar shape="circle">
+                              <ShoppingCartOutlined
+                                style={{ fontSize: 20, color: "" }}
+                              />
+                            </Avatar>
+                          </Badge>
+                        </AddCart>
+                      </div>
+                      <div className="flex space-x-2">
+                        <ProfileDropdowns />
+                        <p className="font-medium">{_user.name}</p>
+                      </div>
                     </div>
                   )}
                 </div>

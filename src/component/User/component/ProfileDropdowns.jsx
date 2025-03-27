@@ -1,7 +1,7 @@
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
 import { Avatar, Dropdown } from "antd";
 import React from "react";
-import Profile from "/src/assets/images/Profile-pic.jpg";
+import Profile from "/src/assets/images/ProfilePic.jpg";
 import { useNavigate } from "react-router";
 
 const items = [
@@ -30,9 +30,10 @@ const ProfileDropdowns = () => {
 
   const handleMenuClick = (e) => {
     if (e.key === "/setting") {
-      navigate("/setting"); // Navigate to the setting page
+      navigate("/setting"); 
     } else if (e.key === "/logout") {
-      // Handle logout logic here
+      localStorage.setItem("is_Login", 0);
+      navigate("/login")
       console.log("Logout clicked");
     }
   };

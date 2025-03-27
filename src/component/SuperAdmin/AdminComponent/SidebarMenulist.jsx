@@ -4,13 +4,15 @@ import {
   MenuFoldOutlined,
   PayCircleOutlined,
   ProductOutlined,
+  UserAddOutlined,
+  UsergroupDeleteOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import React from "react";
 import { useNavigate } from "react-router";
 
-const MenuList = ({ darkTheme }) => {
 
+const SidebarMenulist = () => {
   const navigate = useNavigate();
 
   const handleMenuClick = (path) => {
@@ -27,36 +29,26 @@ const MenuList = ({ darkTheme }) => {
       >
         Home
       </Menu.Item>
+
       <Menu.Item
-        key="order"
+        key="restaurant"
         className="text-base font-medium"
-        icon={<MenuFoldOutlined style={{ fontSize: "20px" }} />}
-        onClick={() => handleMenuClick("order")}
-      >
-        Order
-      </Menu.Item>
-      <Menu.Item
-        key="progress"
-        className="text-base font-medium"
-        onClick={() => handleMenuClick("categories")}
+        onClick={() => handleMenuClick("restaurant")}
         icon={<ProductOutlined style={{ fontSize: "20px" }} color="#080808" />}
       >
-        Category
+        Restaurant
       </Menu.Item>
-      <Menu.SubMenu
-        key="Menu"
+      <Menu.Item
+        key="user"
         className="text-base font-medium"
-        icon={<BarsOutlined style={{ fontSize: "22px" }} />}
-        title="Menu"
+        onClick={() => handleMenuClick("users")}
+        icon={< UsergroupDeleteOutlined  style={{ fontSize: "20px" }} color="#080808" />}
       >
-        <Menu.Item key="Active-menu"> Active Menu</Menu.Item>
-        <Menu.Item key="All-Menu" onClick={() => handleMenuClick("allMenu")}>
-          {" "}
-          All Menu
-        </Menu.Item>
-      </Menu.SubMenu>
+        Users
+      </Menu.Item>
+      
     </Menu>
   );
 };
 
-export default MenuList;
+export default SidebarMenulist;

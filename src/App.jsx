@@ -21,6 +21,10 @@ import AdminOrder from "./component/Admin/AdminOrder";
 import AllMenu from "./component/Admin/AllMenu";
 import AdminProfile from "./component/Admin/AdminProfile";
 import CategoriesPage from "./component/Admin/Pages/CategoriesPage";
+import RestaurantRegister from "./component/Admin/Pages/RestaurantRegister";
+import SuperAdminLayout from "./component/SuperAdmin/pages/SuperAdminLayout";
+import SuperAdminHome from "./component/SuperAdmin/pages/SuperAdminHome";
+import SupperAdminRestaurant from "./component/SuperAdmin/pages/SupperAdminRestaurant";
 
 function App() {
   const [_user, _setUser] = useState(
@@ -29,11 +33,17 @@ function App() {
       : null
   );
 
+  const [_rest, _setRest] = useState(
+    localStorage.getItem("restaurant_Login")
+      ? JSON.parse(localStorage.getItem("restaurant_Login"))
+      : null
+  );
+
  
 
   return (
     <>
-      <UserContext.Provider value={{ _user, _setUser }}>
+      <UserContext.Provider value={{ _user, _setUser, _rest, _setRest }}>
         <BrowserRouter>
           <ToastContainer />
           <Routes>
@@ -45,6 +55,10 @@ function App() {
                 path="restaurant/detail/"
                 element={<RestaurantDetails />}
               />
+              <Route
+                path="/restaurant/apply"
+                element={<RestaurantRegister />}
+              />
               <Route path="setting" element={<AccountPage />}>
                 <Route path="" element={<AccountProfile />} />
                 <Route path="changePassword" element={<ChangePassword />} />
@@ -52,12 +66,16 @@ function App() {
                 <Route path="favourite" element={<FavouritePage />} />
               </Route>
             </Route>
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/restaurant" element={<AdminLayout />}>
               <Route path="" element={<AdminHome />} />
               <Route path="order" element={<AdminOrder />} />
               <Route path="allMenu" element={<AllMenu />} />
               <Route path="categories" element={<CategoriesPage />} />
-              <Route path="/admin/setting" element={<AdminProfile />} />
+              <Route path="/restaurant/setting" element={<AdminProfile />} />
+            </Route>
+            <Route path="/admin" element={<SuperAdminLayout />}>
+              <Route path="" element={<SuperAdminHome />} />
+              <Route path="restaurant" element={<SupperAdminRestaurant />} />
             </Route>
 
             <Route path="login" element={<LoginPage />} />

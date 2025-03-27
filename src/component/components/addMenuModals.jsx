@@ -1,8 +1,6 @@
 import { UploadOutlined } from "@ant-design/icons";
 import {
   Button,
-  Checkbox,
-  Flex,
   Form,
   Input,
   Modal,
@@ -10,37 +8,66 @@ import {
   Upload,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import Item from "antd/es/list/Item";
-import React, { useEffect, useState } from "react";
-import { viewCategories } from "../../utils/Admin.util";
+import React, { useContext, useEffect, useState } from "react";
+import { addMenuItem, UpdateMenu, viewCategories } from "../../utils/Admin.util";
+import { useNavigate } from "react-router";
+import { SuccesfulMessageToast } from "../../utils/Toastify.util";
+import { UserContext } from "../../Context/User.context";
 
-const addMenuModals = ({ isOpen, onOk, onCancel }) => {
-  const [categoryNames , setCategoryNames] = useState([]);
+const addMenuModals = ({ isOpen, onCancel, editData, isEditMode }) => {
+   const [form] = Form.useForm();
+  const navigate = useNavigate();
+  const [categoryNames, setCategoryNames] = useState([]);
 
-  const onChecked = () => {
-    console.log("check the button");
-  };
+  const { _rest } = useContext(UserContext);
 
-  useEffect(()=>{
-    viewCategories().then(function(response){
+  useEffect(() => {
+    viewCategories().then(function (response) {
       setCategoryNames(response);
+    });
+  }, []);
 
-    })
-  })
+  useEffect(() => {
+    if (isOpen) {
+      if (isEditMode && editData) {
+        form.setFieldsValue(editData);
+      } else {
+        form.resetFields();
+        form.setFieldsValue({ restaurantId: _rest.id });
+      }
+    }
+  }, [isOpen, isEditMode, editData, form, _rest.id]);
 
-  const categoryOptions = categoryNames.map(category=>({
-    value: category.id,
-    label: category.name 
+
+  const categoryOptions = categoryNames.map((category) => ({
+    value: category.name,
+    label: category.name,
   }));
+
+  const handleSubmit = (values) => {
+    if (isEditMode) {
+      UpdateMenu(values,  editData.id ).then(function (response) {
+        navigate("");
+        SuccesfulMessageToast("Item Updated Successfully");
+        onCancel();
+      });
+    } else {
+      addMenuItem(values).then(function (response) {
+        navigate("");
+        SuccesfulMessageToast("Item Added Successfully");
+        onCancel();
+      });
+    }
+  };
 
   return (
     <Modal
-      title="Add Menu "
+      title={isEditMode ? "Edit Menu Item" : "Add Menu Item"}
       style={{
         top: 90,
       }}
       open={isOpen}
-      onOk={onOk}
+      footer={null}
       onCancel={onCancel}
       width={{
         xs: "90%",
@@ -51,12 +78,29 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
         xxl: "40%",
       }}
     >
-      <Form layout="vertical">
-        <Form.Item label="Name" >
+      <Form
+        form={form}
+        layout="vertical"
+        initialValues={{ restaurantId: _rest.id }}
+        // onFinish={handleMenuModal}
+        onFinish={handleSubmit}
+      >
+        <Form.Item name="restaurantId" hidden>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[{ required: true, message: "Please input the name!" }]}
+        >
           <Input />
         </Form.Item>
 
-        <Form.Item label="Category" >
+        <Form.Item
+          label="Category"
+          name="category"
+          rules={[{ required: true, message: "Please select a category!" }]}
+        >
           <Select
             showSearch
             placeholder="Select Category"
@@ -67,7 +111,7 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
           />
         </Form.Item>
 
-        <Form.Item label="Description" >
+        <Form.Item label="Description" name="description">
           <TextArea rows={3} placeholder="Enter a brief description" />
         </Form.Item>
 
@@ -80,7 +124,8 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
           <div style={{ display: "flex" }}>
             <Form.Item
               label="Price"
-              layout="vertical"
+              name="price"
+              rules={[{ required: true, message: "Please input the price!" }]}
               style={{
                 width: "calc(50% - 8px)",
               }}
@@ -89,7 +134,10 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
             </Form.Item>
             <Form.Item
               label="Preparation Time(Minutes)"
-              layout="vertical"
+              name="preparation_time"
+              rules={[
+                { required: true, message: "Please input preparation time!" },
+              ]}
               style={{
                 width: "calc(50% - 8px)",
                 margin: "0 8px",
@@ -109,39 +157,23 @@ const addMenuModals = ({ isOpen, onOk, onCancel }) => {
             </Button>
           </Upload>
         </Form.Item>
-        <Form.Item label="Ingredients" layout="vertical">
+        <Form.Item label="Ingredients" name="ingredients" layout="vertical">
           <TextArea
             rows={3}
             placeholder="Enter Ingredients Seperate by Commas"
           />
         </Form.Item>
-        {/* <Form.Item label="Size Options" layout="vertical">
-        <Checkbox onChange={onChecked}>Small</Checkbox>
-        <Input style={{ width: "80px" }} />
-        <Item style={{ marginTop: "10px" }}>
-          <Checkbox onChange={onChecked}>Medium</Checkbox>
-          <Input style={{ width: "80px" }} />
-        </Item>
-        <Item style={{ marginTop: "10px" }}>
-          <Checkbox onChange={onChecked}>Large</Checkbox>
-          <Input style={{ width: "80px" }} />
-        </Item>
-      </Form.Item>
-      <Form.Item label="Tags" layout="vertical">
-        <Select
-          showSearch
-          placeholder="Select One"
-          filterOption={(input, option) =>
-            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          }
-          options={[
-            { value: "0", Select, label: "Select One" },
-            { value: "1", label: "Jack" },
-            { value: "2", label: "Lucy" },
-            { value: "3", label: "Tom" },
-          ]}
-        />
-      </Form.Item> */}
+
+        <div className="flex flex-row-reverse gap-x-6">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              {isEditMode ? "Update" : "Submit"}
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={onCancel}>Cancel</Button>
+          </Form.Item>
+        </div>
       </Form>
     </Modal>
   );

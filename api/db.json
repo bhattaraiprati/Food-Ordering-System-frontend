@@ -1,6 +1,12 @@
 {
   "Users": [
     {
+      "id": "ad01",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin"
+    },
+    {
       "id": "b5729135-3415-4ee4-b3fe-62fc032241b4",
       "name": "Hari",
       "age": 22,
@@ -17,8 +23,68 @@
     },
     {
       "id": "2e1c",
-      "name": "Lane Gates",
-      "email": "zeny@mailinator.com",
+      "name": "Partik Bhattarai",
+      "email": "pratik@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "d699",
+      "role": "restaurant",
+      "status": "approved",
+      "restaurantName": "Melanie Harrington",
+      "location": "Perspiciatis labori",
+      "email": "restaurant@gmail.com",
+      "full_name": "Ignacia Wilkerson",
+      "password": "1234"
+    },
+    {
+      "id": "c2b0",
+      "role": "restaurant",
+      "status": "pending",
+      "restaurantName": "Melinda Dickerson",
+      "location": "Blanditiis nisi ulla",
+      "email": "votuwe@mailinator.com",
+      "full_name": "Amity Odonnell",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "5e16",
+      "role": "restaurant",
+      "status": "pending",
+      "restaurantName": "Kelly Bartlett",
+      "location": "Reiciendis esse ut ",
+      "email": "zuxyhoc@mailinator.com",
+      "full_name": "Alvin Reyes",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "a379",
+      "role": "restaurant",
+      "status": "pending",
+      "restaurantName": "Ezra Humphrey",
+      "location": "Est nostrum magni i",
+      "email": "kyjuhihibo@mailinator.com",
+      "full_name": "Juliet Wolfe",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "a1b9",
+      "role": "restaurant",
+      "status": "approved",
+      "restaurantName": "Nora Thornton",
+      "location": "Sit ea id officiis d",
+      "email": "qatahibun@mailinator.com",
+      "full_name": "Harlan Kim",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "483c",
+      "role": "restaurant",
+      "status": "pending",
+      "restaurantName": "Dorian Russell",
+      "location": "Quibusdam pariatur ",
+      "email": "rehapi@mailinator.com",
+      "full_name": "Wylie Bennett",
       "password": "Pa$$w0rd!"
     }
   ],
@@ -30,7 +96,7 @@
     },
     {
       "id": "33c6",
-      "name": "Hanae Leonard",
+      "name": "HanaeLeonard",
       "description": "Culpa duis quod anim quaerat sunt doloribus aliqua Aperiam est"
     },
     {
@@ -47,6 +113,111 @@
       "id": "df97",
       "name": "Mia Robertson",
       "description": "Pariatur Deleniti dolor pariatur Aliquid natus"
+    }
+  ],
+  "MenuItem": [
+    {
+      "id": "2e4f",
+      "restaurantId": "d699",
+      "name": "Regan Duran",
+      "category": "HanaeLeonard",
+      "description": "Sed minima est quae ",
+      "price": "336",
+      "preparation_time": "Possimus tempor dig",
+      "ingredients": "Esse officia rerum "
+    },
+    {
+      "id": "4282",
+      "restaurantId": "d699",
+      "name": "Daniel Frazier",
+      "category": "Mia Robertson",
+      "description": "Et Nam porro facilis",
+      "price": "248",
+      "preparation_time": "Dolor aut error porr",
+      "ingredients": "Quidem velit illo a "
+    },
+    {
+      "id": "fef3",
+      "restaurantId": "d699",
+      "name": "Nepali Khana",
+      "category": "Lunch",
+      "description": "Et Nam porro facilis",
+      "price": "248",
+      "preparation_time": "Dolor aut error porr",
+      "ingredients": "Quidem velit illo a "
+    },
+    {
+      "id": "3e6c",
+      "restaurantId": "d699",
+      "name": "Sophia West",
+      "category": "Fatima Cochran",
+      "description": "Sunt corrupti amet",
+      "price": "80",
+      "preparation_time": "Iusto nulla non moll",
+      "ingredients": "Aut consectetur nesc"
+    },
+    {
+      "id": "b80f",
+      "restaurantId": "d699",
+      "name": "Brielle Davis",
+      "category": "Ivana Sandoval",
+      "description": "Sequi incidunt aut ",
+      "price": "826",
+      "preparation_time": "Esse sit vero reic",
+      "ingredients": "Quisquam fuga Qui s"
+    }
+  ],
+  "KycForm": [
+    {
+      "id": "24d7",
+      "restaurantId": "d699",
+      "restaurant_name": "Melvin Mayer",
+      "business_number": "423",
+      "cuisine_type": "indian",
+      "description": "Accusamus iure est i",
+      "email": "xufyko@mailinator.com",
+      "contact_name": "Sade Mcbride",
+      "phone": "7121",
+      "address": "Voluptatem nobis odi",
+      "latitude": "Vero pariatur Dolor",
+      "longitude": "Nulla fugiat mollit",
+      "delivery_radius": "62",
+      "landmark": "Ratione ea asperiore",
+      "order_phone": "8822",
+      "website": "https://www.pufinon.org",
+      "operatingHours": {
+        "sunday": {
+          "close": "7:00 PM",
+          "open": "12:00 AM"
+        },
+        "monday": {
+          "open": "12:00 AM",
+          "close": "7:00 PM"
+        },
+        "tuesday": {
+          "open": "10:00 AM",
+          "close": "9:00 PM"
+        },
+        "thusday": {
+          "open": "",
+          "close": ""
+        },
+        "friday": {
+          "open": "",
+          "close": ""
+        },
+        "saturday": {
+          "open": "",
+          "close": ""
+        },
+        "wednesday": {
+          "open": "",
+          "close": ""
+        }
+      },
+      "closedDays": {},
+      "deliveryAvailable": true,
+      "pickupAvailable": false
     }
   ]
 }

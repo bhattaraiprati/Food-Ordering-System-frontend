@@ -1,38 +1,28 @@
-import React from 'react'
-import {  NavLink, Outlet } from "react-router";
-import {
-  Affix,
-  Avatar,
-  Badge,
-  Button,
-  Col,
-  Layout,
-  Row,
-  theme,
-} from "antd";
-import Logos from "../components/Logos";
-import MenuList from "../MenuList";
+import React from "react";
+import { Outlet } from "react-router";
+import { Affix, Avatar, Badge, Button, Col, Layout, Row, theme } from "antd";
+import Logos from "../../components/Logos";
+import FoodOrderingLogo from "/src/assets/Images/FoodOrderingLogo.png";
 import { useState } from "react";
 import {
   BellOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from "@ant-design/icons";
-import ProfileDropdowns from "../components/ProfileDropdowns";
+import ProfileDropdowns from "../../components/ProfileDropdowns";
 import { Content, Header } from "antd/es/layout/layout";
-import NotificationDropdown from "../components/NotificationDropdown";
-import Sider from 'antd/es/layout/Sider';
-import MainLogo from "../../assets/Images/FoodOrderingLogo.png"
+import NotificationDropdown from "../../components/NotificationDropdown";
+import Sider from "antd/es/layout/Sider";
+import SidebarMenulist from "../AdminComponent/SidebarMenulist";
 
-const AdminLayout = () => {
-    const [Collaped, setCollaped] = useState(false);
-    const [dropdownOpen, setdropdownOpen] = useState(false);
+const SuperAdminLayout = () => {
+  const [Collaped, setCollaped] = useState(false);
+  const [dropdownOpen, setdropdownOpen] = useState(false);
 
-    const handleModal = () => {
-      console.log("button is clicked ????");
-      setdropdownOpen(true);
-    };
-    
+  const handleModal = () => {
+    console.log("button is clicked ????");
+    setdropdownOpen(true);
+  };
 
   return (
     <div>
@@ -46,9 +36,8 @@ const AdminLayout = () => {
             className="sidebar"
             style={{ height: "100vh" }}
           >
-            <img src={MainLogo} style={{height: "70px"}} />
-
-            <MenuList />
+            <img src={FoodOrderingLogo} className="w-20" />
+            <SidebarMenulist />
           </Sider>
         </Affix>
 
@@ -105,6 +94,6 @@ const AdminLayout = () => {
       </Layout>
     </div>
   );
-}
+};
 
-export default AdminLayout;
+export default SuperAdminLayout;

@@ -43,9 +43,7 @@
   font-size: 20px;
   height: 22px;
 }
-.ant-input{
-  /* border: 0; */
-}
+
 .ant-menu-item-selected{
   background-color: #fff7e1 !important;
   color: rgb(103, 102, 102) !important;
@@ -53,3 +51,16 @@
 .ant-modal-close{
   display: none;
 }
+
+.large-label-form-item .ant-form-item-label > label {
+  font-size: 17px;
+}
+.large-label-form-item .ant-form-item-explain{
+  display: flex;
+}
+.ant-layout-header{
+  padding-left: 15px !important;
+}
+
+
+
