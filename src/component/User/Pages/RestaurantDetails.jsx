@@ -3,169 +3,220 @@ import { Layout, Menu } from "antd";
 import Search from "antd/es/input/Search";
 const {  Sider } = Layout;
 import { Bike, Clock,  MapPin, MenuSquareIcon, Star, X } from "lucide-react";
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../../../assets/css/CustomStyle.css"
+import { useParams } from "react-router";
+import { GetAllMenuItem, getRestaurantDetailsById } from "../../../utils/User.util";
+import { getCategoryById, getCategoryByName, getMenuItemById } from "../../../utils/Admin.util";
+import { UserContext } from "../../../Context/User.context";
+import CartPage from "../component/CartPage";
+import { useCart } from "../../../Context/Cart.context";
+
 
 const { Title, Text } = Typography;
 
 
 
-const Menuitems = () =>{
-    return (
-      <>
-        <div className="mt-5  ">
-          <div className="text-center mb-3">
-            <h4 className="font-medium text-[#ffb700]">Soup</h4>
-          </div>
-          <div className="h-8 px-2 pb-2 rounded-sm bg-[#E3E3E3]">
-            <p className="font-normal ">Indian Soup</p>
-          </div>
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-          <Divider />
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-          <Divider />
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-          <Divider />
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-          <Divider />
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-          <Divider />
-          <Row className="my-5">
-            <Col span={16} className="text-lg">
-              Veg. Manchow Soup
-            </Col>
-            <Col span={4} offset={4}>
-              <Button className="button-primary">Add</Button>
-            </Col>
-            <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-          </Row>
-        </div>
-      </>
-    );
-}
+// const Menuitems = () =>{
 
-const Review = () => {
-  return (
-    <div >
-      <div className="border-b-2 pb-4">
-        <div/>
-        <Rate disabled defaultValue={4} className="text-[#ffb700]" />
-        <p className="text-gray-800 text-[16px]/6 font-medium">
+//       <>
+//         <div className="mt-5  ">
+//           <div className="text-center mb-3">
+            
+//             <h4 className="font-medium text-[#ffb700]">Soup</h4>
+//           </div>
+//           const menus = 
+//           <div className="h-8 px-2 pb-2 rounded-sm bg-[#E3E3E3]">
+//             <p className="font-normal ">Indian Soup</p>
+//           </div>
+//           <Row className="my-5">
+//             <Col span={16} className="text-lg">
+//               Veg. Manchow Soup
+//             </Col>
+//             <Col span={4} offset={4}>
+//               <Button className="button-primary">Add</Button>
+//             </Col>
+//             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
+//           </Row>
+//           <Divider />
+//         </div>
+//       </>
+// }
 
-          Pratik Bhattarai
-        </p>
-        <p className="text-gray-500 text-[14px]">Nice Food</p>
-      </div>
-    </div>
-  );
-};
-
-const cardsItems = [
-  {
-    key: 1,
-    label: (
-      <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
-        <MenuSquareIcon style={{ marginRight: 8 }} color="#ffb700" /> Menu
-      </span>
-    ),
-    children: <Menuitems/>,
-  },
-  // {
-  //   key: 2,
-  //   label: (
-  //     <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
-  //       <MapPin style={{ marginRight: 8 }} color="#ffb700" /> Map
-  //     </span>
-  //   ),
-  //   children: "This is 2",
-  // },
-  {
-    key: 3,
-    label: (
-      <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
-        <Star style={{ marginRight: 8 }} color="#ffb700" /> Review
-      </span>
-    ),
-    children: <Review/>,
-  },
-];
-
-const items = [
-  {
-    key: 1,
-    label: "Soup",
-  },
-  {
-    key: 2,
-    label: "Breakfast",
-  },
-  {
-    key: 3,
-    label: "Dinner",
-  },
-  {
-    key: 4,
-    label: "launch",
-  },
-  {
-    key: 5,
-    label: "Nav 5",
-  },
-  {
-    key: 6,
-    label: "Nav 6",
-  },
-];
-
- 
 
 
 
 const RestaurantDetails = () => {
+   const { _rest } = useContext(UserContext);
+   const params = useParams();
+   const [restaurantDetails, setRestaurantDetails] = useState({});
+   const [categoryList, setCategoryList] = useState([]);
+   const [menuList, setMenuList] = useState([]);
+   const [categoryNames, setCategoryNames] = useState([]);
+   const [menuItems, setMenuItems] = useState([]);
+
+   // Use cart context only - remove local cart state
+   const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
+  
+
+  const items = categoryList?.map((list, index) => ({
+    key: index + 1,
+    label: list.name, 
+  }));
+
+  // const addToCart = (item) => {
+  //   setCart((prevCart) => {
+  //     const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+  //     if (existingItem) {
+  //       return prevCart.map((cartItem) =>
+  //         cartItem.id === item.id
+  //           ? { ...cartItem, quantity: cartItem.quantity + 1 }
+  //           : cartItem
+  //       );
+  //     } else {
+  //       return [...prevCart, { ...item, quantity: 1 }];
+  //     }
+  //   });
+  // };
+
+  // const removeFromCart = (itemId) => {
+  //   setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
+  // };
+
+  // const updateQuantity = (itemId, newQuantity) => {
+  //   if (newQuantity < 1) {
+  //     removeFromCart(itemId);
+  //     return;
+  //   }
+  //   setCart((prevCart) =>
+  //     prevCart.map((item) =>
+  //       item.id === itemId ? { ...item, quantity: newQuantity } : item
+  //     )
+  //   );
+  // };
+
+
+  const Review = () => {
+    return (
+      <div>
+        <div className="border-b-2 pb-4">
+          <div />
+          <Rate disabled defaultValue={4} className="text-[#ffb700]" />
+          <p className="text-gray-800 text-[16px]/6 font-medium">
+            Pratik Bhattarai
+          </p>
+          <p className="text-gray-500 text-[14px]">Nice Food</p>
+        </div>
+      </div>
+    );
+  };
+
+  const MenuListItems = menuItems.map(({ category, items }) => (
+    <div key={category} className="mt-5">
+      <div className="text-center mb-3">
+        <h4 className="font-medium text-[#ffb700]">{category}</h4>
+      </div>
+      <div className="h-8 px-2 pb-2 rounded-sm bg-[#E3E3E3]">
+        <p className="font-normal"></p>
+      </div>
+
+      {items?.map((item) => (
+        <div key={item.id} className="my-5">
+          <Row>
+            <Col span={16} className="text-lg">
+              {item.name} {/* Use actual item name */}
+            </Col>
+            <Col span={4} offset={4}>
+              <Button
+                className="button-primary"
+                onClick={() => addToCart(item)}
+              >
+                Add
+              </Button>
+            </Col>
+          </Row>
+          <span className="font-medium text-lg text-[#ffb700]">
+            Rs. {item.price} {/* Use actual item price */}
+          </span>
+          <Divider />
+        </div>
+      ))}
+    </div>
+  ));
+
+  const cardsItems = [
+    {
+      key: 1,
+      label: (
+        <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
+          <MenuSquareIcon style={{ marginRight: 8 }} color="#ffb700" /> Menu
+        </span>
+      ),
+      children: MenuListItems,
+    },
+    {
+      key: 3,
+      label: (
+        <span style={{ display: "flex", fontSize: "18px", fontWeight: "10px" }}>
+          <Star style={{ marginRight: 8 }} color="#ffb700" /> Review
+        </span>
+      ),
+      children: <Review />,
+    },
+  ];
+
+
   
     const {
       token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+
+    useEffect(()=>{
+
+      getRestaurantDetailsById(params.id).then((response)=>{
+        setRestaurantDetails(response);
+      })
+
+      
+    }, [params.id])
+
+    useEffect(() => {
+    if (params.id, restaurantDetails.restaurantId) {
+      getCategoryById(restaurantDetails.restaurantId).then((response) => {
+        setCategoryList(response);
+      });
+    }
+  }, [restaurantDetails.restaurantId]);
+
+  useEffect(() => {
+    if (( restaurantDetails.restaurantId)) {
+      GetAllMenuItem(restaurantDetails.restaurantId).then((response) => {
+        setMenuList(response);
+      });
+    }
+  }, [restaurantDetails.restaurantId]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const names = await getCategoryByName();
+          setCategoryNames(names);
+  
+          const allMenuItems = await Promise.all(
+            names.map(async (category) => {
+              const response = await getMenuItemById(_rest.id, category);
+  
+              return { category, items: response }; // Store category along with items
+            })
+          );
+          setMenuItems(allMenuItems);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
+    }, [_rest.id]);
+
 
 
   return (
@@ -195,13 +246,13 @@ const RestaurantDetails = () => {
                           level={2}
                           style={{ marginBottom: "0px", color: "#fff" }}
                         >
-                          Peros Pizza Late Night (Thamel)
+                          {restaurantDetails.restaurant_name}
                         </Title>
                         <Title
                           level={4}
                           style={{ marginTop: "4px", color: "#fff" }}
                         >
-                          Thamel, Kathmandu
+                          {restaurantDetails.address}
                         </Title>
                       </Col>
                       <Col span={9}>
@@ -215,7 +266,8 @@ const RestaurantDetails = () => {
                             <span className="ml-2 white-color">
                               Open Time :{" "}
                             </span>
-                            9:30 AM To 8:30 PM
+                            {restaurantDetails.operatingHours?.sunday?.open} To{" "}
+                            {restaurantDetails.operatingHours?.sunday?.close}
                           </Title>
                           <div>
                             <Title level={5} style={{ display: "flex" }}>
@@ -255,9 +307,7 @@ const RestaurantDetails = () => {
                           </Text>
                         </div>
                         <p className="mt-5 text-[16px] font-medium">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Magnam, atque expedita temporibus inventore
-                          omnis architecto.
+                          {restaurantDetails?.description}
                         </p>
                       </Col>
                     </Row>
@@ -342,54 +392,12 @@ const RestaurantDetails = () => {
             </Card>
           </Col>
           <Col span={8}>
-            <div className="w-full m-2">
-              <div className="w-full min-h-80 bg-[#fff]  rounded-lg p-5">
-                <div className="border-b-2 text-center">
-                  <Title level={3}>Cart Empty</Title>
-                </div>
-                <Row className="border-b-2 pb-4">
-                  <Col span={2} className="mt-4 mr-2">
-                    <X color="#ffb700" />
-                  </Col>
-                  <Col span={10}>
-                    <div className="text-gray-700 mt-2">
-                      <p className="text-base font-medium">Mutton Bryani</p>
-                    </div>
-                    <div className="text-gray-500 ">
-                      <p className="text-sm">i needed extra salad</p>
-                    </div>
-                  </Col>
-                  <Col span={11}>
-                    <div className="flex">
-                      <div className="text-gray-600 mt-2">Addbtn</div>
-                      <div className="mt-2 ml-20 text-[#ffb700] ">Rs 300</div>
-                    </div>
-                  </Col>
-                </Row>
-                <div className="p-4">
-                  <Row>
-                    <Col span={18}>
-                      <p className="text-gray-500 text-base">Subtotal</p>
-                      <p className="text-gray-500 text-base">VAT</p>
-                      <p className="text-gray-500 text-base">Delivery Charge</p>
-                      <p className="text-gray-500 text-base">Grand Total</p>
-                    </Col>
-                    <Col span={6} className="text-right">
-                      <p className="text-gray-600 text-base"> 700</p>
-                      <p className="text-gray-600 text-base"> 0.0</p>
-                      <p className="text-gray-600 text-base"> 80</p>
-                      <p className="text-gray-600 text-base"> Rs 700</p>
-                    </Col>
-                  </Row>
-                  <div className="text-center mt-8 w-full ">
-                    <Button className="button-primary" style={{width: "25vh"}}>
-                      
-                      Checkout
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
+            <CartPage
+              cart={cart}
+              onRemove={removeFromCart}
+              onUpdateQuantity={updateQuantity}
+            />
           </Col>
         </Row>
       </div>

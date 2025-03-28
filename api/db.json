@@ -90,29 +90,28 @@
   ],
   "categories": [
     {
-      "id": "1232",
+      "id": "d4b1",
+      "restaurantId": "d699",
+      "name": "Dinner",
+      "description": "Libero eaque cillum reiciendis officia quisquam quaerat quasi quia tenetur saepe"
+    },
+    {
+      "id": "7fb0",
+      "restaurantId": "d699",
+      "name": "Breakfast",
+      "description": "Aute omnis enim voluptatum nostrum illum rerum accusamus asperiores aut volupta"
+    },
+    {
+      "id": "ed95",
+      "restaurantId": "d699",
       "name": "Lunch",
-      "description": "hlo k xa yrr"
+      "description": "Ipsam fugit vero rerum saepe labore do cum similique similique laboris nemo dol"
     },
     {
-      "id": "33c6",
-      "name": "HanaeLeonard",
-      "description": "Culpa duis quod anim quaerat sunt doloribus aliqua Aperiam est"
-    },
-    {
-      "id": "675e",
-      "name": "Fatima Cochran",
-      "description": "Assumenda amet consequatur et unde dolore"
-    },
-    {
-      "id": "06d7",
-      "name": "Ivana Sandoval",
-      "description": "Velit sunt voluptate dolores culpa aut consequuntur autem quos consequatur sit "
-    },
-    {
-      "id": "df97",
-      "name": "Mia Robertson",
-      "description": "Pariatur Deleniti dolor pariatur Aliquid natus"
+      "id": "94c2",
+      "restaurantId": "d699",
+      "name": "Soup",
+      "description": "Quo reprehenderit officia dolore qui officia rerum eiusmod reiciendis amet qui"
     }
   ],
   "MenuItem": [
@@ -120,7 +119,7 @@
       "id": "2e4f",
       "restaurantId": "d699",
       "name": "Regan Duran",
-      "category": "HanaeLeonard",
+      "category": "Dinner",
       "description": "Sed minima est quae ",
       "price": "336",
       "preparation_time": "Possimus tempor dig",
@@ -130,7 +129,7 @@
       "id": "4282",
       "restaurantId": "d699",
       "name": "Daniel Frazier",
-      "category": "Mia Robertson",
+      "category": "Breakfast",
       "description": "Et Nam porro facilis",
       "price": "248",
       "preparation_time": "Dolor aut error porr",
@@ -150,7 +149,7 @@
       "id": "3e6c",
       "restaurantId": "d699",
       "name": "Sophia West",
-      "category": "Fatima Cochran",
+      "category": "Breakfast",
       "description": "Sunt corrupti amet",
       "price": "80",
       "preparation_time": "Iusto nulla non moll",
@@ -160,7 +159,7 @@
       "id": "b80f",
       "restaurantId": "d699",
       "name": "Brielle Davis",
-      "category": "Ivana Sandoval",
+      "category": "Soup",
       "description": "Sequi incidunt aut ",
       "price": "826",
       "preparation_time": "Esse sit vero reic",
@@ -218,6 +217,144 @@
       "closedDays": {},
       "deliveryAvailable": true,
       "pickupAvailable": false
+    }
+  ],
+  "Orders": [
+    {
+      "id": "f995",
+      "userId": "2e1c",
+      "restaurantId": "24d7",
+      "status": "pending",
+      "address": "Ea explicabo Laudan",
+      "payment_method": [
+        "khalti",
+        "fonePay"
+      ],
+      "special_instruction": "Elit consequuntur t",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "quantity": 1
+        },
+        {
+          "id": "4282",
+          "name": "Daniel Frazier",
+          "quantity": 1
+        }
+      ],
+      "total": 584,
+      "orderDate": "2025-03-28T15:54:29.640Z"
+    },
+    {
+      "id": "8acd",
+      "userId": "2e1c",
+      "restaurantId": "24d7",
+      "status": "pending",
+      "address": "Dolor ex adipisicing",
+      "payment_method": [
+        "cash"
+      ],
+      "special_instruction": "Ipsa ducimus asper",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "price": "336",
+          "quantity": 1
+        },
+        {
+          "id": "4282",
+          "name": "Daniel Frazier",
+          "price": "248",
+          "quantity": 1
+        }
+      ],
+      "total": 584,
+      "orderDate": "2025-03-28T16:02:20.572Z"
+    },
+    {
+      "id": "410a",
+      "userId": "2e1c",
+      "restaurantId": "24d7",
+      "status": "pending",
+      "address": "Pariatur Enim iusto",
+      "payment_method": [
+        "eSewa"
+      ],
+      "special_instruction": "Non eligendi culpa l",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "price": "336",
+          "quantity": 1
+        },
+        {
+          "id": "3e6c",
+          "name": "Sophia West",
+          "price": "80",
+          "quantity": 1
+        }
+      ],
+      "total": 416,
+      "orderDate": "2025-03-28T17:13:44.204Z"
+    },
+    {
+      "id": "4130",
+      "userId": "2e1c",
+      "restaurantId": "d699",
+      "status": "pending",
+      "address": "Dolorem minima quasi",
+      "payment_method": [
+        "eSewa"
+      ],
+      "special_instruction": "Aut et ex quia et ev",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "price": "336",
+          "quantity": 1
+        },
+        {
+          "id": "3e6c",
+          "name": "Sophia West",
+          "price": "80",
+          "quantity": 1
+        }
+      ],
+      "total": 416,
+      "user_name": "Partik Bhattarai",
+      "orderDate": "2025-03-28T17:15:30.160Z"
+    },
+    {
+      "id": "ce59",
+      "userId": "2e1c",
+      "restaurantId": "d699",
+      "status": "processing",
+      "address": "Vitae possimus even",
+      "payment_method": [
+        "cash"
+      ],
+      "special_instruction": "Consequuntur asperio",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "price": "336",
+          "quantity": 1
+        },
+        {
+          "id": "3e6c",
+          "name": "Sophia West",
+          "price": "80",
+          "quantity": 1
+        }
+      ],
+      "total": 416,
+      "user_name": "Partik Bhattarai",
+      "orderDate": "2025-03-28T17:18:26.866Z"
     }
   ]
 }

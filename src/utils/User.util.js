@@ -1,3 +1,4 @@
+import { ExportOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 
@@ -41,4 +42,39 @@ export const checkUser = async (email, password) => {
     return null;
   }
   return response.data[0];
+};
+
+export const getRestaurantDetailsById = async(id) =>{
+    const response = await axios.get(`http://localhost:4000/KycForm/${id}`);
+    return response.data;
+}
+
+export const GetAllMenuItem = async (id) => {
+  const response = await axios.get(`http://localhost:4000/MenuItem`);
+ return response.data.filter((menu) => menu.restaurantId === id);
+};
+
+
+export const saveOrders = async(data) =>{
+  await axios.post(`http://localhost:4000/Orders`, data);
+}
+
+export const getOrdersByIdAndStatus = async(id) =>{
+  const response = await axios.get(`http://localhost:4000/Orders`);
+  return response.data.filter((item) => item.restaurantId === id& item.status === "pending");
+}
+
+export const updateOrder = async(id, data) =>{
+  await axios.patch(`http://localhost:4000/Orders/${id}`, data);
+
+}
+
+export const getOrdersById = async(id) => {
+  const response = await axios.get(`http://localhost:4000/Orders/${id}`);
+  return response.data;
+};
+
+export const getAllOrders = async () => {
+  const response = await axios.get(`http://localhost:4000/Orders`);
+  return response.data;
 };

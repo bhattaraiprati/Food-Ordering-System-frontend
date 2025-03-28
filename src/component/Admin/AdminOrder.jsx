@@ -1,42 +1,114 @@
-import React, { useState } from 'react'
-import { Button, Space, DatePicker, Typography, Input, Modal, Tag } from "antd";
+import React, { useEffect, useState } from 'react'
+import { Button, Space, DatePicker, Typography, Input, Modal, Tag, Descriptions } from "antd";
 import { Select, Table } from "antd";
-// import '/src/assets/css/Order.css';
-import OrderViewDetails from '../components/OrderViewDetails';
+import { getAllOrders, getOrdersById, updateOrder } from '../../utils/User.util';
+import { SuccesfulMessageToast } from '../../utils/Toastify.util';
 
 
 const { RangePicker } = DatePicker;
 const { Title } = Typography;
 
 
-const data = [
-  {
-    id: "1",
-    user_details: "John ",
-    order_status: "John Brown",
-    date_time: "￥300,000.00",
-    total_price: 300,
-    status: 'pending',
-    delivery_type: "New York ",
-  },
-  {
-    id: "2",
-    user_details: "Pratik ",
-    order_status: "Pratik Bhattarai",
-    date_time: "￥900,000.00",
-    total_price: 200,
-    status: 'canceled',
-    delivery_type: "Fast",
-  },
-];
-
 const AdminOrder = () => {
  const [orderViewModal, setOrderViewModal] = useState(false);
-const [orderDetaiis, setOrderDetails] = useState(null);
+const [orderDetaiis, setOrderDetails] = useState(null);const [orderData, setOrderData] = useState([]);
+
+
+ const orderItems = [
+   {
+     key: "1",
+     label: "Order ID",
+     span: "filled",
+     children: orderData.id,
+   },
+   {
+     key: "2",
+     label: "User Name",
+     span: "filled",
+     children: orderData.user_name,
+   },
+   {
+     key: "3",
+     label: "Status",
+     span: "filled",
+     children: orderData.status,
+   },
+   {
+     key: "4",
+     label: "Order Date",
+     span: "filled",
+     children: new Date(orderData.orderDate).toLocaleString(),
+   },
+   {
+     key: "5",
+     label: "Address",
+     span: "filled",
+     children: orderData.address,
+   },
+   {
+     key: "6",
+     label: "Payment Method",
+     span: "filled",
+     children: orderData.payment_method
+       ? orderData.payment_method.join(", ")
+       : "N/A",
+   },
+   {
+     key: "7",
+     label: "Special Instructions",
+     span: "filled",
+     children: orderData.special_instruction || "None",
+   },
+   {
+     key: "8",
+     label: "Total Items",
+     span: "filled",
+     children: orderData.items ? orderData.items.length : 0,
+   },
+   {
+     key: "9",
+     label: "Total Amount",
+     span: "filled",
+     children: `Rs. ${orderData.total}`,
+   },
+ ];
+
+ const itemColumns = [
+   {
+     title: "Item Name",
+     dataIndex: "name",
+
+     key: "name",
+   },
+   {
+     title: "Price",
+     dataIndex: "price",
+     key: "price",
+     render: (price) => `Rs. ${price}`,
+   },
+   {
+     title: "Quantity",
+     dataIndex: "quantity",
+     key: "quantity",
+   },
+   {
+     title: "Subtotal",
+     key: "subtotal",
+     render: (_, record) => `Rs. ${record.price * record.quantity}`,
+   },
+ ];
  
 
  const showModal = (record) => {
-  setOrderDetails(record);
+   getOrdersById(record.id)
+     .then((response) => {
+       setOrderData(record);
+
+       setOrderViewModal(true);
+     })
+     .catch((error) => {
+       console.error("Error order details:", error);
+     });
    setOrderViewModal(true);
  };
 
@@ -48,6 +120,9 @@ const [orderDetaiis, setOrderDetails] = useState(null);
   setOrderViewModal(false);
  }
 
+ const handleChange = (value) => {
+   console.log(`selected ${value}`);
+ };
  const columns = [
    {
      title: "ID",
@@ -56,7 +131,7 @@ const [orderDetaiis, setOrderDetails] = useState(null);
    },
    {
      title: "User Details",
-     dataIndex: "user_details",
+     dataIndex: "user_name",
      align: "center",
    },
    {
@@ -64,14 +139,10 @@ const [orderDetaiis, setOrderDetails] = useState(null);
      dataIndex: "order_status",
      align: "center",
    },
-   {
-     title: "Date & Time",
-     dataIndex: "date_time",
-     align: "center",
-   },
+
    {
      title: "Total Price",
-     dataIndex: "total_price",
+     dataIndex: "total",
      align: "center",
    },
    {
@@ -91,9 +162,45 @@ const [orderDetaiis, setOrderDetails] = useState(null);
      },
    },
    {
-     title: "Delivery Type",
-     dataIndex: "delivery_type",
+     title: "Change Status",
+     key: "status",
      align: "center",
+     render: (_, record) => {
+       // Define your actual status options
+       const statusOptions = [
+         { value: "pending", label: "Pending" },
+         { value: "approved", label: "Approved" },
+         { value: "processing", label: "Processing" },
+         { value: "completed", label: "Completed" },
+         { value: "canceled", label: "Canceled", disabled: true }, // Example disabled status
+       ];
+
+       const handleStatusChange = (value) => {
+         // Call your API to update the status
+
+          const status = {"status": value}
+
+         updateOrder(record.id, status)
+           .then(() => {
+             SuccesfulMessageToast("Status Changed!")
+             window.location.reload();
+               // Refresh data or update local state
+           })
+           .catch((error) => {
+             console.log("Failed to update status");
+             console.error(error);
+           });
+       };
+
+       return (
+         <Select
+           defaultValue={record.status}
+           style={{ width: 120 }}
+           onChange={handleStatusChange}
+           options={statusOptions}
+         />
+       );
+     },
    },
    {
      title: "Action",
@@ -108,6 +215,12 @@ const [orderDetaiis, setOrderDetails] = useState(null);
      ),
    },
  ];
+
+ useEffect(() => {
+     getAllOrders().then((response) => {
+       setOrderDetails(response);
+     });
+   }, []);
   
   return (
     <div>
@@ -141,14 +254,42 @@ const [orderDetaiis, setOrderDetails] = useState(null);
         </div>
       </div>
 
-      <Table columns={columns} dataSource={data} bordered />
+      <Table columns={columns} dataSource={orderDetaiis } bordered />
 
-      <OrderViewDetails
+      {/* <OrderViewDetails
         isOpen={orderViewModal}
         onOk={handleOk}
         onCancel={handleCancel}
         record={orderDetaiis}
-      />
+      /> */}
+
+      <Modal
+        title=""
+        open={orderViewModal}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div>
+          <Descriptions
+            title="Order Details"
+            items={orderItems}
+            bordered
+            column={2}
+          />
+
+          <div style={{ marginTop: 24 }}>
+            <h3>Order Items</h3>
+            <Table
+              columns={itemColumns}
+              dataSource={orderData.items}
+              pagination={false}
+            />
+            <div className="flex flex-row-reverse mr-12">
+              <p>{orderData.total}</p> <p>Total : </p>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

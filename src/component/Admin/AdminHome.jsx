@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Row, Space, Table, Typography } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Col, Descriptions, Modal, Row, Space, Table, Typography } from "antd";
 import { Card, Statistic } from "antd";
 // import { faker } from "@faker-js/faker";
 import {
@@ -9,6 +9,13 @@ import {
 } from "@ant-design/icons";
 import DetailsCards from "../components/DetailsCards";
 import Title from "antd/es/typography/Title";
+import { NavLink, useNavigate } from "react-router";
+import {  getOrdersById, getOrdersByIdAndStatus, updateOrder } from "../../utils/User.util";
+import { UserContext } from "../../Context/User.context";
+import {
+  ErrorMessageToast,
+  SuccesfulMessageToast,
+} from "../../utils/Toastify.util";
 
 export const options = {
   responsive: true,
@@ -23,61 +30,252 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-
 const AdminHome = () => {
+  const { _rest } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [orderId, setOrderId] = useState(null);
+  const [orderDetaiis, setOrderDetails] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [declineModal, setDeclineModal] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderData, setOrderData] = useState([]);
+
+  const showModal = (record) => {
+
+    getOrdersById(record.id)
+      .then((response) => {
+        setOrderData(response);
+        setIsModalOpen(true);
+      })
+      .catch((error) => {
+        console.error("Error order details:", error);
+
+      });
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRequestApprove = (record) => {
+    setOrderId(record.id);
+    setModalShow(true);
+  };
+
+  const handleDeclineRequest = (record) => {
+    setOrderId(record.id);
+    setDeclineModal(true);
+  };
+
+  const handlerequestDecline = () => {
+    setModalShow(false);
+    setDeclineModal(false);
+  };
+
+ const orderItems = [
+   {
+     key: "1",
+     label: "Order ID",
+     span: "filled",
+     children: orderData.id,
+   },
+   {
+     key: "2",
+     label: "User Name",
+     span: "filled",
+     children: orderData.user_name,
+   },
+   {
+     key: "3",
+     label: "Status",
+     span: "filled",
+     children: orderData.status,
+   },
+   {
+     key: "4",
+     label: "Order Date",
+     span: "filled",
+     children: new Date(orderData.orderDate).toLocaleString(),
+   },
+   {
+     key: "5",
+     label: "Address",
+     span: "filled",
+     children: orderData.address,
+   },
+   {
+     key: "6",
+     label: "Payment Method",
+     span: "filled",
+     children: orderData.payment_method
+       ? orderData.payment_method.join(", ")
+       : "N/A",
+   },
+   {
+     key: "7",
+     label: "Special Instructions",
+     span: "filled",
+     children: orderData.special_instruction || "None",
+   },
+   {
+     key: "8",
+     label: "Total Items",
+     span: "filled",
+     children: orderData.items ? orderData.items.length : 0,
+   },
+   {
+     key: "9",
+     label: "Total Amount",
+     span: "filled",
+     children: `Rs. ${orderData.total}`,
+   },
+ ];
+
+ const itemColumns = [
+   {
+     title: "Item Name",
+     dataIndex: "name",
+
+     key: "name",
+   },
+   {
+     title: "Price",
+     dataIndex: "price",
+     key: "price",
+     render: (price) => `Rs. ${price}`,
+   },
+   {
+     title: "Quantity",
+     dataIndex: "quantity",
+     key: "quantity",
+   },
+   {
+     title: "Subtotal",
+     key: "subtotal",
+     render: (_, record) => `Rs. ${record.price * record.quantity}`,
+   },
+ ];
+
   const column = [
     {
+      title: "ID",
+      align: "center",
+      dataIndex: "id",
+    },
+    {
       title: "Name",
-      dataIndex: "name",
+      align: "center",
+      dataIndex: "user_name",
+      render: (_, record) => (
+        <NavLink onClick={()=>showModal(record)}>{record.user_name} </NavLink>
+      ),
     },
     {
       title: "Quantity",
-      dataIndex: "quantity",
+      align: "center",
+      // dataIndex: "items",
+      render: (_, record) => <p>{record.items.length} </p>,
     },
     {
       title: "Total Price",
-      dataIndex: "total_price",
+      align: "center",
+      dataIndex: "total",
     },
     {
       title: "Status",
-      dataIndex: "status",
+      key: "status",
+      align: "center",
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="primary" onClick={() => handleRequestApprove(record)}>
+            Approve
+          </Button>
+          <Button
+            color="danger"
+            variant="solid"
+            onClick={() => handleDeclineRequest(record)}
+          >
+            Decline
+          </Button>
+        </Space>
+      ),
     },
   ];
 
-  const tableData = [
-    {
-      name: "Pratik Bhattarai",
-      quantity: 20,
-      total_price: 200,
-      status: "Pending",
-    },
-    {
-      name: "Pratik Aryal",
-      quantity: 20,
-      total_price: 200,
-      status: "Pending",
-    },
-    {
-      name: "Pratik Aryal",
-      quantity: 20,
-      total_price: 200,
-      status: "Pending",
-    },
-    {
-      name: "Pratik Aryal",
-      quantity: 20,
-      total_price: 200,
-      status: "Pending",
-    },
-    {
-      name: "Pratik Aryal",
-      quantity: 20,
-      total_price: 200,
-      status: "Pending",
-    },
-  ];
+ 
+  const handleApprove = () => {
+    const status = "approved";
+    updateOrder(orderId, { status })
+      .then(() => {
+        SuccesfulMessageToast("Approved");
+        window.location.reload();
+        navigate("");
+      })
+      .catch((error) => {
+        console.error("Failed to approve:", error);
+        ErrorMessageToast("Approval failed!");
+      });
+    setModalShow(false);
+  };
+
+  const handleDecline = () => {
+    const status = "decline";
+    updateOrder(orderId, { status })
+      .then(() => {
+        navigate("");
+        window.location.reload();
+        SuccesfulMessageToast("decline");
+      })
+      .catch((error) => {
+        console.error("Failed to approve:", error);
+        ErrorMessageToast("Approval failed!");
+      });
+    setDeclineModal(false);
+  };
+
+  useEffect(() => {
+    getOrdersByIdAndStatus(_rest.id).then((response) => {
+      console.log("order data", _rest.id);
+      setOrderDetails(response);
+    });
+  }, [_rest.id]);
+
+  // const tableData = [
+  //   {
+  //     name: "Pratik Bhattarai",
+  //     quantity: 20,
+  //     total_price: 200,
+  //     status: "Pending",
+  //   },
+  //   {
+  //     name: "Pratik Aryal",
+  //     quantity: 20,
+  //     total_price: 200,
+  //     status: "Pending",
+  //   },
+  //   {
+  //     name: "Pratik Aryal",
+  //     quantity: 20,
+  //     total_price: 200,
+  //     status: "Pending",
+  //   },
+  //   {
+  //     name: "Pratik Aryal",
+  //     quantity: 20,
+  //     total_price: 200,
+  //     status: "Pending",
+  //   },
+  //   {
+  //     name: "Pratik Aryal",
+  //     quantity: 20,
+  //     total_price: 200,
+  //     status: "Pending",
+  //   },
+  // ];
   return (
     <>
       <Row className="mt-5">
@@ -153,7 +351,7 @@ const AdminHome = () => {
         </div>
       </Row>
 
-      <div style={{  margin: 40 }}>
+      <div style={{ margin: 40 }}>
         {/* <Row>
             <Col span={10}>
               <Typography.Text>Recent Orders</Typography.Text>
@@ -174,9 +372,49 @@ const AdminHome = () => {
             <Title level={3}>Order Request</Title>
           </div>
 
-          <Table columns={column} dataSource={tableData} bordered />
+          <Table columns={column} dataSource={orderDetaiis} bordered />
         </div>
       </div>
+      <Modal
+        title="Are you sure want to Approved"
+        open={modalShow}
+        onOk={handleApprove}
+        onCancel={handlerequestDecline}
+      ></Modal>
+      <Modal
+        title="Are you sure want to Decline"
+        open={declineModal}
+        onOk={handleDecline}
+        onCancel={handlerequestDecline}
+      ></Modal>
+
+      <Modal
+        title=""
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div>
+          <Descriptions
+            title="Order Details"
+            items={orderItems}
+            bordered
+            column={2}
+          />
+
+          <div style={{ marginTop: 24 }}>
+            <h3>Order Items</h3>
+            <Table
+              columns={itemColumns}
+              dataSource={orderData.items}
+              pagination={false}
+            />
+            <div className="flex flex-row-reverse mr-12">
+              <p>{orderData.total}</p> <p>Total : </p>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

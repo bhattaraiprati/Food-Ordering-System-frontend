@@ -12,28 +12,6 @@ import { SuccesfulMessageToast } from '../../utils/Toastify.util';
 
 const { Title } = Typography;
 
-
-// const data = [
-//   {
-//     key: "1",
-//     image: <Image src={Profile} width={50}/>,
-//     name: "John Brown",
-//     money: "￥300,000.00",
-//     address: "New York No. 1 Lake Park",
-//   },
-//   {
-//     key: "2",
-//     name: "Jim Green",
-//     money: "￥1,256,000.00",
-//     address: "London No. 1 Lake Park",
-//   },
-//   {
-//     key: "3",
-//     name: "Joe Black",
-//     money: "￥120,000.00",
-//     address: "Sydney No. 1 Lake Park",
-//   },
-// ];
 const AllMenu = () => {
   const {_rest} = useContext(UserContext);
   const navigate = useNavigate();
@@ -78,7 +56,7 @@ const AllMenu = () => {
              label: "Ingredients",
              children: selectedMenu.ingredients,
            },
-           // Add more fields as needed
+           
          ]
        : [];
   const columns = [

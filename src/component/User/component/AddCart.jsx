@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { Dropdown, Button, Row, Col, Typography } from "antd";
+import React, { useContext, useState } from "react";
+import { Dropdown, Button, Row, Col, Typography, Badge } from "antd";
 import { X } from "lucide-react";
 import Title from "antd/es/typography/Title";
+import {  useCart } from "../../../Context/Cart.context";
+import CartPage from "./CartPage";
 
 // const cart = () =>{
 //     return (
@@ -54,29 +56,30 @@ import Title from "antd/es/typography/Title";
 // }
 
 const AddCart = ({ children }) => {
-    const [cartItems, setCartItems] = useState([
-      {
-        id: 1,
-        name: "Mutton Bryani",
-        note: "I needed extra salad",
-        price: 300,
-      },
-    ]);
+  const { cart, removeFromCart, updateQuantity } = useCart();
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      name: "Mutton Bryani",
+      note: "I needed extra salad",
+      price: 300,
+    },
+  ]);
 
-    const removeItem = (id) => {
-      setCartItems(cartItems.filter((item) => item.id !== id));
-    };
+  const removeItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
 
-    const calculateTotals = () => {
-      const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
-      const vat = 0; // You can add VAT calculation logic here
-      const deliveryCharge = 80;
-      const grandTotal = subtotal + vat + deliveryCharge;
+  const calculateTotals = () => {
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const vat = 0; // You can add VAT calculation logic here
+    const deliveryCharge = 80;
+    const grandTotal = subtotal + vat + deliveryCharge;
 
-      return { subtotal, vat, deliveryCharge, grandTotal };
-    };
+    return { subtotal, vat, deliveryCharge, grandTotal };
+  };
 
-    const totals = calculateTotals();
+  const totals = calculateTotals();
 
   const cartContent = (
     <div
@@ -161,16 +164,29 @@ const AddCart = ({ children }) => {
     </div>
   );
   return (
-    <Dropdown
-      dropdownRender={() => cartContent}
-      trigger={["click"]}
-      overlayStyle={{
-        width: "auto",
-        boxShadow: "0 3px 6px rgba(0, 0, 0, 0.16)",
-      }}
-    >
-      <div onClick={(e) => e.preventDefault()}>{children}</div>
-    </Dropdown>
+    <div>
+      <Dropdown
+        dropdownRender={() => (
+          <CartPage
+            cart={cart}
+            onRemove={removeFromCart}
+            onUpdateQuantity={updateQuantity}
+          />
+        )}
+        trigger={["click"]}
+        overlayStyle={{
+          width: "auto",
+          boxShadow: "0 3px 6px rgba(0, 0, 0, 0.16)",
+        }}
+        
+      >
+        <div onClick={(e) => e.preventDefault()}>
+          <Badge count={cart.reduce((sum, item) => sum + item.quantity, 0)}>
+            {children}
+          </Badge>
+        </div>
+      </Dropdown>
+    </div>
   );
 };
 

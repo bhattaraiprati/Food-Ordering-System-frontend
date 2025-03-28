@@ -10,7 +10,7 @@ const RestaurantCard = ({ image, name, location, id }) => {
       className="group overflow-hidden"
       // style={{ animationDelay: `${delay * 100}ms` }}
     >
-      <NavLink className="block" to={"/restaurant/detail/"}>
+      <NavLink className="block" to={`/detail/${id}`}>
         {/* <a
           href={`/restaurant/${name.toLowerCase().replace(/\s+/g, "-")}`}
           className="block"

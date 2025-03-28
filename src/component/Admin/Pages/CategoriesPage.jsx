@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Space, DatePicker, Typography, Input, Modal, Tag, Card, Menu, Form } from "antd";
 import { Select, Table } from "antd";
 // import '/src/assets/css/Order.css';
@@ -9,6 +9,7 @@ import TextArea from "antd/es/input/TextArea";
 import { addCategories, deleteCategory, editCategory, viewCategories } from "../../../utils/Admin.util";
 import { Await, useNavigate } from "react-router";
 import { ErrorMessageToast, SuccesfulMessageToast } from "../../../utils/Toastify.util";
+import { UserContext } from "../../../Context/User.context";
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -45,6 +46,7 @@ const CategoriesPage = () => {
     const [addCategoriesModal, setAddCategories] = useState([])
     const [form] = Form.useForm();
     const [categoryId, setcategoryId] = useState(null);
+    const {_rest} = useContext(UserContext);
 
     const handleEditClick = (record) =>{
         setcategoryId(record.id);
@@ -164,7 +166,10 @@ useEffect(()=>{
       </Card>
 
       <Modal title="Add New Category" open={ViewCategoryModal} footer={""}>
-        <Form form={form} layout="vertical" onFinish={handleOk}>
+        <Form form={form} layout="vertical" initialValues={{restaurantId: _rest.id }} onFinish={handleOk}>
+          <Form.Item name='restaurantId' hidden>
+            <Input/>
+          </Form.Item>
           <Form.Item
             label="Name"
             name="name"

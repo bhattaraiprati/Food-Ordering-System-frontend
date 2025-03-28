@@ -24,6 +24,13 @@ export const getCategoryByName = async () =>{
     const response = await axios.get(`http://localhost:4000/categories`);
     return response.data.map((category) => category.name);
 }
+export const getCategoryById = async ( restaurantId) => {
+  const response = await axios.get(`http://localhost:4000/categories`);
+  return response.data.filter(
+    (user) =>
+      (user.restaurantId === restaurantId)
+  );
+};
 
 export const restaurantRegister = async (data) =>{
     await axios.post(`http://localhost:4000/Users`, data);

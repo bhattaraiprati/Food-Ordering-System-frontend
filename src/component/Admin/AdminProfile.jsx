@@ -171,10 +171,7 @@ const KycFirstSteps = ({ formData, setFormData, form }) => {
           }
           className="mb-12"
         >
-          <Form.Item
-            name="restaurantId"
-            hidden
-          >
+          <Form.Item name="restaurantId" hidden>
             <Input />
           </Form.Item>
           <Form.Item
@@ -202,12 +199,16 @@ const KycFirstSteps = ({ formData, setFormData, form }) => {
                 rules={[requiredRule]}
               >
                 <Select
+                  mode="multiple"
                   placeholder="Select cuisine type"
                   onChange={handleChange}
                   options={[
-                    { value: "nepali", label: "Nepali" },
-                    { value: "indian", label: "Indian" },
-                    // ... other options
+                    { value: "Nepali", label: "Nepali" },
+                    { value: "Indian", label: "Indian" },
+                    { value: "Italian", label: "Italian" },
+                    { value: "Mexican", label: "Mexican" },
+                    { value: "Thai", label: "Thai" },
+                    { value: "Korean", label: "Korean" },
                   ]}
                 />
               </Form.Item>

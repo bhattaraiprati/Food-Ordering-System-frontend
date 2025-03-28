@@ -88,6 +88,7 @@ const SuperAdminHome = () => {
        updateRestaurant(restaurantId, { status }) 
          .then(() => {
            navigate("");
+           window.location.reload();
            SuccesfulMessageToast("Approved");
          })
          .catch((error) => {
@@ -102,6 +103,7 @@ const SuperAdminHome = () => {
        updateRestaurant(restaurantId, { status }) 
          .then(() => {
            navigate("");
+           window.location.reload();
            SuccesfulMessageToast("decline");
          })
          .catch((error) => {
@@ -115,7 +117,7 @@ const SuperAdminHome = () => {
        getRestaurantByStatus().then((response) => {
          setRestaurantDetails(response);
        });
-     });
+     },[]);
 
   return (
     <div className="mt-5">

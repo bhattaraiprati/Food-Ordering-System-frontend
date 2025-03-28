@@ -7,6 +7,7 @@ import { Avatar, Badge, Button, Dropdown, Space } from "antd";
 import { BellOutlined, DownOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import NotificationDropdown from "../../components/NotificationDropdown"
 import AddCart from "./AddCart";
+import CartPage from "./CartPage";
 
   const ListItem = ({ children, to, isActive, onClick }) => {
     return (
@@ -150,15 +151,17 @@ import AddCart from "./AddCart";
                       </div>
 
                       <div className="mr-1">
-                        <AddCart>
-                          <Badge count={5} onClick={handleModal}>
-                            <Avatar shape="circle">
-                              <ShoppingCartOutlined
-                                style={{ fontSize: 20, color: "" }}
-                              />
-                            </Avatar>
-                          </Badge>
-                        </AddCart>
+                        
+                          <AddCart>
+                            <Badge count={0} >
+                              <Avatar shape="circle">
+                                <ShoppingCartOutlined
+                                  style={{ fontSize: 20, color: "" }}
+                                />
+                              </Avatar>
+                            </Badge>
+                          </AddCart>
+                        
                       </div>
                       <div className="flex space-x-2">
                         <ProfileDropdowns />
