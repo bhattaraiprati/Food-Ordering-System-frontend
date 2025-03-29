@@ -244,38 +244,8 @@ const AdminHome = () => {
     });
   }, [_rest.id]);
 
-  // const tableData = [
-  //   {
-  //     name: "Pratik Bhattarai",
-  //     quantity: 20,
-  //     total_price: 200,
-  //     status: "Pending",
-  //   },
-  //   {
-  //     name: "Pratik Aryal",
-  //     quantity: 20,
-  //     total_price: 200,
-  //     status: "Pending",
-  //   },
-  //   {
-  //     name: "Pratik Aryal",
-  //     quantity: 20,
-  //     total_price: 200,
-  //     status: "Pending",
-  //   },
-  //   {
-  //     name: "Pratik Aryal",
-  //     quantity: 20,
-  //     total_price: 200,
-  //     status: "Pending",
-  //   },
-  //   {
-  //     name: "Pratik Aryal",
-  //     quantity: 20,
-  //     total_price: 200,
-  //     status: "Pending",
-  //   },
-  // ];
+  
+
   return (
     <>
       <Row className="mt-5">
@@ -293,8 +263,8 @@ const AdminHome = () => {
                   }}
                 />
               }
-              title="Cards Details"
-              value="12334 "
+              title="Today Total Order"
+              value="55 "
             />
           </Col>
           <Col offset={1}>
@@ -310,8 +280,8 @@ const AdminHome = () => {
                   }}
                 />
               }
-              title="Cards Details"
-              value="9474"
+              title="Pending order "
+              value="4"
             />
           </Col>
           <Col offset={1}>
@@ -327,8 +297,8 @@ const AdminHome = () => {
                   }}
                 />
               }
-              title="Cards Details"
-              value="3474"
+              title="This Week Order"
+              value="250"
             />
           </Col>
           <Col offset={1}>
@@ -344,8 +314,8 @@ const AdminHome = () => {
                   }}
                 />
               }
-              title="Cards Details"
-              value="2874"
+              title="This Month Order"
+              value="1230"
             />
           </Col>
         </div>

@@ -1,5 +1,7 @@
 import React from 'react'
 import {Facebook, Instagram, Twitter,} from 'lucide-react';
+import Logo from "../../../assets/Images/FoodOrderingLogo.png"
+import { NavLink } from 'react-router';
 
 const UserFooter = () => {
 
@@ -8,7 +10,7 @@ const UserFooter = () => {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           <div className="space-y-4">
-            <a href="/" className="text-xl font-medium tracking-tight">
+            {/* <a href="/" className="text-xl font-medium tracking-tight">
               <span
                 className="text-xs font-semibold tracking-widest uppercase block"
                 style={{ color: "#ffb700" }}
@@ -16,7 +18,11 @@ const UserFooter = () => {
                 Foodie
               </span>
               Feature Finder
-            </a>
+            </a> */}
+            <NavLink to="/" className="block text-center w-3xs flex py-1">
+              <img src={Logo} alt="logo" className="w-20 " />
+              <p className="text-gray-800 text-lg font-bold mt-6">BhojXpress</p>
+            </NavLink>
             <p className="text-muted-foreground text-gray-900 text-sm mt-2">
               Discover exceptional dining experiences with our curated selection
               of restaurants.
@@ -143,7 +149,7 @@ const UserFooter = () => {
 
         <div className="mt-16 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-900 text-muted-foreground">
-            © {new Date().getFullYear()} Foodie Feature Finder. All rights
+            © {new Date().getFullYear()} BhojXpress. All rights
             reserved.
           </p>
 

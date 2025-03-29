@@ -16,36 +16,6 @@ import { useCart } from "../../../Context/Cart.context";
 const { Title, Text } = Typography;
 
 
-
-// const Menuitems = () =>{
-
-//       <>
-//         <div className="mt-5  ">
-//           <div className="text-center mb-3">
-            
-//             <h4 className="font-medium text-[#ffb700]">Soup</h4>
-//           </div>
-//           const menus = 
-//           <div className="h-8 px-2 pb-2 rounded-sm bg-[#E3E3E3]">
-//             <p className="font-normal ">Indian Soup</p>
-//           </div>
-//           <Row className="my-5">
-//             <Col span={16} className="text-lg">
-//               Veg. Manchow Soup
-//             </Col>
-//             <Col span={4} offset={4}>
-//               <Button className="button-primary">Add</Button>
-//             </Col>
-//             <span className="font-medium text-lg text-[#ffb700]">Rs. 300</span>
-//           </Row>
-//           <Divider />
-//         </div>
-//       </>
-// }
-
-
-
-
 const RestaurantDetails = () => {
    const { _rest } = useContext(UserContext);
    const params = useParams();
@@ -55,6 +25,8 @@ const RestaurantDetails = () => {
    const [categoryNames, setCategoryNames] = useState([]);
    const [menuItems, setMenuItems] = useState([]);
 
+   const restaurant_id = restaurantDetails.restaurantId;
+
    // Use cart context only - remove local cart state
    const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
   
@@ -63,37 +35,6 @@ const RestaurantDetails = () => {
     key: index + 1,
     label: list.name, 
   }));
-
-  // const addToCart = (item) => {
-  //   setCart((prevCart) => {
-  //     const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-  //     if (existingItem) {
-  //       return prevCart.map((cartItem) =>
-  //         cartItem.id === item.id
-  //           ? { ...cartItem, quantity: cartItem.quantity + 1 }
-  //           : cartItem
-  //       );
-  //     } else {
-  //       return [...prevCart, { ...item, quantity: 1 }];
-  //     }
-  //   });
-  // };
-
-  // const removeFromCart = (itemId) => {
-  //   setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
-  // };
-
-  // const updateQuantity = (itemId, newQuantity) => {
-  //   if (newQuantity < 1) {
-  //     removeFromCart(itemId);
-  //     return;
-  //   }
-  //   setCart((prevCart) =>
-  //     prevCart.map((item) =>
-  //       item.id === itemId ? { ...item, quantity: newQuantity } : item
-  //     )
-  //   );
-  // };
 
 
   const Review = () => {
@@ -171,51 +112,81 @@ const RestaurantDetails = () => {
       token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    useEffect(()=>{
-
-      getRestaurantDetailsById(params.id).then((response)=>{
-        setRestaurantDetails(response);
-      })
-
-      
-    }, [params.id])
-
     useEffect(() => {
-    if (params.id, restaurantDetails.restaurantId) {
-      getCategoryById(restaurantDetails.restaurantId).then((response) => {
-        setCategoryList(response);
-      });
-    }
-  }, [restaurantDetails.restaurantId]);
-
-  useEffect(() => {
-    if (( restaurantDetails.restaurantId)) {
-      GetAllMenuItem(restaurantDetails.restaurantId).then((response) => {
-        setMenuList(response);
-      });
-    }
-  }, [restaurantDetails.restaurantId]);
-
-  useEffect(() => {
-      const fetchData = async () => {
+      const fetchRestaurantDetails = async () => {
         try {
-          const names = await getCategoryByName();
-          setCategoryNames(names);
-  
-          const allMenuItems = await Promise.all(
-            names.map(async (category) => {
-              const response = await getMenuItemById(_rest.id, category);
-  
-              return { category, items: response }; // Store category along with items
-            })
-          );
-          setMenuItems(allMenuItems);
+          const response = await getRestaurantDetailsById(params.id);
+          setRestaurantDetails(response);
         } catch (error) {
-          console.error("Error fetching data:", error);
+          console.error("Error fetching restaurant details:", error);
         }
       };
-      fetchData();
-    }, [_rest.id]);
+
+      fetchRestaurantDetails();
+    }, [params.id]);
+
+
+    useEffect(() => {
+      if (!restaurantDetails.restaurantId) return;
+
+      const fetchCategories = async () => {
+        try {
+          const response = await getCategoryById(
+            restaurantDetails.restaurantId
+          );
+          setCategoryList(response);
+        } catch (error) {
+          console.error("Error fetching categories:", error);
+        }
+      };
+
+      fetchCategories();
+    }, [restaurantDetails.restaurantId]);
+
+
+
+useEffect(() => {
+  if (!restaurantDetails.restaurantId) return;
+
+  const fetchMenuItems = async () => {
+    try {
+      const response = await GetAllMenuItem(restaurantDetails.restaurantId);
+      setMenuList(response);
+    } catch (error) {
+      console.error("Error fetching menu items:", error);
+    }
+  };
+
+  fetchMenuItems();
+}, [restaurantDetails.restaurantId]);
+
+console.log("testing the restaurant id", restaurant_id);
+
+  useEffect(() => {
+    if (!restaurantDetails.restaurantId) return;
+
+    const fetchMenuByCategory = async () => {
+      try {
+        const names = await getCategoryByName();
+        setCategoryNames(names);
+
+        const allMenuItems = await Promise.all(
+          names.map(async (category) => {
+            const response = await getMenuItemById(
+              restaurantDetails.restaurantId,
+              category
+            );
+            return { category, items: response };
+          })
+        );
+        setMenuItems(allMenuItems);
+      } catch (error) {
+        console.error("Error fetching menu by category:", error);
+      }
+    };
+
+    fetchMenuByCategory();
+  }, [restaurantDetails.restaurantId]);
 
 
 

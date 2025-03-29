@@ -40,17 +40,17 @@
     {
       "id": "c2b0",
       "role": "restaurant",
-      "status": "pending",
+      "status": "approved",
       "restaurantName": "Melinda Dickerson",
       "location": "Blanditiis nisi ulla",
-      "email": "votuwe@mailinator.com",
+      "email": "restaurant1@gmail.com",
       "full_name": "Amity Odonnell",
-      "password": "Pa$$w0rd!"
+      "password": "1234"
     },
     {
       "id": "5e16",
       "role": "restaurant",
-      "status": "pending",
+      "status": "approved",
       "restaurantName": "Kelly Bartlett",
       "location": "Reiciendis esse ut ",
       "email": "zuxyhoc@mailinator.com",
@@ -60,7 +60,7 @@
     {
       "id": "a379",
       "role": "restaurant",
-      "status": "pending",
+      "status": "approved",
       "restaurantName": "Ezra Humphrey",
       "location": "Est nostrum magni i",
       "email": "kyjuhihibo@mailinator.com",
@@ -80,11 +80,21 @@
     {
       "id": "483c",
       "role": "restaurant",
-      "status": "pending",
+      "status": "approved",
       "restaurantName": "Dorian Russell",
       "location": "Quibusdam pariatur ",
       "email": "rehapi@mailinator.com",
       "full_name": "Wylie Bennett",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "9305",
+      "role": "restaurant",
+      "status": "approved",
+      "restaurantName": "Chantale Fowler",
+      "location": "Eaque ullam tempore",
+      "email": "rizytuz@mailinator.com",
+      "full_name": "Ivana Shannon",
       "password": "Pa$$w0rd!"
     }
   ],
@@ -217,6 +227,322 @@
       "closedDays": {},
       "deliveryAvailable": true,
       "pickupAvailable": false
+    },
+    {
+      "id": "b2e8",
+      "restaurantId": "c2b0",
+      "restaurant_name": "Pasta Paradise",
+      "business_number": "IT345672",
+      "cuisine_type": "Italian",
+      "description": "Handmade pastas and wood-fired pizzas.",
+      "email": "pastaparadise@example.com",
+      "contact_name": "Marco Bianchi",
+      "phone": "+393334445566",
+      "address": "Thamel, Kathmandu",
+      "latitude": "18.9220",
+      "longitude": "72.8347",
+      "delivery_radius": "8",
+      "landmark": "Opposite Taj Hotel",
+      "order_phone": "02267891234",
+      "website": "https://pastaparadise.com",
+      "operatingHours": {
+        "monday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "tuesday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "wednesday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "thursday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "friday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "saturday": {
+          "open": "11:00 AM",
+          "close": "11:00 PM"
+        },
+        "sunday": {
+          "open": "11:00 AM",
+          "close": "10:30 PM"
+        }
+      },
+      "closedDays": [],
+      "deliveryAvailable": true,
+      "pickupAvailable": true
+    },
+    {
+      "id": "f5c1",
+      "restaurantId": "5e16",
+      "restaurant_name": "Sushi Bay",
+      "business_number": "JP123789",
+      "cuisine_type": "Japanese",
+      "description": "Fresh sushi and sashimi with imported ingredients.",
+      "email": "sushibay@example.com",
+      "contact_name": "Yuki Tanaka",
+      "phone": "+81312345678",
+      "address": "Imadol, lalitpur",
+      "latitude": "28.6315",
+      "longitude": "77.2167",
+      "delivery_radius": "12",
+      "landmark": "Near Central Park",
+      "order_phone": "01123456789",
+      "website": "https://sushibay.jp",
+      "operatingHours": {
+        "monday": {
+          "open": "11:30 AM",
+          "close": "10:00 PM"
+        },
+        "tuesday": {
+          "open": "11:30 AM",
+          "close": "10:00 PM"
+        },
+        "wednesday": {
+          "open": "11:30 AM",
+          "close": "10:00 PM"
+        },
+        "thursday": {
+          "open": "11:30 AM",
+          "close": "10:00 PM"
+        },
+        "friday": {
+          "open": "11:30 AM",
+          "close": "10:30 PM"
+        },
+        "saturday": {
+          "open": "11:00 AM",
+          "close": "10:30 PM"
+        },
+        "sunday": {
+          "open": "11:00 AM",
+          "close": "10:00 PM"
+        }
+      },
+      "closedDays": [
+        "New Year's Day"
+      ],
+      "deliveryAvailable": false,
+      "pickupAvailable": true
+    },
+    {
+      "id": "3e9d",
+      "restaurantId": "a379",
+      "restaurant_name": "Burger Bunker",
+      "business_number": "BB789012",
+      "cuisine_type": "American",
+      "description": "Gourmet burgers with craft beers and loaded fries.",
+      "email": "burgerbunker@example.com",
+      "contact_name": "Alex Morgan",
+      "phone": "+919988776655",
+      "address": "Gwarko, lalitpur",
+      "latitude": "22.5726",
+      "longitude": "88.3639",
+      "delivery_radius": "15",
+      "landmark": "Near South City Mall",
+      "order_phone": "03345678901",
+      "website": "https://burgerbunker.in",
+      "operatingHours": {
+        "monday": {
+          "open": "11:00 AM",
+          "close": "11:00 PM"
+        },
+        "tuesday": {
+          "open": "11:00 AM",
+          "close": "11:00 PM"
+        },
+        "wednesday": {
+          "open": "11:00 AM",
+          "close": "11:00 PM"
+        },
+        "thursday": {
+          "open": "11:00 AM",
+          "close": "11:00 PM"
+        },
+        "friday": {
+          "open": "11:00 AM",
+          "close": "12:00 AM"
+        },
+        "saturday": {
+          "open": "10:00 AM",
+          "close": "12:00 AM"
+        },
+        "sunday": {
+          "open": "10:00 AM",
+          "close": "11:00 PM"
+        }
+      },
+      "closedDays": [
+        "Fourth of July"
+      ],
+      "deliveryAvailable": true,
+      "pickupAvailable": true
+    },
+    {
+      "id": "8c4a",
+      "restaurantId": "a1b9",
+      "restaurant_name": "The Biryani House",
+      "business_number": "BH456123",
+      "cuisine_type": "Hyderabadi",
+      "description": "Authentic Hyderabadi dum biryani and kebabs.",
+      "email": "biryanihouse@example.com",
+      "contact_name": "Irfan Pathan",
+      "phone": "+919876123450",
+      "address": "Kamal Pokhari, Kathmandu",
+      "latitude": "17.3850",
+      "longitude": "78.4867",
+      "delivery_radius": "20",
+      "landmark": "Near GVK Mall",
+      "order_phone": "04067891234",
+      "website": "https://biryanihouse.com",
+      "operatingHours": {
+        "monday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "tuesday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "wednesday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "thursday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "friday": {
+          "open": "12:00 PM",
+          "close": "11:30 PM"
+        },
+        "saturday": {
+          "open": "11:30 AM",
+          "close": "11:30 PM"
+        },
+        "sunday": {
+          "open": "11:30 AM",
+          "close": "11:00 PM"
+        }
+      },
+      "closedDays": [
+        "Muharram"
+      ],
+      "deliveryAvailable": true,
+      "pickupAvailable": false
+    },
+    {
+      "id": "1d6f",
+      "restaurantId": "483c",
+      "restaurant_name": "Café Mocha",
+      "business_number": "CM789345",
+      "cuisine_type": "Café",
+      "description": "Artisanal coffee, desserts, and brunch favorites.",
+      "email": "cafemocha@example.com",
+      "contact_name": "Priya Nair",
+      "phone": "+919900112233",
+      "address": "Kumaripati, lalitpur",
+      "latitude": "18.5204",
+      "longitude": "73.8567",
+      "delivery_radius": "5",
+      "landmark": "Near Osho Ashram",
+      "order_phone": "02098765432",
+      "website": "https://cafemocha.in",
+      "operatingHours": {
+        "monday": {
+          "open": "7:00 AM",
+          "close": "10:00 PM"
+        },
+        "tuesday": {
+          "open": "7:00 AM",
+          "close": "10:00 PM"
+        },
+        "wednesday": {
+          "open": "7:00 AM",
+          "close": "10:00 PM"
+        },
+        "thursday": {
+          "open": "7:00 AM",
+          "close": "10:00 PM"
+        },
+        "friday": {
+          "open": "7:00 AM",
+          "close": "11:00 PM"
+        },
+        "saturday": {
+          "open": "8:00 AM",
+          "close": "11:00 PM"
+        },
+        "sunday": {
+          "open": "8:00 AM",
+          "close": "10:00 PM"
+        }
+      },
+      "closedDays": [
+        "Diwali"
+      ],
+      "deliveryAvailable": false,
+      "pickupAvailable": true
+    },
+    {
+      "id": "9e2b",
+      "restaurantId": "9305",
+      "restaurant_name": "Thai Orchid",
+      "business_number": "TH678901",
+      "cuisine_type": "Thai",
+      "description": "Traditional Thai curries and street food.",
+      "email": "thaiorchid@example.com",
+      "contact_name": "Supriya Wong",
+      "phone": "+919855443322",
+      "address": "Pulchowk, lalitpur",
+      "latitude": "13.0827",
+      "longitude": "80.2707",
+      "delivery_radius": "12",
+      "landmark": "Near Express Avenue Mall",
+      "order_phone": "04478901234",
+      "website": "https://thaiorchid.com",
+      "operatingHours": {
+        "monday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "tuesday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "wednesday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "thursday": {
+          "open": "12:00 PM",
+          "close": "10:30 PM"
+        },
+        "friday": {
+          "open": "12:00 PM",
+          "close": "11:00 PM"
+        },
+        "saturday": {
+          "open": "11:30 AM",
+          "close": "11:00 PM"
+        },
+        "sunday": {
+          "open": "11:30 AM",
+          "close": "10:30 PM"
+        }
+      },
+      "closedDays": [
+        "Songkran"
+      ],
+      "deliveryAvailable": true,
+      "pickupAvailable": true
     }
   ],
   "Orders": [
@@ -355,6 +681,34 @@
       "total": 416,
       "user_name": "Partik Bhattarai",
       "orderDate": "2025-03-28T17:18:26.866Z"
+    },
+    {
+      "id": "6ec5",
+      "userId": "2e1c",
+      "restaurantId": "d699",
+      "status": "pending",
+      "address": "Cumque anim labore i",
+      "payment_method": [
+        "fonePay"
+      ],
+      "special_instruction": "Quia nisi velit est",
+      "items": [
+        {
+          "id": "2e4f",
+          "name": "Regan Duran",
+          "price": "336",
+          "quantity": 1
+        },
+        {
+          "id": "4282",
+          "name": "Daniel Frazier",
+          "price": "248",
+          "quantity": 1
+        }
+      ],
+      "total": 584,
+      "user_name": "Partik Bhattarai",
+      "orderDate": "2025-03-29T19:06:35.170Z"
     }
   ]
 }

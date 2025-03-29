@@ -1,5 +1,5 @@
-import React from 'react'
-import {  NavLink, Outlet } from "react-router";
+import React, { useContext, useEffect } from 'react'
+import {  NavLink, Outlet, useNavigate } from "react-router";
 import {
   Affix,
   Avatar,
@@ -23,15 +23,24 @@ import { Content, Header } from "antd/es/layout/layout";
 import NotificationDropdown from "../components/NotificationDropdown";
 import Sider from 'antd/es/layout/Sider';
 import MainLogo from "../../assets/Images/FoodOrderingLogo.png"
+import { UserContext } from '../../Context/User.context';
 
 const AdminLayout = () => {
+  const {_rest} = useContext(UserContext);
     const [Collaped, setCollaped] = useState(false);
     const [dropdownOpen, setdropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleModal = () => {
       console.log("button is clicked ????");
       setdropdownOpen(true);
     };
+
+    useEffect(() => {
+      if (localStorage.getItem("restaurant_Login") === "0") {
+        navigate("/login");
+      }
+    });
     
 
   return (
@@ -46,7 +55,10 @@ const AdminLayout = () => {
             className="sidebar"
             style={{ height: "100vh" }}
           >
-            <img src={MainLogo} style={{height: "70px"}} />
+            <div className="flex">
+              <img src={MainLogo} style={{ height: "70px" }} />
+              <p className="text-gray-800 text-lg font-bold mt-6">BhojXpress</p>
+            </div>
 
             <MenuList />
           </Sider>
@@ -63,7 +75,7 @@ const AdminLayout = () => {
             }}
           >
             <Row>
-              <Col span={20}>
+              <Col span={17}>
                 <Button
                   className="toggle border-none"
                   onClick={() => setCollaped(!Collaped)}
@@ -86,8 +98,17 @@ const AdminLayout = () => {
                 </NotificationDropdown>
               </Col>
 
-              <Col span={2}>
-                <ProfileDropdowns />
+              <Col span={5}>
+                <div className="flex align-middle">
+                  <div>
+                    <ProfileDropdowns />
+                  </div>
+                  <div >
+                    <p className="font-medium ml-2 text-gray-800">
+                      {_rest.restaurantName}
+                    </p>
+                  </div>
+                </div>
               </Col>
             </Row>
           </Header>

@@ -1,23 +1,37 @@
 // src/Context/Cart.context.jsx
 import React, { createContext, useState, useContext } from "react";
+import { UserContext } from "./User.context";
+import { useNavigate } from "react-router";
+import { ErrorMessageToast } from "../utils/Toastify.util";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  // const navigate = useNavigate();
+  const {_user} = useContext(UserContext);
   const [cart, setCart] = useState([]);
 
   const addToCart = (item) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
-      if (existingItem) {
-        return prevCart.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
+    if(localStorage.getItem("is_Login") === "0"){
+      ErrorMessageToast("Please Login First");
+    }
+    else{
+      setCart((prevCart) => {
+        const existingItem = prevCart.find(
+          (cartItem) => cartItem.id === item.id
         );
-      }
-      return [...prevCart, { ...item, quantity: 1 }];
-    });
+        if (existingItem) {
+          return prevCart.map((cartItem) =>
+            cartItem.id === item.id
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
+          );
+        }
+        return [...prevCart, { ...item, quantity: 1 }];
+      });
+
+    }
+    
   };
 
   const removeFromCart = (itemId) => {

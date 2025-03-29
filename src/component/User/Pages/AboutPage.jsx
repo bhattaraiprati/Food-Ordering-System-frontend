@@ -21,7 +21,7 @@ const AboutPage = () => {
           <div className="w-full p-8 bg-[#fff] rounded-xl">
             <p className="text-2xl mb-6 font-medium text-gray-900">About Us</p>
             <p className="text-gray-800">
-              Welcome to [Your Platform Name], your go-to destination for
+              Welcome to BhojXpress, your go-to destination for
               hassle-free food ordering and restaurant table booking. Our
               mission is to connect food lovers with their favorite restaurants,
               offering a seamless and convenient dining experience.
@@ -43,7 +43,7 @@ const AboutPage = () => {
         </Col>
       </Row>
 
-      <div className="w-full bg-[#fff] mt-8">
+      {/* <div className="w-full bg-[#fff] mt-8">
         <Row className="px-10">
           <Col span={11}>
             <div className="w-full p-8 bg-[#fff] rounded-xl">
@@ -66,7 +66,7 @@ const AboutPage = () => {
             <div className="text-gray-800 ">sdsjd</div>
           </Col>
         </Row>
-      </div>
+      </div> */}
     </div>
   );
 }

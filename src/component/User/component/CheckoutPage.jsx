@@ -1,6 +1,6 @@
 import { Button, Card, Checkbox, Col, Form, Input, Row } from 'antd';
 import { List } from 'lucide-react';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CartPage from './CartPage';
 import { useCart } from '../../../Context/Cart.context';
 import { useNavigate, useParams } from 'react-router';
@@ -57,6 +57,13 @@ const CheckoutPage = () => {
     const handleBack = ()=>{
         navigate(`/detail/${params.id}`)
     }
+
+    useEffect(()=>{
+        if(localStorage.getItem("is_Login") === "0"){
+          navigate("/login")
+        }
+      })
+
   return (
     <div className="w-full ">
       <div className="px-10 py-8 mt-28">

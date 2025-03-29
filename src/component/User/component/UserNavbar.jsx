@@ -76,8 +76,11 @@ import CartPage from "./CartPage";
           <div className="container">
             <div className="relative mx-10 flex items-center justify-between">
               <div className="w-60 max-w-full px-4">
-                <NavLink to="/" className="block w-3xs py-1">
+                <NavLink to="/" className="block text-center w-3xs flex py-1">
                   <img src={Logo} alt="logo" className="w-20 " />
+                  <p className="text-gray-800 text-lg font-bold mt-6">
+                    BhojXpress
+                  </p>
                 </NavLink>
               </div>
               <div className="flex w-full items-center justify-between px-4">
@@ -151,17 +154,15 @@ import CartPage from "./CartPage";
                       </div>
 
                       <div className="mr-1">
-                        
-                          <AddCart>
-                            <Badge count={0} >
-                              <Avatar shape="circle">
-                                <ShoppingCartOutlined
-                                  style={{ fontSize: 20, color: "" }}
-                                />
-                              </Avatar>
-                            </Badge>
-                          </AddCart>
-                        
+                        <AddCart>
+                          <Badge count={0}>
+                            <Avatar shape="circle">
+                              <ShoppingCartOutlined
+                                style={{ fontSize: 20, color: "" }}
+                              />
+                            </Avatar>
+                          </Badge>
+                        </AddCart>
                       </div>
                       <div className="flex space-x-2">
                         <ProfileDropdowns />

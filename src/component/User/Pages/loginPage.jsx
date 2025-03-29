@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router";
 import { checkUser } from "../../../utils/User.util";
 import { ErrorMessageToast, SuccesfulMessageToast } from "../../../utils/Toastify.util";
 import { UserContext } from "../../../Context/User.context";
+import { Checkbox } from "antd";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const LoginPage = () => {
     // Handle login logic here
 
      if ((form.email === "admin@gmail.com") & (form.password === "admin")) {
+       localStorage.setItem("admin_Login", 1);
        navigate("/admin");
      }
      else{
@@ -45,9 +47,14 @@ const LoginPage = () => {
           ErrorMessageToast("Invalid email and password!");
         }
         if (data.role === "restaurant" & data.status === "approved") {
+
           localStorage.setItem("restaurant_Login", JSON.stringify(data));
-          navigate("/restaurant");
-          SuccesfulMessageToast("Login Successfully");
+          SuccesfulMessageToast("Login Successfully"); 
+          setTimeout(() => {
+            navigate("/restaurant");
+            window.location.reload(); 
+          }, 1000);
+          
         } else {
           _setUser(data);
           SuccesfulMessageToast("Login Successfully");
@@ -113,18 +120,9 @@ const LoginPage = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-              <input
-                id=""
-                type="checkbox"
-                className="focus:bg-white focus:text-white"
-                style={{ backgroundColor: "#fff" }}
-              />
-              <label
-                htmlFor="remember"
-                className="text-sm font-medium leading-none text-gray-700"
-              >
-                Remember me?
-              </label>
+            
+
+              <Checkbox >Remember me?</Checkbox>
             </div>
 
             <button

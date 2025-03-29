@@ -31,7 +31,7 @@ const GeneralInformationModal = ({kycData }) => {
             src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
           />
           <Title level={4}>{kycData?.restaurant_name}</Title>
-          <Space size={100}>
+          {/* <Space size={100}>
             <span>
               <StarOutlined style={{ color: "#FADB14", fontSize: "25px" }} />
               278
@@ -40,10 +40,10 @@ const GeneralInformationModal = ({kycData }) => {
               <StarOutlined style={{ color: "#FADB14", fontSize: "25px" }} />
               278
             </span>
-          </Space>
+          </Space> */}
         </div>
       </div>
-      <div className="details-box ml-10 px-10 bg-[#fff] text-center shadow-lg w-full ">
+      {/* <div className="details-box ml-10 px-10 bg-[#fff] text-center shadow-lg w-full ">
         <Title level={5}> Full Name</Title>
         <p>{kycData?.restaurant_name}</p>
         <Divider plain className="divider"></Divider>
@@ -56,6 +56,71 @@ const GeneralInformationModal = ({kycData }) => {
         <Title level={5}>Address</Title>
         <p>{kycData?.address}</p>
         <Divider plain className="divider"></Divider>
+      </div> */}
+      <div className="grid grid-cols-1 ml-10 px-10 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label
+            htmlFor="firstName"
+            className="block text-sm font-medium text-gray-400 mb-1"
+          >
+            FIRSTNAME
+          </label>
+          <input
+            id="firstName"
+            name="firstName"
+            value={kycData?.restaurant_name}
+            disabled
+            className="w-full px-4 py-2 border border-gray-300 bg-white text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb700] focus:border-[#ffb700]"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="lastName"
+            className="block text-sm font-medium text-gray-400 mb-1"
+          >
+            Email
+          </label>
+          <input
+            id="lastName"
+            name="lastName"
+            value={kycData?.email}
+            disabled
+            className="w-full px-4 py-2 border border-gray-300 bg-white text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb700] focus:border-[#ffb700]"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="phoneNumber"
+            className="block text-sm font-medium text-gray-400 mb-1"
+          >
+            PHONE NUMBER
+          </label>
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            value={kycData?.phone}
+            disabled
+            className="w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-800 focus:outline-none  focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-400 mb-1"
+          >
+            Contact
+          </label>
+          <input
+            id="email"
+            name="email"
+            value={kycData?.contact_name}
+            className="w-full px-4 py-2 border border-gray-300 bg-white text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-[#ffb700] focus:border-[#ffb700] bg-gray-100"
+            disabled
+          />
+        </div>
       </div>
     </div>
   );

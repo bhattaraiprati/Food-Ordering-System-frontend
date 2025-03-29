@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet } from "react-router";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router";
 import { Affix, Avatar, Badge, Button, Col, Layout, Row, theme } from "antd";
 import Logos from "../../components/Logos";
 import FoodOrderingLogo from "/src/assets/Images/FoodOrderingLogo.png";
@@ -16,6 +16,7 @@ import Sider from "antd/es/layout/Sider";
 import SidebarMenulist from "../AdminComponent/SidebarMenulist";
 
 const SuperAdminLayout = () => {
+  const navigate = useNavigate();
   const [Collaped, setCollaped] = useState(false);
   const [dropdownOpen, setdropdownOpen] = useState(false);
 
@@ -23,6 +24,12 @@ const SuperAdminLayout = () => {
     console.log("button is clicked ????");
     setdropdownOpen(true);
   };
+
+  useEffect(()=>{
+    if(localStorage.getItem("admin_Login") ==="0"){
+      navigate("/login");
+    }
+  })
 
   return (
     <div>
@@ -36,7 +43,10 @@ const SuperAdminLayout = () => {
             className="sidebar"
             style={{ height: "100vh" }}
           >
-            <img src={FoodOrderingLogo} className="w-20" />
+            <div className="flex">
+              <img src={FoodOrderingLogo} className="w-20" />
+              <p className="text-gray-800 text-lg font-bold mt-6">BhojXpress</p>
+            </div>
             <SidebarMenulist />
           </Sider>
         </Affix>
@@ -76,7 +86,7 @@ const SuperAdminLayout = () => {
               </Col>
 
               <Col span={2}>
-                <ProfileDropdowns />
+                <ProfileDropdowns logout={true} />
               </Col>
             </Row>
           </Header>
