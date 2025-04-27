@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from "antd";
+import { NavLink } from 'react-router';
 
 
 const SingleImage = ({ href, imgSrc }) => {
@@ -22,19 +23,18 @@ const HeroSection = () => {
               <h1 className="mb-5 mt-2 ml-0 text-4xl font-bold  text-gray-950 !leading-[1.208]   sm:text-[42px] lg:text-[40px] xl:text-5xl ">
                 Order Your Favorite Meals Online
               </h1>
-              <p className="mb-8 max-w-[480px] text-gray-950 text-base text-body-color dark:text-dark-6">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Dignissimos voluptas molestiae iusto dolorem aut numquam
-                temporibus quibusdam repellendus vero qui dolor quis, hic,
-                ducimus nisi!
+              <p className="mb-8 max-w-[480px] text-gray-950 text-[18px] text-body-color dark:text-dark-6">
+                Delicious food delivered to your doorstep. Browse menus, place
+                orders, and enjoy hassle-free dining with just a few clicks!
               </p>
               <ul className="flex flex-wrap items-center">
                 <li>
-                  <Button className="inline-flex px-6 py-3 button-primary " >
-                    Explore Now
-                  </Button>
+                  <NavLink to={"/explore"}>
+                    <Button className="inline-flex px-6 py-3 button-primary ">
+                      Explore Now
+                    </Button>
+                  </NavLink>
                 </li>
-                
               </ul>
               {/* <div className="clients pt-16">
                 <h6 className="mb-6 flex items-center text-xs font-normal text-gray-950 dark:text-dark-6">
@@ -62,39 +62,7 @@ const HeroSection = () => {
                   className="max-w-full lg:ml-auto rounded-tl-[80px]"
                 />
                 <span className="absolute -bottom-8 -left-8 z-[-1]">
-                  {/* <svg
-                    width="93"
-                    height="93"
-                    viewBox="0 0 93 93"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
-                    <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
-                    <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
-                    <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
-                    <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
-                    <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
-                    <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
-                    <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
-                    <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
-                    <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
-                    <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
-                    <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
-                    <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
-                    <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
-                    <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
-                    <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
-                    <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
-                    <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
-                    <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
-                    <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
-                    <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
-                    <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
-                    <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
-                    <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
-                    <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  </svg> */}
+                  
                 </span>
               </div>
             </div>

@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Facebook, Linkedin, Mail } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import { checkUser } from "../../../utils/User.util";
 import { ErrorMessageToast, SuccesfulMessageToast } from "../../../utils/Toastify.util";
 import { UserContext } from "../../../Context/User.context";
 import { Checkbox } from "antd";
+import { loginUser } from "../../../utils/UserPy.util";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,36 +37,59 @@ const LoginPage = () => {
     e.preventDefault();
     // Handle login logic here
 
-     if ((form.email === "admin@gmail.com") & (form.password === "admin")) {
-       localStorage.setItem("admin_Login", 1);
-       navigate("/admin");
-     }
-     else{
+      loginUser(form.email, form.password).then((response) => {
 
-      checkUser(form.email, form.password).then((data) => {
-        if (data == null) {
+        const { access, refresh, role, name, id, email } = response.data;
+        localStorage.setItem("access", access);
+        localStorage.setItem("refresh", refresh);
+        localStorage.setItem("role", role);
+        localStorage.setItem("data", JSON.stringify({ id, name, email }));
+
+        if (response.data == null){
           ErrorMessageToast("Invalid email and password!");
         }
-        if (data.role === "restaurant" & data.status === "approved") {
 
-          localStorage.setItem("restaurant_Login", JSON.stringify(data));
-          SuccesfulMessageToast("Login Successfully"); 
+        if ((role === "restaurant")) {
+          // localStorage.setItem("restaurant_Login", JSON.stringify(response.data));
+          SuccesfulMessageToast("Login Successfully");
+          // localStorage.setItem("rest_Login", 1);
+
           setTimeout(() => {
             navigate("/restaurant");
-            window.location.reload(); 
+            window.location.reload();
           }, 1000);
-          
-        } else {
-          _setUser(data);
-          SuccesfulMessageToast("Login Successfully");
-          localStorage.setItem("is_Login", 1);
-          localStorage.setItem("user", JSON.stringify(data));
-          navigate("/");
+        } 
+        if ((role === "admin")){
+          SuccesfulMessageToast("Admin Login Successfully");
+          // localStorage.setItem("admin_Login", 1);
+          navigate("/admin");
         }
+        if (role === "user") {
+          SuccesfulMessageToast("User Login Successfully");
+          // localStorage.setItem("is_Login", 1);
+          // localStorage.setItem("user", JSON.stringify(data));
+          navigate("/");
+        } 
       });
-     }
+     
     
   };
+
+  useEffect(()=>{
+    let role = localStorage.getItem("role")
+
+    if (role === "user"){
+      navigate("/")
+    } else if(role === "restauarnt"){
+      navigate("/retaurant")
+    }
+    else if(role === "admin"){
+      navigate("/admin")
+    }
+    else{
+      navigate("/login")
+    }
+  }, []);
 
   return (
     <>

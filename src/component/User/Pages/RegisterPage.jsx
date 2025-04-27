@@ -1,8 +1,9 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { Facebook, Linkedin, Mail } from "lucide-react";
 import { NavLink, useNavigate } from 'react-router';
 import { createUser } from '../../../utils/User.util';
 import { ErrorMessageToast, SuccesfulMessageToast } from '../../../utils/Toastify.util';
+import { RegisterUser } from '../../../utils/UserPy.util';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const RegisterPage = () => {
 const [form, setForm] = useState({
   name: "",
   email: "",
+  role: "user",
   password: "",
   confirmPassword: "",
 });
@@ -52,7 +54,7 @@ const handleSubmit = (e) => {
   }
    const { confirmPassword, ...userData } = form;
 
-  createUser(userData)
+  RegisterUser(userData)
     .then(function (response) {
       SuccesfulMessageToast("Register Successfully");
       navigate("/login");
@@ -62,10 +64,22 @@ const handleSubmit = (e) => {
       ErrorMessageToast("Registration failed");
     });
 
-  
-
 };
 
+
+useEffect(()=>{
+   let role = localStorage.getItem("role");
+
+   if (role === "user") {
+     navigate("/");
+   } else if (role === "restauarnt") {
+     navigate("/retaurant");
+   } else if (role === "admin") {
+     navigate("/admin");
+   } else {
+     navigate("/register");
+   }
+},[]);
 
 return (
   <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">

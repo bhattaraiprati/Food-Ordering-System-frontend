@@ -38,14 +38,14 @@ const SidebarMenulist = () => {
       >
         Restaurant
       </Menu.Item>
-      <Menu.Item
+      {/* <Menu.Item
         key="user"
         className="text-base font-medium"
         onClick={() => handleMenuClick("users")}
         icon={< UsergroupDeleteOutlined  style={{ fontSize: "20px" }} color="#080808" />}
       >
         Users
-      </Menu.Item>
+      </Menu.Item> */}
       
     </Menu>
   );

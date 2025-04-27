@@ -14,26 +14,26 @@ const AccountSidebar = () => {
         label: "My Profile",
         path: "/setting",
       },
-      {
-        icon: <Lock className="h-5 w-5" />,
-        label: " Change Password",
-        path: "/setting/changePassword",
-      },
+      // {
+      //   icon: <Lock className="h-5 w-5" />,
+      //   label: " Change Password",
+      //   path: "/setting/changePassword",
+      // },
       {
         icon: <ShoppingBag className="h-5 w-5" />,
         label: "Order History",
         path: "/setting/orderHistory",
       },
-      {
-        icon: <Heart className="h-5 w-5" />,
-        label: "Favourites",
-        path: "/setting/favourite",
-      },
-      {
-        icon: <MapPin className="h-5 w-5" />,
-        label: "Saved Addresses",
-        path: "/setting/savedAddress",
-      },
+      // {
+      //   icon: <Heart className="h-5 w-5" />,
+      //   label: "Favourites",
+      //   path: "/setting/favourite",
+      // },
+      // {
+      //   icon: <MapPin className="h-5 w-5" />,
+      //   label: "Saved Addresses",
+      //   path: "/setting/savedAddress",
+      // },
     ];
 
     const handleActiveMenu = (itemLabel) => {

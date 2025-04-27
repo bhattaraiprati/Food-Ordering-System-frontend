@@ -50,7 +50,7 @@ const UserFooter = () => {
                   Explore Cuisines
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="/map"
                   className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
@@ -58,7 +58,7 @@ const UserFooter = () => {
                 >
                   Restaurant Map
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="/new"
@@ -101,7 +101,7 @@ const UserFooter = () => {
                   Careers
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="/blog"
                   className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
@@ -109,7 +109,7 @@ const UserFooter = () => {
                 >
                   Blog
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 

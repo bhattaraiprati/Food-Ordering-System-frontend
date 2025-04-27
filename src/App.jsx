@@ -31,8 +31,8 @@ import CheckoutPage from "./component/User/component/CheckoutPage";
 
 function App() {
   const [_user, _setUser] = useState(
-    localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
+    localStorage.getItem("data")
+      ? JSON.parse(localStorage.getItem("data"))
       : null
   );
 

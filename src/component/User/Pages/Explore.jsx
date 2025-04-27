@@ -8,7 +8,7 @@ import '../../../assets/css/CustomStyle.css'
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [location, setLocation] = useState("New York, NY");
+  const [location, setLocation] = useState("Thamel, Kathmandu");
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   useEffect(() => {
@@ -95,13 +95,14 @@ const Explore = () => {
                           key={cuisine}
                           className="flex items-center space-x-2"
                         >
-                          {/* Custom Checkbox */}
                           <div className="relative flex items-center">
+                            
                             {/* <input
                               type="checkbox"
                               id={cuisine}
                               className="w-4 h-4 outline-solid opacity-0 absolute"
                             /> */}
+
                             <Checkbox className="custom-checkbox">
                               <label
                                 htmlFor={cuisine}
@@ -111,31 +112,13 @@ const Explore = () => {
                               </label>
                             </Checkbox>
 
-                            {/* Custom Label */}
                           </div>
                         </div>
                       ))}
                     </div>
 
                     {/* Custom Separator */}
-                    <div className="h-px w-full bg-border my-2"></div>
-
-                    <h4 className="font-medium text-gray-900">Price Range</h4>
-                    <div className="flex items-center gap-2">
-                      {/* Custom Buttons */}
-                      <button className="px-3 py-1 text-sm rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">
-                        $
-                      </button>
-                      <button className="px-3 py-1 text-sm rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">
-                        $$
-                      </button>
-                      <button className="px-3 py-1 text-sm rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">
-                        $$$
-                      </button>
-                      <button className="px-3 py-1 text-sm rounded-full border border-input bg-background hover:bg-accent hover:text-accent-foreground">
-                        $$$$
-                      </button>
-                    </div>
+                    <div className="h-px w-full bg-border my-2"></div>                    
 
                     <div className="flex justify-end gap-2">
                       {/* Custom Buttons */}

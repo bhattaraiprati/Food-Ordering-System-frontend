@@ -134,11 +134,7 @@ const [orderDetaiis, setOrderDetails] = useState(null);const [orderData, setOrde
      dataIndex: "user_name",
      align: "center",
    },
-   {
-     title: "Order Status",
-     dataIndex: "order_status",
-     align: "center",
-   },
+  
 
    {
      title: "Total Price",

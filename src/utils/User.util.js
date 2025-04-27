@@ -1,4 +1,3 @@
-import { ExportOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 
@@ -49,6 +48,11 @@ export const getRestaurantDetailsById = async(id) =>{
     return response.data;
 }
 
+export const getRestaurantDetailsByRestauarntId = async (id) => {
+  const response = await axios.get(`http://localhost:4000/KycForm`);
+  return response.data.find((item) => item.id === id); // Use find() instead of filter()
+};
+
 export const GetAllMenuItem = async (id) => {
   const response = await axios.get(`http://localhost:4000/MenuItem`);
  return response.data.filter((menu) => menu.restaurantId === id);
@@ -61,6 +65,7 @@ export const saveOrders = async(data) =>{
 
 export const getOrdersByIdAndStatus = async(id) =>{
   const response = await axios.get(`http://localhost:4000/Orders`);
+  console.log("id is",id)
   return response.data.filter((item) => item.restaurantId === id& item.status === "pending");
 }
 
@@ -77,4 +82,9 @@ export const getOrdersById = async(id) => {
 export const getAllOrders = async () => {
   const response = await axios.get(`http://localhost:4000/Orders`);
   return response.data;
+};
+
+export const getOrdersByUserId = async (id) => {
+  const response = await axios.get(`http://localhost:4000/Orders`);
+  return response.data.filter((item) => item.userId === id);
 };

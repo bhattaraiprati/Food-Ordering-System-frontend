@@ -121,7 +121,7 @@ const FeaturedRestaurants = () => {
           </h2>
         </div>
         <a
-          href="/featured"
+          href="/explore"
           className="text-sm font-medium flex items-center hover:text-[#ffb700] transition-colors group"
         >
           View all

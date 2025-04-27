@@ -43,7 +43,16 @@ const MenuList = ({ darkTheme }) => {
       >
         Category
       </Menu.Item>
-      <Menu.SubMenu
+      <Menu.Item
+        key="menu"
+        className="text-base font-medium"
+        onClick={() => handleMenuClick("allMenu")}
+        icon={<ProductOutlined style={{ fontSize: "20px" }} color="#080808" />}
+      >
+        Menu
+      </Menu.Item>
+
+      {/* <Menu.SubMenu
         key="Menu"
         className="text-base font-medium"
         icon={<BarsOutlined style={{ fontSize: "22px" }} />}
@@ -54,7 +63,7 @@ const MenuList = ({ darkTheme }) => {
           {" "}
           All Menu
         </Menu.Item>
-      </Menu.SubMenu>
+      </Menu.SubMenu> */}
     </Menu>
   );
 };

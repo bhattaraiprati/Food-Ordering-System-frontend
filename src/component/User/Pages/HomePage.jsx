@@ -12,7 +12,7 @@ const HomePage = () => {
       <FeaturedRestaurants />
       <CuisineCategories />
       <AppFeatures />
-      <LandingReview />
+      {/* <LandingReview /> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
   import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
-import Logo from '../../../assets/Images/FoodOrderingLogo.png'
+import Logo from "../../../assets/Images/FoodOrderingLogo.png"
 import ProfileDropdowns from "./ProfileDropdowns";
 import { UserContext } from "../../../Context/User.context";
 import { Avatar, Badge, Button, Dropdown, Space } from "antd";
@@ -44,13 +44,13 @@ import CartPage from "./CartPage";
         <NavLink to={"/restaurant/apply"}>Join As Restaurant</NavLink>
       ),
     },
-    {
-      key: "2",
-      label: (
-        <NavLink to={"/deliveryman/apply"}>Join As Deliveryman</NavLink>
+    // {
+    //   key: "2",
+    //   label: (
+    //     <NavLink to={"/deliveryman/apply"}>Join As Deliveryman</NavLink>
        
-      ),
-    },
+    //   ),
+    // },
   ];
 
   const UserNavbar = () => {
@@ -128,7 +128,7 @@ import CartPage from "./CartPage";
                   </nav>
                 </div>
                 <div className="hidden justify-end pr-16 sm:flex text-gray-900 lg:pr-0">
-                  {localStorage.getItem("is_Login") == 0 ? (
+                  {localStorage.getItem("data") == 0 || localStorage.getItem("data") == null ? (
                     <div className="flex">
                       <Space>
                         <NavlinkBtn btn="SignUp" />
@@ -143,7 +143,7 @@ import CartPage from "./CartPage";
                     <div className="flex items-center space-x-5">
                       <div className="mr-1">
                         <NotificationDropdown>
-                          <Badge count={5} onClick={handleModal}>
+                          <Badge count={2} onClick={handleModal}>
                             <Avatar shape="circle">
                               <BellOutlined
                                 style={{ fontSize: 20, color: "" }}
@@ -166,7 +166,7 @@ import CartPage from "./CartPage";
                       </div>
                       <div className="flex space-x-2">
                         <ProfileDropdowns />
-                        <p className="font-medium">{_user.name}</p>
+                        <p className="font-medium">{_user?.name}</p>
                       </div>
                     </div>
                   )}

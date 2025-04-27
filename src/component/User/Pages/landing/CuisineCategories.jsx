@@ -4,7 +4,7 @@ import React from 'react'
 const CategoryCard = ({ name, image, count, delay }) => {
   return (
     <a
-      href={`/cuisine/${name.toLowerCase()}`}
+      
       className="group relative overflow-hidden rounded-2xl animate-scale-in h-40 md:h-56"
       style={{ animationDelay: `${delay * 100}ms` }}
     >

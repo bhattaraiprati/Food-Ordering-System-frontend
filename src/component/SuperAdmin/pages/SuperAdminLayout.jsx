@@ -26,10 +26,14 @@ const SuperAdminLayout = () => {
   };
 
   useEffect(()=>{
-    if(localStorage.getItem("admin_Login") ==="0"){
-      navigate("/login");
+  
+    if (localStorage.getItem("role")=== "user"){
+      navigate("/")
     }
-  })
+     if (localStorage.getItem("role") === "restaurant") {
+       navigate("/restaurant");
+     }
+  }, []);
 
   return (
     <div>
@@ -86,6 +90,7 @@ const SuperAdminLayout = () => {
               </Col>
 
               <Col span={2}>
+              
                 <ProfileDropdowns logout={true} />
               </Col>
             </Row>

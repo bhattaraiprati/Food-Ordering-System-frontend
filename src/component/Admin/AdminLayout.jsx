@@ -36,11 +36,14 @@ const AdminLayout = () => {
       setdropdownOpen(true);
     };
 
-    useEffect(() => {
-      if (localStorage.getItem("restaurant_Login") === "0") {
-        navigate("/login");
+    useEffect(() => { 
+      if(localStorage.getItem("role") === "user"){
+        navigate("/")
       }
-    });
+      if (localStorage.getItem("role") === "admin") {
+        navigate("/admin");
+      }
+    }, []);
     
 
   return (
@@ -105,7 +108,7 @@ const AdminLayout = () => {
                   </div>
                   <div >
                     <p className="font-medium ml-2 text-gray-800">
-                      {_rest.restaurantName}
+                      {_rest?.restaurantName}
                     </p>
                   </div>
                 </div>

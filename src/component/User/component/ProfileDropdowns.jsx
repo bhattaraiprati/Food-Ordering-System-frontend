@@ -1,6 +1,6 @@
 import { LogoutOutlined, SettingOutlined } from "@ant-design/icons";
-import { Avatar, Dropdown } from "antd";
-import React from "react";
+import { Avatar, Dropdown, Modal } from "antd";
+import React, { useState } from "react";
 import Profile from "/src/assets/images/ProfilePic.jpg";
 import { useNavigate } from "react-router";
 
@@ -28,19 +28,46 @@ const items = [
 const ProfileDropdowns = () => {
   const navigate = useNavigate();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const handleOk = () => {
+  
+      setIsModalOpen(false);
+      localStorage.setItem("access", 0);
+      localStorage.setItem("refresh", 0);
+      localStorage.setItem("role", 0);
+      localStorage.setItem("data", 0);
+
+      navigate("/");
+      window.location.reload();
+      console.log("Logout clicked");
+  
+    };
+    const handleCancel = () => {
+      setIsModalOpen(false);
+    };
+
   const handleMenuClick = (e) => {
     if (e.key === "/setting") {
       navigate("/setting"); 
     } else if (e.key === "/logout") {
-      localStorage.setItem("is_Login", 0);
-      navigate("/login")
-      console.log("Logout clicked");
+
+      setIsModalOpen(true);
     }
   };
   return (
-    <Dropdown menu={{ items, onClick: handleMenuClick }}>
-      <Avatar className="profile-dropdown" src={Profile} />
-    </Dropdown>
+    <div>
+      <Dropdown menu={{ items, onClick: handleMenuClick }}>
+        <Avatar className="profile-dropdown" src={Profile} />
+      </Dropdown>
+
+      <Modal
+        title="Are you sure want to Logout!"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      ></Modal>
+    </div>
   );
 };
 

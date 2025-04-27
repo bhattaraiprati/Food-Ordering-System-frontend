@@ -96,6 +96,12 @@
       "email": "rizytuz@mailinator.com",
       "full_name": "Ivana Shannon",
       "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "bd65",
+      "name": "Pratik Bhattarai",
+      "email": "pratikb957@gmail.com",
+      "password": "Pratik@123"
     }
   ],
   "categories": [
@@ -109,19 +115,31 @@
       "id": "7fb0",
       "restaurantId": "d699",
       "name": "Breakfast",
-      "description": "Aute omnis enim voluptatum nostrum illum rerum accusamus asperiores aut volupta"
+      "description": "All Breakfast Food"
     },
     {
       "id": "ed95",
       "restaurantId": "d699",
       "name": "Lunch",
-      "description": "Ipsam fugit vero rerum saepe labore do cum similique similique laboris nemo dol"
+      "description": "All Lunch Food"
     },
     {
       "id": "94c2",
       "restaurantId": "d699",
       "name": "Soup",
-      "description": "Quo reprehenderit officia dolore qui officia rerum eiusmod reiciendis amet qui"
+      "description": "All Soup"
+    },
+    {
+      "id": "b5bb",
+      "restaurantId": "d699",
+      "name": "Thai",
+      "description": "All Thai Food "
+    },
+    {
+      "id": "fb3e",
+      "restaurantId": "d699",
+      "name": "Mexican",
+      "description": "Mexican"
     }
   ],
   "MenuItem": [
@@ -174,13 +192,22 @@
       "price": "826",
       "preparation_time": "Esse sit vero reic",
       "ingredients": "Quisquam fuga Qui s"
+    },
+    {
+      "id": "22dd",
+      "restaurantId": "d699",
+      "name": "Mexican food",
+      "category": "Mexican",
+      "description": "Mexican foods ",
+      "price": "300",
+      "preparation_time": "30"
     }
   ],
   "KycForm": [
     {
       "id": "24d7",
       "restaurantId": "d699",
-      "restaurant_name": "Melvin Mayer",
+      "restaurant_name": "Burger House",
       "business_number": "423",
       "cuisine_type": "indian",
       "description": "Accusamus iure est i",
@@ -547,41 +574,15 @@
   ],
   "Orders": [
     {
-      "id": "f995",
+      "id": "ea96",
       "userId": "2e1c",
-      "restaurantId": "24d7",
-      "status": "pending",
-      "address": "Ea explicabo Laudan",
+      "restaurantId": "d699",
+      "status": "approved",
+      "address": "Sint rem qui quaerat",
       "payment_method": [
-        "khalti",
-        "fonePay"
+        "eSewa"
       ],
-      "special_instruction": "Elit consequuntur t",
-      "items": [
-        {
-          "id": "2e4f",
-          "name": "Regan Duran",
-          "quantity": 1
-        },
-        {
-          "id": "4282",
-          "name": "Daniel Frazier",
-          "quantity": 1
-        }
-      ],
-      "total": 584,
-      "orderDate": "2025-03-28T15:54:29.640Z"
-    },
-    {
-      "id": "8acd",
-      "userId": "2e1c",
-      "restaurantId": "24d7",
-      "status": "pending",
-      "address": "Dolor ex adipisicing",
-      "payment_method": [
-        "cash"
-      ],
-      "special_instruction": "Ipsa ducimus asper",
+      "special_instruction": "Laudantium ea fugit",
       "items": [
         {
           "id": "2e4f",
@@ -597,107 +598,24 @@
         }
       ],
       "total": 584,
-      "orderDate": "2025-03-28T16:02:20.572Z"
-    },
-    {
-      "id": "410a",
-      "userId": "2e1c",
-      "restaurantId": "24d7",
-      "status": "pending",
-      "address": "Pariatur Enim iusto",
-      "payment_method": [
-        "eSewa"
-      ],
-      "special_instruction": "Non eligendi culpa l",
-      "items": [
-        {
-          "id": "2e4f",
-          "name": "Regan Duran",
-          "price": "336",
-          "quantity": 1
-        },
-        {
-          "id": "3e6c",
-          "name": "Sophia West",
-          "price": "80",
-          "quantity": 1
-        }
-      ],
-      "total": 416,
-      "orderDate": "2025-03-28T17:13:44.204Z"
-    },
-    {
-      "id": "4130",
-      "userId": "2e1c",
-      "restaurantId": "d699",
-      "status": "pending",
-      "address": "Dolorem minima quasi",
-      "payment_method": [
-        "eSewa"
-      ],
-      "special_instruction": "Aut et ex quia et ev",
-      "items": [
-        {
-          "id": "2e4f",
-          "name": "Regan Duran",
-          "price": "336",
-          "quantity": 1
-        },
-        {
-          "id": "3e6c",
-          "name": "Sophia West",
-          "price": "80",
-          "quantity": 1
-        }
-      ],
-      "total": 416,
       "user_name": "Partik Bhattarai",
-      "orderDate": "2025-03-28T17:15:30.160Z"
+      "orderDate": "2025-03-30T04:05:57.286Z"
     },
     {
-      "id": "ce59",
-      "userId": "2e1c",
+      "id": "8ad8",
+      "userId": "bd65",
       "restaurantId": "d699",
       "status": "processing",
-      "address": "Vitae possimus even",
+      "address": "Imadol",
       "payment_method": [
         "cash"
       ],
-      "special_instruction": "Consequuntur asperio",
       "items": [
         {
           "id": "2e4f",
           "name": "Regan Duran",
           "price": "336",
-          "quantity": 1
-        },
-        {
-          "id": "3e6c",
-          "name": "Sophia West",
-          "price": "80",
-          "quantity": 1
-        }
-      ],
-      "total": 416,
-      "user_name": "Partik Bhattarai",
-      "orderDate": "2025-03-28T17:18:26.866Z"
-    },
-    {
-      "id": "6ec5",
-      "userId": "2e1c",
-      "restaurantId": "d699",
-      "status": "pending",
-      "address": "Cumque anim labore i",
-      "payment_method": [
-        "fonePay"
-      ],
-      "special_instruction": "Quia nisi velit est",
-      "items": [
-        {
-          "id": "2e4f",
-          "name": "Regan Duran",
-          "price": "336",
-          "quantity": 1
+          "quantity": 3
         },
         {
           "id": "4282",
@@ -706,9 +624,9 @@
           "quantity": 1
         }
       ],
-      "total": 584,
-      "user_name": "Partik Bhattarai",
-      "orderDate": "2025-03-29T19:06:35.170Z"
+      "total": 1256,
+      "user_name": "Pratik Bhattarai",
+      "orderDate": "2025-03-30T06:25:21.150Z"
     }
   ]
 }

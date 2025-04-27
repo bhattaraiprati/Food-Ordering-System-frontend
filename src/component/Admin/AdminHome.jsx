@@ -238,11 +238,11 @@ const AdminHome = () => {
   };
 
   useEffect(() => {
-    getOrdersByIdAndStatus(_rest.id).then((response) => {
+    getOrdersByIdAndStatus(_rest?.id).then((response) => {
       console.log("order data", _rest.id);
       setOrderDetails(response);
     });
-  }, [_rest.id]);
+  }, [_rest?.id]);
 
   
 
@@ -370,6 +370,8 @@ const AdminHome = () => {
             items={orderItems}
             bordered
             column={2}
+            hidden
+            
           />
 
           <div style={{ marginTop: 24 }}>
