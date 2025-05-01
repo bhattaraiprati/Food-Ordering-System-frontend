@@ -27,6 +27,8 @@ import SuperAdminHome from "./component/SuperAdmin/pages/SuperAdminHome";
 import SupperAdminRestaurant from "./component/SuperAdmin/pages/SupperAdminRestaurant";
 import {  CartProvider } from "./Context/Cart.context";
 import CheckoutPage from "./component/User/component/CheckoutPage";
+import { AuthProvider } from "./Context/AuthContext";
+
 
 
 function App() {
@@ -45,44 +47,52 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{ _user, _setUser, _rest, _setRest }}>
-        <CartProvider>
-          <BrowserRouter>
-            <ToastContainer />
-            <Routes>
-              <Route path="/" element={<UserLandingPage />}>
-                <Route path="" element={<HomePage />} />
-                <Route path="explore" element={<Explore />} />
-                <Route path="about" element={<AboutPage />} />
-                <Route path="detail/:id" element={<RestaurantDetails />} />
-                <Route
-                  path="/restaurant/apply"
-                  element={<RestaurantRegister />}
-                />
-                <Route path="checkout/:id" element={<CheckoutPage/>}/>
-                <Route path="setting" element={<AccountPage />}>
-                  <Route path="" element={<AccountProfile />} />
-                  <Route path="changePassword" element={<ChangePassword />} />
-                  <Route path="orderHistory" element={<OrderHistory />} />
-                  <Route path="favourite" element={<FavouritePage />} />
+        <AuthProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <ToastContainer />
+              <Routes>
+                <Route path="/" element={<UserLandingPage />}>
+                  <Route path="" element={<HomePage />} />
+                  <Route path="explore" element={<Explore />} />
+                  <Route path="about" element={<AboutPage />} />
+                  <Route path="detail/:id" element={<RestaurantDetails />} />
+                  <Route
+                    path="/restaurant/apply"
+                    element={<RestaurantRegister />}
+                  />
+                  <Route path="checkout/:id" element={<CheckoutPage />} />
+                  <Route path="setting" element={<AccountPage />}>
+                    <Route path="" element={<AccountProfile />} />
+                    <Route path="changePassword" element={<ChangePassword />} />
+                    <Route path="orderHistory" element={<OrderHistory />} />
+                    <Route path="favourite" element={<FavouritePage />} />
+                  </Route>
                 </Route>
-              </Route>
-              <Route path="/restaurant" element={<AdminLayout />}>
-                <Route path="" element={<AdminHome />} />
-                <Route path="order" element={<AdminOrder />} />
-                <Route path="allMenu" element={<AllMenu />} />
-                <Route path="categories" element={<CategoriesPage />} />
-                <Route path="/restaurant/setting" element={<AdminProfile />} />
-              </Route>
-              <Route path="/admin" element={<SuperAdminLayout />}>
-                <Route path="" element={<SuperAdminHome />} />
-                <Route path="restaurant" element={<SupperAdminRestaurant />} />
-              </Route>
+                <Route path="/restaurant" element={<AdminLayout />}>
+                  <Route path="" element={<AdminHome />} />
+                  <Route path="order" element={<AdminOrder />} />
+                  <Route path="allMenu" element={<AllMenu />} />
+                  <Route path="categories" element={<CategoriesPage />} />
+                  <Route
+                    path="/restaurant/setting"
+                    element={<AdminProfile />}
+                  />
+                </Route>
+                <Route path="/admin" element={<SuperAdminLayout />}>
+                  <Route path="" element={<SuperAdminHome />} />
+                  <Route
+                    path="restaurant"
+                    element={<SupperAdminRestaurant />}
+                  />
+                </Route>
 
-              <Route path="login" element={<LoginPage />} />
-              <Route path="register" element={<RegisterPage />} />
-            </Routes>
-          </BrowserRouter>
-        </CartProvider>
+                <Route path="login" element={<LoginPage />} />
+                <Route path="register" element={<RegisterPage />} />
+              </Routes>
+            </BrowserRouter>
+          </CartProvider>
+        </AuthProvider>
       </UserContext.Provider>
     </>
   );

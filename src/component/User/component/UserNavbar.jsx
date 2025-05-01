@@ -128,7 +128,7 @@ import CartPage from "./CartPage";
                   </nav>
                 </div>
                 <div className="hidden justify-end pr-16 sm:flex text-gray-900 lg:pr-0">
-                  {localStorage.getItem("data") == 0 || localStorage.getItem("data") == null ? (
+                  {localStorage.getItem("access") == null ? (
                     <div className="flex">
                       <Space>
                         <NavlinkBtn btn="SignUp" />

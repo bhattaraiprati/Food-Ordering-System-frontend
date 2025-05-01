@@ -3,6 +3,7 @@ import { Avatar, Dropdown, Modal } from "antd";
 import React, { useState } from "react";
 import Profile from "/src/assets/images/ProfilePic.jpg";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../../Context/AuthContext";
 
 const items = [
   {
@@ -27,22 +28,27 @@ const items = [
 
 const ProfileDropdowns = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-    
+
     const handleOk = () => {
-  
+
       setIsModalOpen(false);
-      localStorage.setItem("access", 0);
-      localStorage.setItem("refresh", 0);
-      localStorage.setItem("role", 0);
-      localStorage.setItem("data", 0);
+
+      logout();
+
+      // localStorage.setItem("access", 0);
+      // localStorage.setItem("refresh", 0);
+      // localStorage.setItem("role", 0);
+      // localStorage.setItem("data", 0);
 
       navigate("/");
       window.location.reload();
       console.log("Logout clicked");
-  
+
     };
+
     const handleCancel = () => {
       setIsModalOpen(false);
     };
