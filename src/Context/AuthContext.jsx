@@ -32,10 +32,13 @@ export const AuthProvider = ({ children }) => {
         );
         setUser(response.data);
       } catch (error) {
+
+
         console.error("Authentication error:", error);
         // Only clear token if there was a real auth error (e.g., 401)
         if (error.response && error.response.status === 401) {
-          localStorage.removeItem("authToken");
+          localStorage.removeItem("access");
+          localStorage.removeItem("refresh");
           setAuthToken(null);
           delete axios.defaults.headers.common["Authorization"];
         }
