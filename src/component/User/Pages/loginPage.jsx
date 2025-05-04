@@ -2,92 +2,130 @@ import React, { useContext, useEffect, useState } from "react";
 import { Facebook, Linkedin, Mail } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import { checkUser } from "../../../utils/User.util";
-import { ErrorMessageToast, SuccesfulMessageToast } from "../../../utils/Toastify.util";
+import {
+  ErrorMessageToast,
+  SuccesfulMessageToast,
+} from "../../../utils/Toastify.util";
 import { UserContext } from "../../../Context/User.context";
 import { Checkbox } from "antd";
 import { loginUser } from "../../../utils/UserPy.util";
+import { GoogleLogin } from "@react-oauth/google";
+import { useAuth } from "../../../Context/AuthContext";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { _setUser } = useContext(UserContext);
 
-     const [form, setForm] = useState({
-       email: "",
-       password: "",
-     });
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
 
-   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-   const handleChange = (e) => {
-     let errorMsg = "";
+  const handleChange = (e) => {
+    let errorMsg = "";
 
-     const { name, value } = e.target;
-     setForm({ ...form, [name]: value });
-     if (name === "email" && !validateEmail(value))
-       errorMsg = "Enter a valid email.";
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    if (name === "email" && !validateEmail(value))
+      errorMsg = "Enter a valid email.";
 
-      setForm({ ...form, [name]: value });
-     setErrors({ ...errors, [name]: errorMsg });
-   };
-   
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: errorMsg });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
 
-      loginUser(form.email, form.password).then((response) => {
+    loginUser(form.email, form.password).then((response) => {
+      const { access, refresh, role, name, id, email } = response.data;
+      localStorage.setItem("access", access);
+      localStorage.setItem("refresh", refresh);
+      localStorage.setItem("role", role);
+      localStorage.setItem("data", JSON.stringify({ id, name, email }));
 
-        const { access, refresh, role, name, id, email } = response.data;
-        localStorage.setItem("access", access);
-        localStorage.setItem("refresh", refresh);
-        localStorage.setItem("role", role);
-        localStorage.setItem("data", JSON.stringify({ id, name, email }));
+      if (response.data == null) {
+        ErrorMessageToast("Invalid email and password!");
+      }
 
-        if (response.data == null){
-          ErrorMessageToast("Invalid email and password!");
-        }
+      if (role === "restaurant") {
+        // localStorage.setItem("restaurant_Login", JSON.stringify(response.data));
+        SuccesfulMessageToast("Login Successfully");
+        // localStorage.setItem("rest_Login", 1);
 
-        if ((role === "restaurant")) {
-          // localStorage.setItem("restaurant_Login", JSON.stringify(response.data));
-          SuccesfulMessageToast("Login Successfully");
-          // localStorage.setItem("rest_Login", 1);
-
-          setTimeout(() => {
-            navigate("/restaurant");
-            window.location.reload();
-          }, 1000);
-        } 
-        if ((role === "admin")){
-          SuccesfulMessageToast("Admin Login Successfully");
-          // localStorage.setItem("admin_Login", 1);
-          navigate("/admin");
-        }
-        if (role === "user") {
-          SuccesfulMessageToast("User Login Successfully");
-          // localStorage.setItem("is_Login", 1);
-          // localStorage.setItem("user", JSON.stringify(data));
-          navigate("/");
-        } 
-      });
-     
-    
+        setTimeout(() => {
+          navigate("/restaurant");
+          window.location.reload();
+        }, 1000);
+      }
+      if (role === "admin") {
+        SuccesfulMessageToast("Admin Login Successfully");
+        // localStorage.setItem("admin_Login", 1);
+        navigate("/admin");
+      }
+      if (role === "user") {
+        SuccesfulMessageToast("User Login Successfully");
+        // localStorage.setItem("is_Login", 1);
+        // localStorage.setItem("user", JSON.stringify(data));
+        navigate("/");
+      }
+    });
   };
 
-  useEffect(()=>{
-    let role = localStorage.getItem("role")
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      setIsLoading(true);
 
-    if (role === "user"){
-      navigate("/")
-    } else if(role === "restauarnt"){
-      navigate("/retaurant")
+      // Decode the JWT token to get user info
+      const decodedUser = jwtDecode(credentialResponse.credential);
+
+      console.log(decodedUser)
+      // Send the token to your backend
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/auth/google/",
+        {
+          access_token: credentialResponse.credential,
+          id_token: credentialResponse.credential,
+        }
+      );
+
+      // Login with the received token
+      login(response.data, decodedUser);
+      console.log("this just try ",decodedUser)
+
+      // Redirect to dashboard
+      navigate("/");
+    } catch (error) {
+      console.error("Google login error:", error);
+      setErrors("Google login failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-    else if(role === "admin"){
-      navigate("/admin")
-    }
-    else{
-      navigate("/login")
+  };
+
+  const handleGoogleError = () => {
+    setErrors("Google login failed. Please try again.");
+  };
+
+  useEffect(() => {
+    let role = localStorage.getItem("role");
+
+    if (role === "user") {
+      navigate("/");
+    } else if (role === "restauarnt") {
+      navigate("/retaurant");
+    } else if (role === "admin") {
+      navigate("/admin");
+    } else {
+      navigate("/login");
     }
   }, []);
 
@@ -144,9 +182,7 @@ const LoginPage = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-            
-
-              <Checkbox >Remember me?</Checkbox>
+              <Checkbox>Remember me?</Checkbox>
             </div>
 
             <button
@@ -180,9 +216,16 @@ const LoginPage = () => {
                 type="button"
                 className="p-2 rounded-full bg-blue-50 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
               >
-                <Mail className="h-4 w-4 text-red-500" />
+                {/* <Mail className="h-4 w-4 text-red-500" /> */}
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleError}
+                  useOneTap
+                  text="continue_with"
+                  shape="pill"
+                />
               </button>
-              <button
+              {/* <button
                 type="button"
                 className="p-2 rounded-full bg-blue-50 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
               >
@@ -193,7 +236,7 @@ const LoginPage = () => {
                 className="p-2 rounded-full bg-blue-50 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 <Linkedin className="h-4 w-4 text-blue-500" />
-              </button>
+              </button> */}
             </div>
 
             <div className="text-center text-sm text-gray-900">
