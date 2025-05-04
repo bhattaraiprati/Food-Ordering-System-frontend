@@ -25,11 +25,9 @@ import RestaurantRegister from "./component/Admin/Pages/RestaurantRegister";
 import SuperAdminLayout from "./component/SuperAdmin/pages/SuperAdminLayout";
 import SuperAdminHome from "./component/SuperAdmin/pages/SuperAdminHome";
 import SupperAdminRestaurant from "./component/SuperAdmin/pages/SupperAdminRestaurant";
-import {  CartProvider } from "./Context/Cart.context";
+import { CartProvider } from "./Context/Cart.context";
 import CheckoutPage from "./component/User/component/CheckoutPage";
 import { AuthProvider } from "./Context/AuthContext";
-
-
 
 function App() {
   const [_user, _setUser] = useState(

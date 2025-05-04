@@ -9,52 +9,58 @@ import {
 import { UserContext } from "../../../Context/User.context";
 import { Checkbox } from "antd";
 import { loginUser } from "../../../utils/UserPy.util";
-import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../../../Context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
+interface IError {
+  error: string
+}
+
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { _setUser } = useContext(UserContext);
+  // const { _setUser } = useContext(UserContext);
 
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateEmail = (email:string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleChange = (e) => {
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
     let errorMsg = "";
 
-    const { name, value } = e.target;
+    const { name, value } = event.target;
     setForm({ ...form, [name]: value });
     if (name === "email" && !validateEmail(value))
       errorMsg = "Enter a valid email.";
 
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: errorMsg });
+    setErrors (errorMsg );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
     // Handle login logic here
 
     loginUser(form.email, form.password).then((response) => {
-      const { access, refresh, role, name, id, email } = response.data;
+      const { access, refresh, role, name, id, email } = response;
+      if (response == null) {
+        ErrorMessageToast("Invalid email and password!");
+      }
+      
       localStorage.setItem("access", access);
       localStorage.setItem("refresh", refresh);
       localStorage.setItem("role", role);
       localStorage.setItem("data", JSON.stringify({ id, name, email }));
 
-      if (response.data == null) {
-        ErrorMessageToast("Invalid email and password!");
-      }
+      
 
       if (role === "restaurant") {
         // localStorage.setItem("restaurant_Login", JSON.stringify(response.data));
@@ -80,12 +86,12 @@ const LoginPage = () => {
     });
   };
 
-  const handleGoogleSuccess = async (credentialResponse) => {
+  const handleGoogleSuccess = async (credentialResponse:CredentialResponse) => {
     try {
       setIsLoading(true);
 
       // Decode the JWT token to get user info
-      const decodedUser = jwtDecode(credentialResponse.credential);
+      const decodedUser = jwtDecode(credentialResponse?.credential ?? "");
 
       console.log(decodedUser)
       // Send the token to your backend
@@ -153,12 +159,12 @@ const LoginPage = () => {
                 onChange={handleChange}
                 placeholder="Enter your email"
                 className={`w-full px-3 py-2 border ${
-                  errors.email ? "border-red-500" : "border-gray-300"
+                  errors ? "border-red-500" : "border-gray-300"
                 } text-black bg-white rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-[#ffb700] focus:border-[#ffb700]`}
                 required
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
+              {errors && (
+                <p className="text-red-500 text-sm">{errors}</p>
               )}
             </div>
 
