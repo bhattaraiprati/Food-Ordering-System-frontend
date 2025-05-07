@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router';
 import { createUser } from '../../../utils/User.util';
 import { ErrorMessageToast, SuccesfulMessageToast } from '../../../utils/Toastify.util';
 import { RegisterUser } from '../../../utils/UserPy.util';
+import Password from 'antd/es/input/Password';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -16,18 +17,23 @@ const [form, setForm] = useState({
   confirmPassword: "",
 });
 
-const [errors, setErrors] = useState({});
+const [errors, setErrors] = useState({
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: ""
+});
 
 // Validation functions
-const validateName = (name) => /^[A-Za-z\s]+$/.test(name);
-const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-const validatePassword = (password) =>
+const validateName = (name:string) => /^[A-Za-z\s]+$/.test(name);
+const validateEmail = (email:string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const validatePassword = (password:string) =>
   /^(?=.*[A-Z])(?=.*[\W_]).{6,}$/.test(password);
-const validateConfirmPassword = (confirmPassword) =>
+const validateConfirmPassword = (confirmPassword:string) =>
   confirmPassword === form.password;
 
 // Handle input change
-const handleChange = (e) => {
+const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
   const { name, value } = e.target;
   setForm({ ...form, [name]: value });
 
@@ -44,7 +50,7 @@ const handleChange = (e) => {
   setErrors({ ...errors, [name]: errorMsg });
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   e.preventDefault();
 
   // Check if any field is empty
