@@ -4,8 +4,15 @@ import React, { useState } from "react";
 import Profile from "/src/assets/images/ProfilePic.jpg";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../../Context/AuthContext";
+import type { MenuProps } from "antd";
 
-const items = [
+
+
+interface ISettingKeys {
+  key: string
+}
+
+const items: MenuProps['items'] = [
   {
     key: "1",
     label: "My Account",
@@ -53,11 +60,10 @@ const ProfileDropdowns = () => {
       setIsModalOpen(false);
     };
 
-  const handleMenuClick = (e) => {
+  const handleMenuClick = (e: ISettingKeys) => {
     if (e.key === "/setting") {
-      navigate("/setting"); 
+      navigate("/setting");
     } else if (e.key === "/logout") {
-
       setIsModalOpen(true);
     }
   };

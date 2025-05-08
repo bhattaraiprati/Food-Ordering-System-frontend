@@ -29,17 +29,18 @@ import { CartProvider } from "./Context/Cart.context";
 import CheckoutPage from "./component/User/component/CheckoutPage";
 import { AuthProvider } from "./Context/AuthContext";
 
+
+
 function App() {
   const [_user, _setUser] = useState(
     localStorage.getItem("data")
-      ? JSON.parse(localStorage.getItem("data"))
+      ? JSON.parse(localStorage.getItem("data") || "null")
       : null
   );
 
   const [_rest, _setRest] = useState(
     localStorage.getItem("restaurant_Login")
-      ? JSON.parse(localStorage.getItem("restaurant_Login"))
-      : null
+      ? JSON.parse(localStorage.getItem("restaurant_Login")|| "null"): null
   );
 
   return (

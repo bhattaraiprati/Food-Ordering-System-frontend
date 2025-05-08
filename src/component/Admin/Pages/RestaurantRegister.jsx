@@ -1,8 +1,9 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react'
-import { restaurantRegister } from '../../../utils/Admin.util';
 import { useNavigate } from 'react-router';
 import { SuccesfulMessageToast } from '../../../utils/Toastify.util';
+import { RestaurantRegistration } from '../../../utils/UserPy.util';
+
 
 const RestaurantRegister = () => {
     const navigate = useNavigate();
@@ -11,10 +12,11 @@ const RestaurantRegister = () => {
 
         console.log("values is " , values);
 
-        restaurantRegister(values).then(function(response){
-            navigate("/");
-            SuccesfulMessageToast("Successfully Register Wait for Approval");
-        })
+
+        RestaurantRegistration(values).then(function (response) {
+          navigate("/");
+          SuccesfulMessageToast("Successfully Register Wait for Approval");
+        });
     }
 
     const validatePassword = (_, value) => {
@@ -54,7 +56,7 @@ const RestaurantRegister = () => {
               <Input />
             </Form.Item>
             <Form.Item
-              name="restaurantName"
+              name="restaurant_name"
               label="Restaurant Name"
               className="large-label-form-item"
               rules={[
@@ -89,7 +91,7 @@ const RestaurantRegister = () => {
                 <Input />
               </Form.Item>
               <Form.Item
-                name="full_name"
+                name="owner_name"
                 label="Full Name"
                 className="large-label-form-item"
                 style={{

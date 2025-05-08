@@ -20,3 +20,7 @@ export const loginUser = async (
   
   return response.data;
 };
+
+export const RestaurantRegistration = async (data: string) => {
+  await axios.post(`http://127.0.0.1:8000/api/restaurant/register/`, data);
+};

@@ -1,9 +1,27 @@
 import { BellOutlined } from "@ant-design/icons";
 import { Menu, Avatar, Badge, Dropdown } from "antd";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Notifications = ({ notifications }) => {
-  const renderNotificationContent = (notification) => {
+
+interface InotificationType {
+  id: string;
+  img: string;
+  text: string;
+  user: string;
+  content: string;
+  time: string;
+}
+
+interface Inotification {
+  notifications: InotificationType[];
+}
+
+
+
+const Notifications: React.FC<Inotification> = ({ notifications }) => {
+  const renderNotificationContent = (
+    notification: InotificationType
+  ) => {
     return (
       <div className="w-full ps-3">
         <div className="text-gray-500 text-[13px] mb-1.5 dark:text-gray-400">
