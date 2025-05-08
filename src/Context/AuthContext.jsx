@@ -74,6 +74,10 @@ export const AuthProvider = ({ children }) => {
       // Clear token from both state and localStorage
       localStorage.removeItem("access");
       localStorage.removeItem("refresh");
+      localStorage.removeItem("role");
+      localStorage.removeItem("data");
+
+
 
       setAuthToken(null);
       delete axios.defaults.headers.common["Authorization"];

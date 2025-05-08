@@ -35,8 +35,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/featured"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Featured Restaurants
                 </a>
@@ -44,8 +44,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/explore"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Explore Cuisines
                 </a>
@@ -62,8 +62,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/new"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   New Additions
                 </a>
@@ -77,8 +77,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/about"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   About Us
                 </a>
@@ -86,8 +86,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/contact"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Contact
                 </a>
@@ -95,8 +95,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/careers"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Careers
                 </a>
@@ -119,8 +119,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/terms"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Terms of Service
                 </a>
@@ -128,8 +128,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/privacy"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Privacy Policy
                 </a>
@@ -137,8 +137,8 @@ const UserFooter = () => {
               <li>
                 <a
                   href="/cookies"
-                  className="text-sm text-gray-900 text-muted-foreground hover:text-primary transition-colors"
-                  style={{ hoverColor: "#ffb700" }}
+                  className="text-sm text-gray-900 text-muted-foreground hover:text-[#ffb700] transition-colors"
+                  // style={{ hoverColor: "#ffb700" }}
                 >
                   Cookie Policy
                 </a>
@@ -149,15 +149,14 @@ const UserFooter = () => {
 
         <div className="mt-16 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-900 text-muted-foreground">
-            © {new Date().getFullYear()} BhojXpress. All rights
-            reserved.
+            © {new Date().getFullYear()} BhojXpress. All rights reserved.
           </p>
 
           <div className="flex items-center space-x-6 mt-4 md:mt-0">
             <a
               href="#"
               className="text-muted-foreground rounded-full w-7 h-7  hover:bg-[#fcdb86] transition-colors"
-              style={{ hoverColor: "#ffb700" }}
+              // style={{ hoverColor: "#ffb700" }}
             >
               <span className="sr-only text-gray-900">Facebook</span>
 
@@ -166,7 +165,7 @@ const UserFooter = () => {
             <a
               href="#"
               className="text-muted-foreground align-center rounded-full w-7 h-7  hover:bg-[#fcdb86] transition-colors"
-              style={{ hoverColor: "#ffb700" }}
+              // style={{ hoverColor: "#ffb700" }}
             >
               <span className="sr-only">Twitter</span>
 
@@ -175,7 +174,7 @@ const UserFooter = () => {
             <a
               href="#"
               className="text-muted-foreground rounded-full w-7 h-7  hover:bg-[#fcdb86] transition-colors"
-              style={{ hoverColor: "#ffb700" }}
+              // style={{ hoverColor: "#ffb700" }}
             >
               <span className="sr-only">Instagram</span>
               <Instagram color="#8334f9" />

@@ -9,7 +9,22 @@ import NotificationDropdown from "../../components/NotificationDropdown"
 import AddCart from "./AddCart";
 import CartPage from "./CartPage";
 
-  const ListItem = ({ children, to, isActive, onClick }) => {
+interface IListItem {
+  children: string;
+  to: string;
+  isActive: boolean;
+  onClick: React.MouseEventHandler<HTMLAnchorElement>
+}
+
+interface INavlinkBtnProps {
+  btn : string
+}
+
+  const ListItem: React.FC<IListItem> = ({
+    children,
+    to,
+    isActive,
+    onClick, }) => {
     return (
       <li>
         <NavLink
@@ -26,7 +41,7 @@ import CartPage from "./CartPage";
   };
 
  
-  const NavlinkBtn = ({ btn }) => {
+  const NavlinkBtn: React.FC<INavlinkBtnProps> = ({ btn }) => {
     return (
       <NavLink
         to="/login"
@@ -59,7 +74,7 @@ import CartPage from "./CartPage";
     const [activeItem, setActiveItem] = useState("");
     const [dropdownOpen , setdropdownOpen] = useState(false);
 
-    const handleNavbarActive = (item) => {
+    const handleNavbarActive = (item:string) => {
       setActiveItem(item);
     };
 
@@ -166,7 +181,7 @@ import CartPage from "./CartPage";
                       </div>
                       <div className="flex space-x-2">
                         <ProfileDropdowns />
-                        <p className="font-medium">{_user?.name}</p>
+                        {/* <p className="font-medium">{_user?.name}</p> */}
                       </div>
                     </div>
                   )}
