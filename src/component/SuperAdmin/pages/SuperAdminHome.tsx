@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Input, Modal, Row, Select, Space, Table, Typography } from "antd";
+import { Button, Col, Input, Modal, Row, Select, Space, Table, } from "antd";
 import DetailsCards from '../../components/DetailsCards';
-import { InfoCircleOutlined, ShoppingCartOutlined, ShoppingOutlined, UserOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
-import { getRestaurantByStatus, getRestaurantDetails, updateRestaurant } from '../../../utils/Admin.util';
+import { updateRestaurant } from '../../../utils/Admin.util';
 import { useNavigate } from 'react-router';
 import { ErrorMessageToast, SuccesfulMessageToast } from '../../../utils/Toastify.util';
 import { ClockAlert } from 'lucide-react';
+import { getRestaurantPendingStatus, UpdateRestauarntStatus } from '../../../utils/AdminPy.util';
+import type { TableProps } from "antd/es/table";
 
+interface RestaurantData {
+  id: number;
+  restaurant_name: string;
+  location: string;
+  email: string;
+  owner_name: string;
+}
 
-
-const SuperAdminHome = () => {
+const SuperAdminHome: React.FC = () => {
     const navigate = useNavigate();
-    const [restaurantId, setRestaurantId] = useState(null);
-      const [restaurantDetaiis, setRestaurantDetails] = useState(null);
-      const [modalShow, setModalShow] = useState(false)
-      const [declineModal, setDeclineModal] = useState(false);
+    const [restaurantId, setRestaurantId] = useState<number | null>(null);
+      const [restaurantDetails, setRestaurantDetails] = useState<
+        RestaurantData[] 
+      >();
+      const [modalShow, setModalShow] = useState<boolean>(false)
+      const [declineModal, setDeclineModal] = useState<boolean>(false);
 
 
-
-      const handleRequestApprove = (record)=>{
+   
+      const handleRequestApprove = (record:RestaurantData):void => {
         setRestaurantId(record.id);
         setModalShow(true);
-      }
+      };
 
-      const handleDeclineRequest = (record) => {
+      const handleDeclineRequest = (record:RestaurantData):void => {
         setRestaurantId(record.id);
         setDeclineModal(true);
       };
@@ -36,7 +46,7 @@ const SuperAdminHome = () => {
       }
 
 
-    const columns = [
+    const columns: TableProps<RestaurantData>["columns"] = [
       {
         title: "ID",
         dataIndex: "id",
@@ -44,7 +54,7 @@ const SuperAdminHome = () => {
       },
       {
         title: "Restaurant Name",
-        dataIndex: "restaurantName",
+        dataIndex: "restaurant_name",
         align: "center",
       },
       {
@@ -59,14 +69,14 @@ const SuperAdminHome = () => {
       },
       {
         title: "Owner Name",
-        dataIndex: "full_name",
+        dataIndex: "owner_name",
         align: "center",
       },
       {
         title: "Action",
         key: "action",
         align: "center",
-        render: (_, record) => (
+        render: (_: unknown, record: RestaurantData) => (
           <Space size="middle">
             <Button type="primary" onClick={() => handleRequestApprove(record)}>
               Approve
@@ -83,9 +93,13 @@ const SuperAdminHome = () => {
       },
     ];
 
-    const handleApprove = ()=>{
-        const status = "approved"
-       updateRestaurant(restaurantId, { status }) 
+    const handleApprove = () =>{
+        console.log("printing the id" ,restaurantId);
+
+        if (restaurantId === null) return; 
+
+        const status = "approved";
+       UpdateRestauarntStatus(restaurantId, {status})
          .then(() => {
            navigate("");
            window.location.reload();
@@ -99,12 +113,13 @@ const SuperAdminHome = () => {
     }
 
     const handleDecline = ()=>{
-        const status = "decline"
-       updateRestaurant(restaurantId, { status }) 
+        if (restaurantId === null) return;
+        const status = "blocked"
+       UpdateRestauarntStatus(restaurantId, {status} )
          .then(() => {
            navigate("");
            window.location.reload();
-           SuccesfulMessageToast("decline");
+           SuccesfulMessageToast("blocked");
          })
          .catch((error) => {
            console.error("Failed to approve:", error);
@@ -114,7 +129,7 @@ const SuperAdminHome = () => {
     }
 
      useEffect(() => {
-       getRestaurantByStatus().then((response) => {
+       getRestaurantPendingStatus().then((response) => {
          setRestaurantDetails(response);
        });
      },[]);
@@ -152,7 +167,7 @@ const SuperAdminHome = () => {
           <Col offset={1}>
             <DetailsCards
               icon={
-                <InfoCircleOutlined 
+                <InfoCircleOutlined
                   style={{
                     color: "red",
                     background: "rgba(255,0,0,0.25)",
@@ -234,7 +249,7 @@ const SuperAdminHome = () => {
           </div> */}
         </div>
 
-        <Table columns={columns} dataSource={restaurantDetaiis} bordered />
+        <Table columns={columns} dataSource={restaurantDetails} bordered />
       </div>
       <Modal
         title="Are you sure want to Approved"
