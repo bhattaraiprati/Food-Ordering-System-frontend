@@ -19,7 +19,7 @@ const AccountPage = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
-    localStorage.setItem("is_Login", 0);
+    localStorage.removeItem("is_Login");
     setIsModalOpen(false);
     navigate("/");
     SuccesfulMessageToast("Logout Successfully");

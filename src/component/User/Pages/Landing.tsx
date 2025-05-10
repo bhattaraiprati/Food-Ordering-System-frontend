@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 
+
+interface IListItem {
+  children: string;
+  NavLink: string;
+}
 const Landing = () => {
     const [open, setOpen] = useState(false);
   return (
@@ -75,7 +80,7 @@ const Landing = () => {
 
 export default Landing;
 
-const ListItem = ({ children, NavLink }) => {
+const ListItem:React.FC<IListItem> = ({ children, NavLink }) => {
   return (
     <>
       <li>

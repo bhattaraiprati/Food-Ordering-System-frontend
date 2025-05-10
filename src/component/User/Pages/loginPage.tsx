@@ -48,6 +48,11 @@ const LoginPage = () => {
   const handleSubmit = (event:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     // Handle login logic here
+    if(form.email==="admin@gmail.com" && form.password ==="admin"){
+      SuccesfulMessageToast("Admin Login Successfully");
+      // localStorage.setItem("admin_Login", 1);
+      navigate("/admin");
+    }
 
     loginUser(form.email, form.password).then((response) => {
       const { access, refresh, role, name, id, email } = response;
