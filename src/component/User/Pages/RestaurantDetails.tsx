@@ -15,17 +15,20 @@ import { useCart } from "../../../Context/Cart.context";
 
 const { Title, Text } = Typography;
 
+interface IRestaurantDetailsData {
+  restaurantId: string;
+}
 
-const RestaurantDetails = () => {
+const RestaurantDetails: React.FC = () => {
    const { _rest } = useContext(UserContext);
-   const params = useParams();
-   const [restaurantDetails, setRestaurantDetails] = useState({});
+   const params = useParams<{id:string}>();
+   const [restaurantDetails, setRestaurantDetails] = useState<IRestaurantDetailsData| null>(null);
    const [categoryList, setCategoryList] = useState([]);
    const [menuList, setMenuList] = useState([]);
    const [categoryNames, setCategoryNames] = useState([]);
    const [menuItems, setMenuItems] = useState([]);
 
-   const restaurant_id = restaurantDetails.restaurantId;
+  //  const restaurant_id = restaurantDetails.restaurantId;
 
    // Use cart context only - remove local cart state
    const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
@@ -127,7 +130,7 @@ const RestaurantDetails = () => {
 
 
     useEffect(() => {
-      if (!restaurantDetails.restaurantId) return;
+      if (!restaurantDetails?.restaurantId) return;
 
       const fetchCategories = async () => {
         try {
@@ -141,12 +144,12 @@ const RestaurantDetails = () => {
       };
 
       fetchCategories();
-    }, [restaurantDetails.restaurantId]);
+    }, [restaurantDetails?.restaurantId]);
 
 
 
 useEffect(() => {
-  if (!restaurantDetails.restaurantId) return;
+  if (!restaurantDetails?.restaurantId) return;
 
   const fetchMenuItems = async () => {
     try {
@@ -158,12 +161,12 @@ useEffect(() => {
   };
 
   fetchMenuItems();
-}, [restaurantDetails.restaurantId]);
+}, [restaurantDetails?.restaurantId]);
 
-console.log("testing the restaurant id", restaurant_id);
+// console.log("testing the restaurant id", restaurant_id);
 
   useEffect(() => {
-    if (!restaurantDetails.restaurantId) return;
+    if (!restaurantDetails?.restaurantId) return;
 
     const fetchMenuByCategory = async () => {
       try {
@@ -171,7 +174,7 @@ console.log("testing the restaurant id", restaurant_id);
         setCategoryNames(names);
 
         const allMenuItems = await Promise.all(
-          names.map(async (category) => {
+          names.map(async (category: string) => {
             const response = await getMenuItemById(
               restaurantDetails.restaurantId,
               category
