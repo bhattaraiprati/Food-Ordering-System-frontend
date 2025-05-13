@@ -65,8 +65,6 @@ const LoginPage = () => {
       localStorage.setItem("role", role);
       localStorage.setItem("data", JSON.stringify({ id, name, email }));
 
-      
-
       if (role === "restaurant") {
         // localStorage.setItem("restaurant_Login", JSON.stringify(response.data));
         SuccesfulMessageToast("Login Successfully");
@@ -76,11 +74,6 @@ const LoginPage = () => {
           navigate("/restaurant");
           window.location.reload();
         }, 1000);
-      }
-      if (role === "admin") {
-        SuccesfulMessageToast("Admin Login Successfully");
-        // localStorage.setItem("admin_Login", 1);
-        navigate("/admin");
       }
       if (role === "user") {
         SuccesfulMessageToast("User Login Successfully");

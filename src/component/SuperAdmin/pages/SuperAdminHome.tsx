@@ -21,13 +21,9 @@ interface RestaurantData {
 const SuperAdminHome: React.FC = () => {
     const navigate = useNavigate();
     const [restaurantId, setRestaurantId] = useState<number | null>(null);
-      const [restaurantDetails, setRestaurantDetails] = useState<
-        RestaurantData[] 
-      >();
+      const [restaurantDetails, setRestaurantDetails] = useState<RestaurantData[] >();
       const [modalShow, setModalShow] = useState<boolean>(false)
       const [declineModal, setDeclineModal] = useState<boolean>(false);
-
-
    
       const handleRequestApprove = (record:RestaurantData):void => {
         setRestaurantId(record.id);

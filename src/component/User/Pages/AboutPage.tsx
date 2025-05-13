@@ -1,17 +1,16 @@
 import { FacebookFilled } from '@ant-design/icons';
 import { Col, Row } from 'antd'
-import { Facebook, } from 'lucide-react';
 import React from 'react'
 
-const SingleImage = ({ href, imgSrc }) => {
-  return (
-    <>
-      <a href={href} className="flex w-full items-center justify-center">
-        <img src={imgSrc} alt="brand image" className="h-10 w-full" />
-      </a>
-    </>
-  );
-};
+// const SingleImage = ({ href, imgSrc }) => {
+//   return (
+//     <>
+//       <a href={href} className="flex w-full items-center justify-center">
+//         <img src={imgSrc} alt="brand image" className="h-10 w-full" />
+//       </a>
+//     </>
+//   );
+// };
 
 const AboutPage = () => {
   return (

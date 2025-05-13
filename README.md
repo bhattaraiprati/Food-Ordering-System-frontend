@@ -1,12 +1,26 @@
-# React + Vite
+# Online Food Ordering System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Description
 
-Currently, two official plugins are available:
+A modern web-based food ordering platform developed with React that connects customers with local restaurants. Features include real-time order tracking, restaurant menu management, and administrative oversight. The system streamlines the food ordering process while providing restaurants with tools to manage their operations effectively.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+- **Three User Roles**:
+  - Customers: Browse menus, place orders, track status
+  - Restaurants: Manage menus, process orders, update KYC
+  - Super Admin: Approve restaurants, monitor system activity
+- **Menu Categorization**: Organize items into Breakfast/Lunch/Dinner
+- **Real-Time Updates**: Dynamic order status tracking (Pending → Preparing → Ready)
+- **KYC Verification**: Secure restaurant onboarding process
+- **Protected Routes**: Role-based authentication system
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+- **Frontend**:
+  - React.js 19.0.0
+  - React Router 7.3.0
+  - Tailwind CSS 3.4.17
+  - Ant Design 5.24.4
+
+## ScreenShot
