@@ -24,3 +24,14 @@ A modern web-based food ordering platform developed with React that connects cus
   - Ant Design 5.24.4
 
 ## ScreenShot
+-**Home page**
+![Image alt](https://github.com/bhattaraiprati/Food-Ordering-System-frontend/blob/ae6e71e3a9a94ebd3d4eda5d24acfdcb0c1cc63d/src/assets/Images/Home%20Page.png?raw=true)
+
+- **Restaurant Details Page**
+![Image alt](https://github.com/bhattaraiprati/Food-Ordering-System-frontend/blob/ae6e71e3a9a94ebd3d4eda5d24acfdcb0c1cc63d/src/assets/Images/Restaurant%20details%20page.png?raw=true)
+
+-**Restaurant Dashboard**
+![Iamge alt](https://github.com/bhattaraiprati/Food-Ordering-System-frontend/blob/ae6e71e3a9a94ebd3d4eda5d24acfdcb0c1cc63d/src/assets/Images/Restaurant%20Dashboard%20Page.png?raw=true)
+
+-**Restaurant Menu List**
+![Image alt](https://github.com/bhattaraiprati/Food-Ordering-System-frontend/blob/ae6e71e3a9a94ebd3d4eda5d24acfdcb0c1cc63d/src/assets/Images/Restaurant%20Menu%20List.png?raw=true)
